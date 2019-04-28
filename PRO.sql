@@ -129,6 +129,17 @@ End;
 
 /*
 p4
-
+Displaying Student name and ID along with the courses that they have taken.
 */
+Declare 
+Begin
+select S.ID ,S.Name from Course c,takes t ,Student S where  c.Course_id= t.Course_id and S.ID=t.ID;
+End;
 
+CREATE OR REPLACE PROCEDURE Student_name_and_ID (
+    Student_name_and_ID   OUT SYS_REFCURSOR
+)
+    IS
+BEGIN
+open Student_name_and_ID  for select S.ID ,S.Name from Course c,takes t ,Student S where  c.Course_id= t.Course_id and S.ID=t.ID;
+End;
