@@ -182,21 +182,26 @@ END;
 P5 :
 Display number of students enrolled in each course section
 */
-CREATE OR REPLACE PROCEDURE tcourse_eq_ttakes (
-    tcourse_eq_ttakes   OUT SYS_REFCURSOR
+CREATE OR REPLACE PROCEDURE count_and_Title_of_course (
+    count_and_Title_of_course   OUT SYS_REFCURSOR
 )
     IS
 BEGIN
-    OPEN tcourse_eq_ttakes FOR
-            SELECT  DisTINCT c.TITLE,(select count(t.id)from takes t where t.course_id = c.course_id)   FROM course c, takes t WHERE c.course_id = t.course_id  ;
-
+    OPEN count_and_Title_of_course FOR
+           -- SELECT  DisTINCT c.TITLE,(select count(t.id)from takes t where t.course_id = c.course_id)   FROM course c, takes t WHERE c.course_id = t.course_id  ;
+select c.title, count(t.id)
+  from takes t , course c 
+  where t.course_id=c.course_id
+  group by c.title;
 
 END;
 
 
 DECLARE BEGIN-- just run  select statment
-    SELECT  DisTINCT c.TITLE,(select count(t.id)from takes t where t.course_id = c.course_id)   FROM course c, takes t WHERE c.course_id = t.course_id  ;
---SELECT distincit c.TITLE,count(s.id) FROM course c, takes t WHERE c.course_id = t.course_id;
+select c.title, count(t.id)
+  from takes t , course c 
+  where t.course_id=c.course_id
+  group by c.title;--SELECT distincit c.TITLE,count(s.id) FROM course c, takes t WHERE c.course_id = t.course_id;
 
 END;
 
