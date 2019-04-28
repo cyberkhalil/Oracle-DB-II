@@ -73,14 +73,10 @@ BEGIN
     OPEN c_course FOR
         SELECT
             credits
-        INTO
-            c_allcourse
+       
         FROM
             course;--COURSE_ID
 
-EXCEPTION
-    WHEN others THEN
-        dbms_output.put_line(sqlerrm);
 END;
 --Test one
 
@@ -104,6 +100,8 @@ BEGIN
 
     CLOSE c_course;
 END;
+
+
 
 /*
 p3
