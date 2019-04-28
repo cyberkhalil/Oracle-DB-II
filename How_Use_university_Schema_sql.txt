@@ -1,0 +1,17 @@
+
+1- Connect as  sys as sysdba using SqlPlus 
+2- Create user as following :
+
+		CREATE USER your_name	
+		IDENTIFIED BY your_password
+		DEFAULT TABLESPACE USERS
+		QUOTA 10M ON USERS;
+
+
+		GRANT CREATE SESSION, RESOURCE, CREATE VIEW,
+		CREATE SYNONYM, CREATE MATERIALIZED VIEW, ALTER SESSION
+		TO your_name;
+
+
+3- Create new connection to new user in sql developer 
+4- Copy all Schema sql and Run all script 
