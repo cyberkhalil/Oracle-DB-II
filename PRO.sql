@@ -10,8 +10,7 @@ BEGIN
     INTO
         s_allstudent
     FROM
-        student
-   ;
+        student;
 
 EXCEPTION
     WHEN others THEN
@@ -58,7 +57,6 @@ DECLARE
     c_allcourse   course%rowtype;
 BEGIN
     allcourse(c_allcourse);
-
     dbms_output.put_line(c_allcourse.title);
 END;
 
@@ -112,34 +110,118 @@ p3
 Display the information about Course Takes from the takes table
 */
 
-Declare 
-Begin
-select Title from Course c,takes t where  c.Course_id= t.Course_id;
-End;
+DECLARE BEGIN-- just run  select statment
+    SELECT
+        title
+    FROM
+        course c,
+        takes t
+    WHERE
+        c.course_id = t.course_id;
 
+END;
 
-CREATE OR REPLACE PROCEDURE TCourse_eq_Ttakes (
+CREATE OR REPLACE PROCEDURE tcourse_eq_ttakes (
     c_course   OUT SYS_REFCURSOR
 )
     IS
 BEGIN
-open c_course  for select Title from Course c,takes t where  c.Course_id= t.Course_id;
+    OPEN c_course FOR
+        SELECT
+            title
+        FROM
+            course c,
+            takes t
+        WHERE
+            c.course_id = t.course_id;
 
-End;
+END;
 
 /*
 p4
 Displaying Student name and ID along with the courses that they have taken.
 */
-Declare 
-Begin
-select S.ID ,S.Name from Course c,takes t ,Student S where  c.Course_id= t.Course_id and S.ID=t.ID;
-End;
 
 CREATE OR REPLACE PROCEDURE Student_name_and_ID (
-    Student_name_and_ID   OUT SYS_REFCURSOR
+    c_course   OUT SYS_REFCURSOR
 )
     IS
 BEGIN
-open Student_name_and_ID  for select S.ID ,S.Name from Course c,takes t ,Student S where  c.Course_id= t.Course_id and S.ID=t.ID;
+    OPEN c_course FOR
+        SELECT
+        s.id,
+        s.name
+    FROM
+        course c,
+        takes t,
+        student s
+    WHERE
+        c.course_id = t.course_id
+    AND
+        s.id = t.id;
+END;
+
+
+
+DECLARE BEGIN-- just run  select statment
+    SELECT
+        s.id,
+        s.name
+    FROM
+        course c,
+        takes t,
+        student s
+    WHERE
+        c.course_id = t.course_id
+    AND
+        s.id = t.id;
+
+END;
+
+/*
+P5 :
+Display number of students enrolled in each course section
+*/
+CREATE OR REPLACE PROCEDURE tcourse_eq_ttakes (
+    tcourse_eq_ttakes   OUT SYS_REFCURSOR
+)
+    IS
+BEGIN
+    OPEN tcourse_eq_ttakes FOR
+            SELECT  DisTINCT c.TITLE,(select count(t.id)from takes t where t.course_id = c.course_id)   FROM course c, takes t WHERE c.course_id = t.course_id  ;
+
+
+END;
+
+
+DECLARE BEGIN-- just run  select statment
+    SELECT  DisTINCT c.TITLE,(select count(t.id)from takes t where t.course_id = c.course_id)   FROM course c, takes t WHERE c.course_id = t.course_id  ;
+--SELECT distincit c.TITLE,count(s.id) FROM course c, takes t WHERE c.course_id = t.course_id;
+
+END;
+
+/*
+P6:
+Register a new Student.*/
+
+
+CREATE OR REPLACE PROCEDURE Insert_Student (
+    ID   in Student.ID%type,
+        Name   in Student.Name%type,
+        DEPT_Name   in Student.DEPT_Name%type,
+        TOT_CRED   in Student.TOT_CRED%type
+)
+    IS
+BEGIN
+INSERT INTO Student (ID, Name, DEPT_Name, TOT_CRED)
+VALUES (ID, Name, DEPT_Name, TOT_CRED);
 End;
+
+DECLARE BEGIN
+Insert_Student('10104','Smith2','Comp. Sci.', 10);
+/*
+INSERT INTO Student (ID, Name, DEPT_Name, TOT_CRED)
+VALUES ('10101', 'Smith', 'Comp. Sci.', 10);
+
+*/
+END;
