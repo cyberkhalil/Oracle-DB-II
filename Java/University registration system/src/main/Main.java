@@ -17,7 +17,15 @@
 package main;
 
 import gui.Login;
+import static java.awt.EventQueue.invokeLater;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import static javax.swing.UIManager.getInstalledLookAndFeels;
+import static javax.swing.UIManager.setLookAndFeel;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.plaf.metal.MetalLookAndFeel;
 
 /**
  *
@@ -26,18 +34,20 @@ import javax.swing.JOptionPane;
 public class Main {
 
     public static void main(String[] args) {
+        // TODO check database oracle is installed..
+
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            System.out.println(Arrays.toString(getInstalledLookAndFeels()));
+            // TODO change look and feel to be great !
+            setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+            //setLookAndFeel(new MetalLookAndFeel());
+        } catch (ClassNotFoundException
+                | InstantiationException
+                | IllegalAccessException
+                | UnsupportedLookAndFeelException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-
-        java.awt.EventQueue.invokeLater(() -> {
+        invokeLater(() -> {
             new Login().setVisible(true);
         });
     }

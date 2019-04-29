@@ -91,7 +91,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(userNameTf)
-                    .addComponent(userSchemaTf, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                    .addComponent(userSchemaTf, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
                     .addComponent(userPasswordPf))
                 .addGap(59, 59, 59))
             .addGroup(layout.createSequentialGroup()
@@ -102,29 +102,37 @@ public class Login extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(85, 85, 85)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(userNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(userPasswordPf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 59, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(userSchemaTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(42, 42, 42)
+                .addContainerGap(52, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(userNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(userPasswordPf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(userSchemaTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
                 .addComponent(LoginBtn)
                 .addGap(21, 21, 21))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void userPasswordPfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userPasswordPfActionPerformed
+        login();
+    }//GEN-LAST:event_userPasswordPfActionPerformed
+
+    private void userSchemaTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userSchemaTfActionPerformed
+        login();
+    }//GEN-LAST:event_userSchemaTfActionPerformed
+
+    private void userNameTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameTfActionPerformed
+        login();
+    }//GEN-LAST:event_userNameTfActionPerformed
 
     private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBtnActionPerformed
         login();
@@ -136,24 +144,15 @@ public class Login extends javax.swing.JFrame {
                     userNameTf.getText(),
                     new String(userPasswordPf.getPassword())
             );
-            System.out.println("LOGIN SUCCESSFUL");
-            // TODO next gui frame
+
+            if (DBConnection.getConnection() != null) {
+                new MainMenu().setVisible(true);
+                this.dispose();
+            }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
     }
-
-    private void userNameTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameTfActionPerformed
-        login();
-    }//GEN-LAST:event_userNameTfActionPerformed
-
-    private void userPasswordPfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userPasswordPfActionPerformed
-        login();
-    }//GEN-LAST:event_userPasswordPfActionPerformed
-
-    private void userSchemaTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userSchemaTfActionPerformed
-        login();
-    }//GEN-LAST:event_userSchemaTfActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LoginBtn;
