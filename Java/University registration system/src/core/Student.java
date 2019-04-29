@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Core;
+package core;
 
 /**
  *
@@ -19,7 +19,6 @@ public class Student {
     public Student(String ID) {
         // TODO get other values from database
     }
-      
 
     /**
      * @return the ID

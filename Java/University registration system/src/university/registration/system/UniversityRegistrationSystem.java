@@ -1,9 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package university.registration.system;
+
+import db.DBConnection;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -11,11 +10,13 @@ package university.registration.system;
  */
 public class UniversityRegistrationSystem {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+        try {
+            DBConnection.establishConnection();
+            System.out.println("Connection SUCCESSFUL;No Exception found!");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
     }
-    
+
 }
