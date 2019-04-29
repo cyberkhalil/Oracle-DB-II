@@ -1,9 +1,3 @@
-package util;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
 /*
  * Copyright (C) 2019 AyShe2
  *
@@ -20,6 +14,12 @@ import java.sql.SQLException;
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+package util;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 public final class DBConnection {
 
     private DBConnection() {
@@ -28,23 +28,13 @@ public final class DBConnection {
     private static Connection connection;
 
     public static Connection getConnection() {
-        if (isConnected) {
-            return connection;
-        }
-        return null;
+        return isConnected ? connection : null;
     }
 
-    public static Connection establishConnection(
-            String username, String password, String schema)
+    public static Connection establishConnection(String username, String password)
             throws SQLException {
-        String url = "jdbc:oracle:thin:@localhost:1521:XE";
-        String connectionString
-                = schema != null && schema.trim().isEmpty()
-                ? url : url + "/" + schema;
-
-        connection = DriverManager.
-                getConnection(connectionString, username, password);
-
+        String connString = "jdbc:oracle:thin:@localhost:1521:XE";
+        connection = DriverManager.getConnection(connString, username, password);
         isConnected = connection.isValid(0);
         return connection;
     }

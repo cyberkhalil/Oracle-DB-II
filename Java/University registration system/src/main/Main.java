@@ -1,5 +1,3 @@
-package main;
-
 /*
  * Copyright (C) 2019 AyShe2
  *
@@ -16,6 +14,8 @@ package main;
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+package main;
+
 import gui.Login;
 import javax.swing.JOptionPane;
 

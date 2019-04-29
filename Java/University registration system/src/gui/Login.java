@@ -18,10 +18,9 @@ package gui;
 
 import java.awt.HeadlessException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import util.DBConnection;
+import util.GUI_Util;
 
 public class Login extends javax.swing.JFrame {
 
@@ -30,6 +29,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        GUI_Util.duplicateText(this.userNameTf, this.userSchemaTf);
     }
 
     @SuppressWarnings("unchecked")
@@ -63,6 +63,7 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setText("Password");
 
+        userSchemaTf.setEditable(false);
         userSchemaTf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userSchemaTfActionPerformed(evt);
@@ -133,9 +134,10 @@ public class Login extends javax.swing.JFrame {
         try {
             DBConnection.establishConnection(
                     userNameTf.getText(),
-                    new String(userPasswordPf.getPassword()),
-                    userSchemaTf.getText());
+                    new String(userPasswordPf.getPassword())
+            );
             System.out.println("LOGIN SUCCESSFUL");
+            // TODO next gui frame
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
