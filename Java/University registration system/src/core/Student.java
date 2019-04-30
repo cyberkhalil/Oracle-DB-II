@@ -16,13 +16,17 @@
  */
 package core;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import util.db.DBConnection;
+
 /**
  *
  * @author A7med
  */
 public class Student {
 
-    final String ID = null;
+    private final String ID = null;
     private String name;
     private String dept_name;
     private double tot_cred;
@@ -54,7 +58,13 @@ public class Student {
     /**
      * @param name the name to set
      */
-    public void setName(String name) {
+    public void setName(String name) throws SQLException{
+        String query = "Update student set name=? where ID=?";
+        PreparedStatement preparedStatement
+                = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setString(1, name);
+        preparedStatement.setString(2, ID);
+        preparedStatement.executeUpdate();
         this.name = name;
     }
 
@@ -68,7 +78,13 @@ public class Student {
     /**
      * @param dept_name the dept_name to set
      */
-    public void setDept_name(String dept_name) {
+    public void setDept_name(String dept_name)  throws SQLException{
+         String query = "Update student set dept_name=? where ID=?";
+        PreparedStatement preparedStatement
+                = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setString(1, dept_name);
+        preparedStatement.setString(2, ID);
+        preparedStatement.executeUpdate();
         this.dept_name = dept_name;
     }
 
@@ -82,8 +98,26 @@ public class Student {
     /**
      * @param tot_cred the tot_cred to set
      */
-    public void setTot_cred(double tot_cred) {
+    public void setTot_cred(double tot_cred) throws SQLException {
+         String query = "Update student set tot_cred=? where ID=?";
+        PreparedStatement preparedStatement
+                = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setDouble(1,  tot_cred);
+        preparedStatement.setString(2, ID);
+        preparedStatement.executeUpdate();
         this.tot_cred = tot_cred;
     }
+    
+    public void delete() throws SQLException {
+        String query = "Delete from student where ID=?";
+        PreparedStatement preparedStatement
+                = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setString(1, ID);
+        preparedStatement.executeUpdate();
+        this.name = null;
+        this.tot_cred = -1;
+        this.dept_name = null;
+    }
+    
 
 }
