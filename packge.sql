@@ -1,4 +1,9 @@
 CREATE OR REPLACE PACKAGE all_course IS
+ PROCEDURE allstudent2 (
+    allstudent2   OUT SYS_REFCURSOR
+);
+
+
     PROCEDURE allstudent (
         s_allstudent   OUT student%rowtype
     );
@@ -153,6 +158,22 @@ BEGIN
 INSERT INTO Student (ID, Name, DEPT_Name, TOT_CRED)
 VALUES (ID, Name, DEPT_Name, TOT_CRED);
 End;
+PROCEDURE allstudent2 (
+    allstudent2   OUT SYS_REFCURSOR
+)
+    IS
+BEGIN     
+--select * into S_AllStudent  from Student where Student.ID='19991'; this is for test
+OPEN  allstudent2 for
+    SELECT
+        *
+   
+    FROM
+        student;
 
+EXCEPTION
+    WHEN others THEN
+        dbms_output.put_line(sqlerrm);
+END;
 
 End;
