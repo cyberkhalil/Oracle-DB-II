@@ -91,7 +91,7 @@ public class Course {
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setString(1, DEPT_NAME);
-        preparedStatement.setString(3, COURSE_ID);
+        preparedStatement.setString(2, COURSE_ID);
         preparedStatement.executeUpdate();
         this.DEPT_NAME = DEPT_NAME;
     }
@@ -111,8 +111,8 @@ public class Course {
          String query = "Update student set CREDITS=? where ID=?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setInt(1, (int) CREDITS);
-        preparedStatement.setString(4, COURSE_ID);
+        preparedStatement.setDouble(1,  CREDITS);
+        preparedStatement.setString(2, COURSE_ID);
         preparedStatement.executeUpdate();
         
         this.CREDITS = CREDITS;

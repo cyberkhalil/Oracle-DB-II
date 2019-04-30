@@ -83,7 +83,7 @@ public class Student {
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setString(1, dept_name);
-        preparedStatement.setString(3, ID);
+        preparedStatement.setString(2, ID);
         preparedStatement.executeUpdate();
         this.dept_name = dept_name;
     }
@@ -102,8 +102,8 @@ public class Student {
          String query = "Update student set tot_cred=? where ID=?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setInt(1, (int) tot_cred);
-        preparedStatement.setString(4, ID);
+        preparedStatement.setDouble(1,  tot_cred);
+        preparedStatement.setString(2, ID);
         preparedStatement.executeUpdate();
         this.tot_cred = tot_cred;
     }
