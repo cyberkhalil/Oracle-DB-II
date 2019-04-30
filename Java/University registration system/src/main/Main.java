@@ -19,13 +19,10 @@ package main;
 import gui.Login;
 import static java.awt.EventQueue.invokeLater;
 import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import static javax.swing.UIManager.getInstalledLookAndFeels;
 import static javax.swing.UIManager.setLookAndFeel;
 import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.plaf.metal.MetalLookAndFeel;
 
 /**
  *
@@ -39,7 +36,7 @@ public class Main {
         try {
             System.out.println(Arrays.toString(getInstalledLookAndFeels()));
             // TODO change look and feel to be great !
-            setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+            setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
             //setLookAndFeel(new MetalLookAndFeel());
         } catch (ClassNotFoundException
                 | InstantiationException

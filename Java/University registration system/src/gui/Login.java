@@ -19,7 +19,7 @@ package gui;
 import java.awt.HeadlessException;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import util.DBConnection;
+import util.db.DBConnection;
 import util.GUI_Util;
 
 public class Login extends javax.swing.JFrame {
