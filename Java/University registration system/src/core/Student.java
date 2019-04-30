@@ -103,7 +103,7 @@ public class Student {
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, (int) tot_cred);
-        preparedStatement.setString(3, ID);
+        preparedStatement.setString(4, ID);
         preparedStatement.executeUpdate();
         this.tot_cred = tot_cred;
     }
@@ -115,7 +115,7 @@ public class Student {
         preparedStatement.setString(1, ID);
         preparedStatement.executeUpdate();
         this.name = null;
-        this.tot_cred = 0;
+        this.tot_cred = -1;
         this.dept_name = null;
     }
     
