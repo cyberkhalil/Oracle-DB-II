@@ -17,7 +17,7 @@ EXCEPTION
         dbms_output.put_line(sqlerrm);
 END;
 --exec AllStudent();
-
+/*
 DECLARE
     s_allstudent   student%rowtype;
 BEGIN
@@ -27,7 +27,7 @@ BEGIN
     dbms_output.put_line(s_allstudent.name); -- it should put id in procedure if you want to use this way
 
 END;
-
+*/
 /*
 P2
 */
@@ -52,14 +52,14 @@ EXCEPTION
         dbms_output.put_line(sqlerrm);
 END;
 ---testAllCourse
-
+/*
 DECLARE
     c_allcourse   course%rowtype;
 BEGIN
     allcourse(c_allcourse);
     dbms_output.put_line(c_allcourse.title);
 END;
-
+*/
 /*
 
 p3
@@ -107,7 +107,7 @@ END;
 p3
 Display the information about Course Takes from the takes table
 */
-
+/*
 DECLARE BEGIN-- just run  select statment
     SELECT
         title
@@ -118,7 +118,7 @@ DECLARE BEGIN-- just run  select statment
         c.course_id = t.course_id;
 
 END;
-
+*/
 CREATE OR REPLACE PROCEDURE tcourse_eq_ttakes (
     c_course   OUT SYS_REFCURSOR
 )
@@ -160,7 +160,7 @@ BEGIN
 END;
 
 
-
+/*
 DECLARE BEGIN-- just run  select statment
     SELECT
         s.id,
@@ -175,7 +175,7 @@ DECLARE BEGIN-- just run  select statment
         s.id = t.id;
 
 END;
-
+*/
 /*
 P5 :
 Display number of students enrolled in each course section
@@ -194,7 +194,7 @@ select c.title, count(t.id)
 
 END;
 
-
+/*
 DECLARE BEGIN-- just run  select statment
 select c.title, count(t.id)
   from takes t , course c 
@@ -202,7 +202,7 @@ select c.title, count(t.id)
   group by c.title;--SELECT distincit c.TITLE,count(s.id) FROM course c, takes t WHERE c.course_id = t.course_id;
 
 END;
-
+*/
 /*
 P6:
 Register a new Student.*/
@@ -219,7 +219,7 @@ BEGIN
 INSERT INTO Student (ID, Name, DEPT_Name, TOT_CRED)
 VALUES (ID, Name, DEPT_Name, TOT_CRED);
 End;
-
+/*
 DECLARE BEGIN
 Insert_Student('10104','Smith2','Comp. Sci.', 10);
 /*
@@ -242,6 +242,28 @@ OPEN  allstudent2 for
    
     FROM
         student;
+
+EXCEPTION
+    WHEN others THEN
+        dbms_output.put_line(sqlerrm);
+END;
+
+
+/*
+*/
+CREATE OR REPLACE PROCEDURE allcourse2 (
+    allcourse2   OUT SYS_REFCURSOR
+)
+    IS
+BEGIN     
+
+--select * into C_AllCourse from COURSE where COURSE_ID='BIO-101';--COURSE_ID
+OPEN allcourse2 for
+    SELECT
+        *
+   
+    FROM
+        course;--COURSE_ID
 
 EXCEPTION
     WHEN others THEN

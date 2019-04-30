@@ -35,12 +35,21 @@ p2
         tot_cred IN student.TOT_CRED%type
     );
 
+PROCEDURE allcourse2 (
+    allcourse2   OUT SYS_REFCURSOR
+);
 END;
+
+
+
+
 
 --
 /*
 body;
 */
+
+
 
 
 create or replace package body all_course
@@ -167,7 +176,6 @@ BEGIN
 OPEN  allstudent2 for
     SELECT
         *
-   
     FROM
         student;
 
@@ -175,5 +183,22 @@ EXCEPTION
     WHEN others THEN
         dbms_output.put_line(sqlerrm);
 END;
+PROCEDURE allcourse2 (
+    allcourse2   OUT SYS_REFCURSOR
+)
+    IS
+BEGIN     
 
+--select * into C_AllCourse from COURSE where COURSE_ID='BIO-101';--COURSE_ID
+OPEN allcourse2 for
+    SELECT
+        *
+   
+    FROM
+        course;--COURSE_ID
+
+EXCEPTION
+    WHEN others THEN
+        dbms_output.put_line(sqlerrm);
+END;
 End;
