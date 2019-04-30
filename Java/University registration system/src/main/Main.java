@@ -19,7 +19,10 @@ package main;
 import gui.Login;
 import static java.awt.EventQueue.invokeLater;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import static javax.swing.UIManager.getInstalledLookAndFeels;
 import static javax.swing.UIManager.setLookAndFeel;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -34,14 +37,9 @@ public class Main {
         // TODO check database oracle is installed..
 
         try {
-            System.out.println(Arrays.toString(getInstalledLookAndFeels()));
-            // TODO change look and feel to be great !
-            setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-            //setLookAndFeel(new MetalLookAndFeel());
-        } catch (ClassNotFoundException
-                | InstantiationException
-                | IllegalAccessException
-                | UnsupportedLookAndFeelException ex) {
+            org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
+            UIManager.put("RootPane.setupButtonVisible", false);
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
         invokeLater(() -> {

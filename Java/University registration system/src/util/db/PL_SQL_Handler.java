@@ -14,15 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package util;
+package util.db;
 
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Types;
-import javax.sql.rowset.CachedRowSet;
-import javax.sql.rowset.JdbcRowSet;
 import oracle.jdbc.OracleCallableStatement;
 import oracle.jdbc.OracleTypes;
 import static util.db.DBConnection.getConnection;
@@ -48,7 +45,7 @@ public final class PL_SQL_Handler {
         String call = "{CALL allstudent2(?)}";
         CallableStatement statment
                 = getConnection().prepareCall(call);
-        statment.registerOutParameter(1, OracleTypes.CURSOR); // TODO fix thix
+        statment.registerOutParameter(1, OracleTypes.CURSOR);
         statment.execute();
         ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
         return rs;
