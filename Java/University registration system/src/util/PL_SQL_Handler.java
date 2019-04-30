@@ -23,6 +23,8 @@ import java.sql.SQLException;
 import java.sql.Types;
 import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.JdbcRowSet;
+import oracle.jdbc.OracleCallableStatement;
+import oracle.jdbc.OracleTypes;
 import static util.db.DBConnection.getConnection;
 
 /**
@@ -43,12 +45,12 @@ public final class PL_SQL_Handler {
     }
 
     public static ResultSet displayStudentInformation() throws SQLException {
-        String call = "{CALL allstudent(?)}";
+        String call = "{CALL allstudent2(?)}";
         CallableStatement statment
                 = getConnection().prepareCall(call);
-        statment.registerOutParameter(1, Types.ARRAY); // TODO fix thix
-        statment.executeUpdate();
-        ResultSet rs = statment.getResultSet();
+        statment.registerOutParameter(1, OracleTypes.CURSOR); // TODO fix thix
+        statment.execute();
+        ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
         return rs;
     }
 

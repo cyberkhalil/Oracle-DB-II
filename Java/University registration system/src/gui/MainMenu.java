@@ -18,6 +18,8 @@ package gui;
 
 import util.PL_SQL_Handler;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import util.GUI_Util;
 
@@ -31,8 +33,8 @@ public class MainMenu extends javax.swing.JFrame {
      * Creates new form MainMenu
      */
     public MainMenu() {
+        initComponents();
         try {
-            initComponents();
             this.jTable1.setModel(
                     GUI_Util.buildTableModel(
                             PL_SQL_Handler.getAllTables()));
@@ -55,6 +57,11 @@ public class MainMenu extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "preview all tables", "Display all student information from the students table", "Display all course information from the courses table", "Display all course credit information from the course table", "Display the information about Course Takes from the takes table", "Displaying Student name and ID along with the courses that they have taken.", "Display number of students enrolled in each course section", "Register a new Student." }));
         jComboBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jScrollPane1.setViewportView(jTable1);
 
@@ -92,6 +99,24 @@ public class MainMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        try {
+            switch (jComboBox1.getSelectedIndex()) {
+                case 0:
+                    this.jTable1.setModel(
+                            GUI_Util.buildTableModel(
+                                    PL_SQL_Handler.getAllTables()));
+                    break;
+                case 1:
+                    this.jTable1.setModel(
+                            GUI_Util.buildTableModel(
+                                    PL_SQL_Handler.displayStudentInformation()));
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> jComboBox1;
