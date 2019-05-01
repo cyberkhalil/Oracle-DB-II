@@ -16,10 +16,17 @@
  */
 package util;
 
+import java.awt.Component;
+import java.awt.HeadlessException;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.Vector;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -92,4 +99,23 @@ public final class GUI_Util {
 
     }
 
+    public static void linkFrameToButton(JFrame frame, JButton button) {
+        button.setEnabled(false);
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                button.setEnabled(true);
+            }
+        });
+    }
+
+    public static void exitConfirm(Component rootPane) throws HeadlessException {
+        int confirm = JOptionPane.showConfirmDialog(
+                rootPane, "Are You Sure to Close Application?",
+                "Exit Confirmation", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+        if (confirm == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+    }
 }

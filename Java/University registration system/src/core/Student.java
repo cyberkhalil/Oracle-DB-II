@@ -31,7 +31,7 @@ public class Student {
     private String dept_name;
     private double tot_cred;
 
-    public Student(String ID) {
+    public Student(String ID) throws SQLException {
         // TODO get other values from database
     }
 
@@ -57,8 +57,9 @@ public class Student {
 
     /**
      * @param name the name to set
+     * @throws java.sql.SQLException
      */
-    public void setName(String name) throws SQLException{
+    public void setName(String name) throws SQLException {
         String query = "Update student set name=? where ID=?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
@@ -77,9 +78,10 @@ public class Student {
 
     /**
      * @param dept_name the dept_name to set
+     * @throws java.sql.SQLException
      */
-    public void setDept_name(String dept_name)  throws SQLException{
-         String query = "Update student set dept_name=? where ID=?";
+    public void setDept_name(String dept_name) throws SQLException {
+        String query = "Update student set dept_name=? where ID=?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setString(1, dept_name);
@@ -97,17 +99,22 @@ public class Student {
 
     /**
      * @param tot_cred the tot_cred to set
+     * @throws java.sql.SQLException
      */
     public void setTot_cred(double tot_cred) throws SQLException {
-         String query = "Update student set tot_cred=? where ID=?";
+        String query = "Update student set tot_cred=? where ID=?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setDouble(1,  tot_cred);
+        preparedStatement.setDouble(1, tot_cred);
         preparedStatement.setString(2, ID);
         preparedStatement.executeUpdate();
         this.tot_cred = tot_cred;
     }
-    
+
+    /**
+     *
+     * @throws SQLException
+     */
     public void delete() throws SQLException {
         String query = "Delete from student where ID=?";
         PreparedStatement preparedStatement
@@ -118,6 +125,5 @@ public class Student {
         this.tot_cred = -1;
         this.dept_name = null;
     }
-    
 
 }
