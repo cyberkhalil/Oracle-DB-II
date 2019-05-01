@@ -165,7 +165,7 @@ public class Login extends javax.swing.JFrame {
                         "schema not found",
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.ERROR_MESSAGE) == JOptionPane.YES_OPTION) {
-                    DbUtil.applyUniversity();
+                    DbUtil.applyUniversitySchema();
                 }
             }
             new MainMenu().setVisible(true);

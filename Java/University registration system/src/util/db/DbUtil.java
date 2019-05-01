@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import util.IO_Util;
@@ -44,7 +45,7 @@ public final class DbUtil {
                 && rs.last() && rs.getString("Name").equals("TIME_SLOT");
     }
 
-    public static void applyUniversity() throws IOException, SQLException {
+    public static void applyUniversitySchema() throws IOException, SQLException {
         dropDB();
         createUniversitySchema();
 
@@ -56,16 +57,14 @@ public final class DbUtil {
 
         for (String line : universityDB.split("\n")) {
             line = line.replace(";", "");
-            CallableStatement statment = getConnection().prepareCall(
-                    "BEGIN EXECUTE IMMEDIATE '" + line + "'; EXCEPTION\n"
-                    + "   WHEN OTHERS THEN\n"
-                    + "      IF SQLCODE != -942 THEN\n"
-                    + "         RAISE;\n"
-                    + "      END IF;\n"
-                    + "END;");
+            PreparedStatement statment = getConnection().prepareStatement(line);
             try {
-                statment.execute();
+                statment.executeUpdate();
             } catch (SQLException ex) {
+                if ("42000".equals(ex.getSQLState())) // dropping non exist table .. 
+                {
+                    continue;
+                }
                 System.out.println(line);
                 throw ex;
             }
