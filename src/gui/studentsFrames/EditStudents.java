@@ -19,6 +19,7 @@ package gui.studentsFrames;
 import core.Student;
 import gui.DefaultFrame;
 import java.sql.SQLException;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableModel;
@@ -129,6 +130,11 @@ public class EditStudents extends DefaultFrame {
         );
 
         newStudentBtn.setText("new Student");
+        newStudentBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newStudentBtnActionPerformed(evt);
+            }
+        });
 
         deleteStudentBtn.setText("delete Student");
         deleteStudentBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -300,6 +306,12 @@ public class EditStudents extends DefaultFrame {
                 });
         updateTable();
     }//GEN-LAST:event_editTotalCreditBtnActionPerformed
+
+    private void newStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newStudentBtnActionPerformed
+        JFrame frame = new AddNewStudent();
+        //GUI_Util.linkFrameToButton(frame, newStudentBtn);
+        frame.setVisible(true);
+    }//GEN-LAST:event_newStudentBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton deleteStudentBtn;
