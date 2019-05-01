@@ -101,7 +101,7 @@ public final class PL_SQL_Handler {
         return rs;
     }
 
-    public static ResultSet Insert_Student() throws SQLException {
+    public static void Insert_Student() throws SQLException {
         String call = "{CALL university.Insert_Student(?,?,?,?)}";
         CallableStatement statment
                 = getConnection().prepareCall(call);
@@ -111,8 +111,7 @@ public final class PL_SQL_Handler {
         statment.registerOutParameter(4, OracleTypes.NUMBER);
 
         statment.execute();
-        ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
-        return rs;
     }
+    
 
 }
