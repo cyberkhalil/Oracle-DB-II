@@ -16,11 +16,8 @@
  */
 package gui;
 
-import java.awt.HeadlessException;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import util.db.DBConnection;
 import util.GUI_Util;
@@ -145,6 +142,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_LoginBtnActionPerformed
 
     private void login() {
+        // TODO. progress bar and waiting gui.
         try {
             DBConnection.establishConnection(
                     userNameTf.getText(),
@@ -154,7 +152,7 @@ public class Login extends javax.swing.JFrame {
             if (DBConnection.getConnection() == null) {
                 return;
             }
-            if (!DbUtil.checkUniversity()) {
+            if (!DbUtil.checkUniversitySchema()) {
                 if (JOptionPane.showConfirmDialog(
                         rootPane,
                         "The Database you are connecting to doesn't contain "
@@ -165,7 +163,7 @@ public class Login extends javax.swing.JFrame {
                         "schema not found",
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.ERROR_MESSAGE) == JOptionPane.YES_OPTION) {
-                    DbUtil.applyUniversitySchema();
+                    DbUtil.applyUniversity();
                 }
             }
             new MainMenu().setVisible(true);

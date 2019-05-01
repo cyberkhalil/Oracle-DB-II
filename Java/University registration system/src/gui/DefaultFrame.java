@@ -99,7 +99,6 @@ public class DefaultFrame extends javax.swing.JFrame {
         exitConfirm(rootPane);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;

@@ -33,22 +33,25 @@ import static util.db.DBConnection.getConnection;
 public final class DbUtil {
 
     private static final int DB_TABLES_NUMBER = 1;//TODO...
-    private static final File SCHEMA_FILE = new File("src/sql/university.sql");
+    private static final File SCHEMA_FILE = new File("src/sql/universitySchema.sql");
     private static final File DROP_DB_FILE = new File("src/sql/dropDB.sql");
+    private static final File UNIVERSITY_PACKAGE_FILE
+            = new File("src/sql/university_pkg.sql");
+    // TODO.... same as above for student and course packages
 
     private DbUtil() {
     }
 
-    public static boolean checkUniversity() throws SQLException {
+    public static boolean checkUniversitySchema() throws SQLException {
         ResultSet rs = PL_SQL_Handler.getAllTables();
         return PL_SQL_Handler.countAllTables() == DB_TABLES_NUMBER
                 && rs.last() && rs.getString("Name").equals("TIME_SLOT");
     }
 
-    public static void applyUniversitySchema() throws IOException, SQLException {
+    public static void applyUniversity() throws IOException, SQLException {
         dropDB();
         createUniversitySchema();
-
+        createUniversityPackages();
     }
 
     private static void createUniversitySchema() throws IOException, SQLException {
@@ -77,5 +80,22 @@ public final class DbUtil {
 
         CallableStatement statment = getConnection().prepareCall(dropDB);
         statment.execute();
+    }
+
+    private static void createUniversityPackages() throws SQLException, IOException {
+
+        {
+            String university_pkg = IO_Util.readFile(
+                    UNIVERSITY_PACKAGE_FILE.toString(), StandardCharsets.UTF_8);
+            CallableStatement statment
+                    = getConnection().prepareCall(university_pkg);
+            statment.execute();
+        }
+        {
+            // TODO.... same as above for student package
+        }
+        {
+            // TODO.... same as above for course  package
+        }
     }
 }
