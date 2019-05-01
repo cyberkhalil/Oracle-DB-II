@@ -18,29 +18,28 @@ package main;
 
 import gui.Login;
 import static java.awt.EventQueue.invokeLater;
-import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
-import static javax.swing.UIManager.getInstalledLookAndFeels;
-import static javax.swing.UIManager.setLookAndFeel;
-import javax.swing.UnsupportedLookAndFeelException;
+import util.Pre;
 
 /**
  *
  * @author A7med
  */
-public class Main {
+public final class Main {
+
+    private Main() {
+    }
 
     public static void main(String[] args) {
-        // TODO check database oracle is installed..
-
         try {
             org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
             UIManager.put("RootPane.setupButtonVisible", false);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
+        }
+        if (!Pre.checkOracleInstalled()) {
+            // TODO ..
         }
         invokeLater(() -> {
             new Login().setVisible(true);

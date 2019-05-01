@@ -17,10 +17,14 @@
 package gui;
 
 import java.awt.HeadlessException;
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import util.db.DBConnection;
 import util.GUI_Util;
+import util.db.DbUtil;
 
 public class Login extends javax.swing.JFrame {
 
@@ -140,18 +144,33 @@ public class Login extends javax.swing.JFrame {
         login();
     }//GEN-LAST:event_LoginBtnActionPerformed
 
-    private void login() throws HeadlessException {
+    private void login() {
         try {
             DBConnection.establishConnection(
                     userNameTf.getText(),
                     new String(userPasswordPf.getPassword())
             );
 
-            if (DBConnection.getConnection() != null) {
-                new MainMenu().setVisible(true);
-                this.dispose();
+            if (DBConnection.getConnection() == null) {
+                return;
             }
-        } catch (SQLException ex) {
+            if (!DbUtil.checkUniversity()) {
+                if (JOptionPane.showConfirmDialog(
+                        rootPane,
+                        "The Database you are connecting to doesn't contain "
+                        + "university schema !\n"
+                        + "Do you want to replace your database with university "
+                        + "database ?\n"
+                        + "PS : this means you will drop all your tables and data!",
+                        "schema not found",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.ERROR_MESSAGE) == JOptionPane.YES_OPTION) {
+                    DbUtil.applyUniversity();
+                }
+            }
+            new MainMenu().setVisible(true);
+            this.dispose();
+        } catch (SQLException | IOException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
     }

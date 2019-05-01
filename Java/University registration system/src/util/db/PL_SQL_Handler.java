@@ -33,6 +33,15 @@ public final class PL_SQL_Handler {
     private PL_SQL_Handler() {
     }
 
+    public static int countAllTables() throws SQLException {
+        String query = "select count(*) from tab";
+        PreparedStatement statment
+                = getConnection().prepareStatement(query);
+        ResultSet rs = statment.executeQuery();
+        rs.next();
+        return rs.getInt("COUNT(*)");
+    }
+
     public static ResultSet getAllTables() throws SQLException {
         String query = "select * from tab";
         PreparedStatement statment
