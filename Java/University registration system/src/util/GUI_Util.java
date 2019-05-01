@@ -28,6 +28,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
@@ -117,5 +118,18 @@ public final class GUI_Util {
         if (confirm == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
+    }
+
+    public static String promoteString(
+            Component pane, String request, String title, String emptyMsg) {
+
+        String promotedString = JOptionPane.
+                showInputDialog(pane, request, title, DISPOSE_ON_CLOSE);
+
+        if (promotedString != null && promotedString.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(pane, emptyMsg);
+            return null;
+        }
+        return promotedString;
     }
 }

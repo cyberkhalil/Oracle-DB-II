@@ -19,10 +19,9 @@ package gui.studentsFrames;
 import core.Student;
 import gui.DefaultFrame;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
+import util.GUI_Util;
 import static util.GUI_Util.buildTableModel;
 import static util.db.PL_SQL_Handler.displayStudentInformation;
 
@@ -138,8 +137,18 @@ public class EditStudents extends DefaultFrame {
         deleteStudentBtn.setText("delete Student");
 
         editNameBtn.setText("Edit Name");
+        editNameBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editNameBtnActionPerformed(evt);
+            }
+        });
 
         editDepartmentBtn.setText("Edit Department");
+        editDepartmentBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editDepartmentBtnActionPerformed(evt);
+            }
+        });
 
         editTotalCreditBtn.setText("Edit Total Credits");
 
@@ -217,6 +226,46 @@ public class EditStudents extends DefaultFrame {
         updateTable();
     }//GEN-LAST:event_jTable1MouseClicked
 
+    private void editNameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editNameBtnActionPerformed
+        if (!validSelection()) {
+            return;
+        }
+        String newStudentName = GUI_Util.promoteString(
+                rootPane,
+                "New student name:",
+                "Student Name",
+                "Student name can't be empty !");
+        if (newStudentName == null) {
+            return;
+        }
+        try {
+            selectedStudent.setName(newStudentName);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
+        }
+        updateTable();
+    }//GEN-LAST:event_editNameBtnActionPerformed
+
+    private void editDepartmentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editDepartmentBtnActionPerformed
+        if (!validSelection()) {
+            return;
+        }
+        String newStudentDepartmentName = GUI_Util.promoteString(
+                rootPane,
+                "New student department name:",
+                "Student department",
+                "Student department name can't be empty !");
+        if (newStudentDepartmentName == null) {
+            return;
+        }
+        try {
+            selectedStudent.setDepartmentName(newStudentDepartmentName);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
+        }
+        updateTable();
+    }//GEN-LAST:event_editDepartmentBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton deleteStudentBtn;
     private javax.swing.JButton editDepartmentBtn;
@@ -251,8 +300,18 @@ public class EditStudents extends DefaultFrame {
         } else {
             studentIdTf.setText(selectedStudent.getID());
             studentNameTf.setText(selectedStudent.getName());
-            studentDepartmentTf.setText(selectedStudent.getDept_name());
-            studentCreditTf.setText(String.valueOf(selectedStudent.getTot_cred()));
+            studentDepartmentTf.setText(selectedStudent.getDepartmentName());
+            studentCreditTf.setText(String.valueOf(selectedStudent.getTotalCerdit()));
         }
     }
+
+    private boolean validSelection() {
+        if (selectedStudent == null) {
+            JOptionPane.showMessageDialog(rootPane,
+                    "Choose a Student to make this opreation !");
+            return false;
+        }
+        return true;
+    }
+
 }

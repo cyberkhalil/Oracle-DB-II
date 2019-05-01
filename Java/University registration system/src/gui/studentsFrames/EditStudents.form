@@ -229,11 +229,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Edit Name"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editNameBtnActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="editDepartmentBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Edit Department"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editDepartmentBtnActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="editTotalCreditBtn">
           <Properties>

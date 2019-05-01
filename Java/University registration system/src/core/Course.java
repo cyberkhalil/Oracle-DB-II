@@ -17,6 +17,7 @@
 package core;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import util.db.DBConnection;
 
@@ -26,13 +27,28 @@ import util.db.DBConnection;
  */
 public class Course {
 
-    private final String COURSE_ID = null;
-    private String TITLE;
-    private String DEPT_NAME;
-    private double CREDITS;
+    private final String COURSE_ID;
+    private String title;
+    private String departmentName;
+    private double credits;
 
+    /**
+     *
+     * @param COURSE_ID
+     * @throws SQLException
+     */
     public Course(String COURSE_ID) throws SQLException {
-        // TODO get other values from database
+        String query = "select * from course where course_id=?";
+        PreparedStatement preparedStatement
+                = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setString(1, COURSE_ID);
+        ResultSet rs = preparedStatement.executeQuery();
+        rs.next();
+
+        title = rs.getString("title");
+        departmentName = rs.getString("dept_name");
+        credits = rs.getDouble("credits");
+        this.COURSE_ID = COURSE_ID;
     }
 
     /**
@@ -43,70 +59,70 @@ public class Course {
     }
 
     /**
-     * @return the TITLE
+     * @return the title
      */
-    public String getTITLE() {
-        return TITLE;
+    public String getTitle() {
+        return title;
     }
 
     /**
-     * @param TITLE the TITLE to set
+     * @param title the title to set
      * @throws java.sql.SQLException
      */
-    public void setTITLE(String TITLE) throws SQLException {
-        String query = "Update student set TITLE=? where ID=?";
+    public void setTitle(String title) throws SQLException {
+        String query = "Update student set title=? where course_id=?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setString(1, TITLE);
+        preparedStatement.setString(1, title);
         preparedStatement.setString(2, COURSE_ID);
         preparedStatement.executeUpdate();
 
-        this.TITLE = TITLE;
+        this.title = title;
     }
 
     /**
-     * @return the DEPT_NAME
+     * @return the departmentName
      */
-    public String getDEPT_NAME() {
-        return DEPT_NAME;
+    public String getDepartmentName() {
+        return departmentName;
     }
 
     /**
-     * @param DEPT_NAME the DEPT_NAME to set
+     * @param departmentName the departmentName to set
      * @throws java.sql.SQLException
      */
-    public void setDEPT_NAME(String DEPT_NAME) throws SQLException {
+    public void setDepartmentName(String departmentName) throws SQLException {
 
-        String query = "Update student set DEPT_NAME=? where ID=?";
+        String query = "Update student set DEPT_NAME=? where course_id=?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setString(1, DEPT_NAME);
+        preparedStatement.setString(1, departmentName);
         preparedStatement.setString(2, COURSE_ID);
         preparedStatement.executeUpdate();
-        this.DEPT_NAME = DEPT_NAME;
+        this.departmentName = departmentName;
     }
 
     /**
-     * @return the CREDITS
+     * @return the credits
      */
-    public double getCREDITS() {
-        return CREDITS;
+    public double getCredits() {
+        return credits;
     }
 
     /**
-     * @param CREDITS the CREDITS to set
+     * @param credits the credits to set
      * @throws java.sql.SQLException
      */
-    public void setCREDITS(double CREDITS) throws SQLException {
+    public void setCredits(double credits) throws SQLException {
 
-        String query = "Update student set CREDITS=? where ID=?";
+        String query = "Update student set credits=? where course_id=?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setDouble(1, CREDITS);
+        preparedStatement.setDouble(1, credits);
         preparedStatement.setString(2, COURSE_ID);
         preparedStatement.executeUpdate();
 
-        this.CREDITS = CREDITS;
+        this.credits = credits;
     }
 
     /**
@@ -114,14 +130,14 @@ public class Course {
      * @throws SQLException
      */
     public void delete() throws SQLException {
-        String query = "Delete from student where COURSE_ID=?";
+        String query = "Delete from student where course_id=?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setString(1, COURSE_ID);
         preparedStatement.executeUpdate();
-        this.TITLE = null;
-        this.CREDITS = -1;
-        this.DEPT_NAME = null;
+        this.title = null;
+        this.credits = -1;
+        this.departmentName = null;
     }
 
 }
