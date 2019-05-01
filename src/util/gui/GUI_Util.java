@@ -150,16 +150,6 @@ public final class GUI_Util {
         promoteFrame.setVisible(true);
     }
 
-    public static void promoteIntegerBySpinner(String title, String labelTxt,
-            String buttonTxt, DoSomethingWithSpinner dsws) {
-        JFrame promoteFrame = new PromoteSpinner(
-                title, labelTxt,
-                new SpinnerNumberModel(0, Integer.MIN_VALUE, Integer.MAX_VALUE, 1),
-                buttonTxt,
-                dsws);
-        promoteFrame.setVisible(true);
-    }
-
     public static abstract interface DoSomethingWithSpinner {
 
         /**
