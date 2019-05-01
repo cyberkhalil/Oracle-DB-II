@@ -32,11 +32,16 @@ import static util.db.DBConnection.getConnection;
  */
 public final class DbUtil {
 
-    private static final int DB_TABLES_NUMBER = 1;//TODO...
+    private static final int DB_TABLES_NUMBER = 11;//TODO...
     private static final File SCHEMA_FILE = new File("src/sql/universitySchema.sql");
     private static final File DROP_DB_FILE = new File("src/sql/dropDB.sql");
     private static final File UNIVERSITY_PACKAGE_FILE
             = new File("src/sql/university_pkg.sql");
+    //
+    private static final File STUDENT_PACKAGE_FILE
+            = new File("src/sql/Student_pkg.sql");
+     private static final File COURSE_PACKAGE_FILE
+            = new File("src/sql/Course_pkg.sql");
     // TODO.... same as above for student and course packages
 
     private DbUtil() {
@@ -92,9 +97,19 @@ public final class DbUtil {
             statment.execute();
         }
         {
-            // TODO.... same as above for student package
+             String Student_pkg = IO_Util.readFile(
+                    STUDENT_PACKAGE_FILE.toString(), StandardCharsets.UTF_8);
+            CallableStatement statment
+                    = getConnection().prepareCall(Student_pkg);
+            statment.execute();
+            // TODO.... same as above for student package -Student_pkg
         }
         {
+             String Course_pkg = IO_Util.readFile(
+                    COURSE_PACKAGE_FILE.toString(), StandardCharsets.UTF_8);
+            CallableStatement statment
+                    = getConnection().prepareCall(Course_pkg);
+            statment.execute();
             // TODO.... same as above for course  package
         }
     }
