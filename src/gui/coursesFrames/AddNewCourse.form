@@ -49,7 +49,7 @@
                               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="courseTitleTf" max="32767" attributes="0"/>
-                                  <Component id="courseIdTf" max="32767" attributes="0"/>
+                                  <Component id="courseIdTf" pref="130" max="32767" attributes="0"/>
                                   <Component id="courseCreditsSp" alignment="0" max="32767" attributes="0"/>
                                   <Component id="courseDepartmentCb" alignment="0" max="32767" attributes="0"/>
                               </Group>
@@ -144,10 +144,8 @@
     </Component>
     <Component class="javax.swing.JComboBox" name="courseDepartmentCb">
       <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="1">
-            <StringItem index="0" value="// TODO get values from database"/>
-          </StringArray>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="getDepartmentNameModel()" type="code"/>
         </Property>
       </Properties>
       <AuxValues>

@@ -3,18 +3,6 @@ CREATE OR REPLACE PACKAGE university IS
         allstudent OUT SYS_REFCURSOR
     );
 
-  
-/*
-p2
-*/
-
-    PROCEDURE allcourse_credit (
-        c_course OUT SYS_REFCURSOR
-    );
-/*
-
-*/
-
     PROCEDURE tcourse_eq_ttakes (
         c_course OUT SYS_REFCURSOR
     );

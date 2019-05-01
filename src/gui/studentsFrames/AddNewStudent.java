@@ -19,9 +19,11 @@ package gui.studentsFrames;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import util.db.PL_SQL_Handler;
+import util.gui.GUI_Util;
 
 /**
  *
@@ -76,7 +78,7 @@ public class AddNewStudent extends javax.swing.JFrame {
 
         studentIdLbl.setText("Id :");
 
-        studentDepartmentCb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "// TODO get values from database" }));
+        studentDepartmentCb.setModel(getDepartmentNameModel());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,7 +100,7 @@ public class AddNewStudent extends javax.swing.JFrame {
                                     .addComponent(studentIdLbl))
                                 .addGap(28, 28, 28)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(studentNameTf)
+                                    .addComponent(studentNameTf, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                                     .addComponent(sutdentIdTf)
                                     .addComponent(studentTotalCreditSp)
                                     .addComponent(studentDepartmentCb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -159,4 +161,14 @@ public class AddNewStudent extends javax.swing.JFrame {
     private javax.swing.JTextField sutdentIdTf;
     private javax.swing.JLabel titleLbl;
     // End of variables declaration//GEN-END:variables
+
+    private ComboBoxModel<String> getDepartmentNameModel() {
+        try {
+            return GUI_Util.buildComboBoxModel(
+                    PL_SQL_Handler.displayDepartmentNames());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
+        }
+        return null;
+    }
 }

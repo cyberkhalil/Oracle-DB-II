@@ -70,17 +70,9 @@ public final class PL_SQL_Handler {
         return rs;
     }
 
-    public static ResultSet DisplayCourseCreditInformation() throws SQLException {
-        String call = "{CALL university.allcourse_credit(?)}";
-        CallableStatement statment
-                = getConnection().prepareCall(call);
-        statment.registerOutParameter(1, OracleTypes.CURSOR);
-        statment.execute();
-        ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
-        return rs;
-    }
-
-    public static ResultSet displayInformationAboutCourseTakes() throws SQLException { // I Dont Know
+    // TODO 5 change this to take String input and get the result
+    public static ResultSet displayInformationAboutCourseTakes()
+            throws SQLException {
         String call = "{CALL university.tcourse_eq_ttakes(?)}";
         CallableStatement statment
                 = getConnection().prepareCall(call);
@@ -124,4 +116,13 @@ public final class PL_SQL_Handler {
         statment.execute();
     }
 
+    public static ResultSet displayDepartmentNames() throws SQLException {
+        String call = "{CALL university.Get_Dept_Name(?)}";
+        CallableStatement statment
+                = getConnection().prepareCall(call);
+        statment.registerOutParameter(1, OracleTypes.CURSOR);
+        statment.execute();
+        ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
+        return rs;
+    }
 }

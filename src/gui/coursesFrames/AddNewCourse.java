@@ -20,9 +20,11 @@ import gui.studentsFrames.*;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import util.db.PL_SQL_Handler;
+import util.gui.GUI_Util;
 
 /**
  *
@@ -71,7 +73,7 @@ public class AddNewCourse extends javax.swing.JFrame {
 
         courseIdLbl.setText("Id :");
 
-        courseDepartmentCb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "// TODO get values from database" }));
+        courseDepartmentCb.setModel(getDepartmentNameModel());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -94,7 +96,7 @@ public class AddNewCourse extends javax.swing.JFrame {
                                 .addGap(28, 28, 28)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(courseTitleTf)
-                                    .addComponent(courseIdTf)
+                                    .addComponent(courseIdTf, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                                     .addComponent(courseCreditsSp)
                                     .addComponent(courseDepartmentCb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
@@ -143,4 +145,14 @@ public class AddNewCourse extends javax.swing.JFrame {
     private javax.swing.JButton createCourseBtn;
     private javax.swing.JLabel titleLbl;
     // End of variables declaration//GEN-END:variables
+
+    private ComboBoxModel<String> getDepartmentNameModel() {
+        try {
+            return GUI_Util.buildComboBoxModel(
+                    PL_SQL_Handler.displayDepartmentNames());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
+        }
+        return null;
+    }
 }

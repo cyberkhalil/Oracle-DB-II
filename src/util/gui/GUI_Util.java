@@ -22,7 +22,9 @@ import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -98,6 +100,18 @@ public final class GUI_Util {
             }
         };
 
+    }
+
+    public static DefaultComboBoxModel buildComboBoxModel(ResultSet rs)
+            throws SQLException {
+
+        ArrayList<String> arrayList = new ArrayList<>();
+
+        while (rs.next()) {
+            arrayList.add(rs.getString(1));
+        }
+        // TODO 3 try to use arrays instead of vectors
+        return new DefaultComboBoxModel(arrayList.toArray());
     }
 
     public static void linkFrameToButton(JFrame frame, JButton button) {
