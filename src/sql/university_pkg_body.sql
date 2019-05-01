@@ -112,5 +112,31 @@ EXCEPTION
     WHEN others THEN
         dbms_output.put_line(sqlerrm);
 END;
+
+PROCEDURE Insert_Course (
+    C_COURSE_ID   in Course.COURSE_ID%type,
+        C_Title   in Course.Title%type,
+        DEPT_Name   in Course.DEPT_Name%type,
+        C_CREDITS   in Course.CREDITS%type
+)
+    IS
+BEGIN
+INSERT INTO Course (COURSE_ID, Title, DEPT_Name, CREDITS)
+VALUES (C_COURSE_ID, C_Title, DEPT_Name, C_CREDITS);
+End;
+
+PROCEDURE Get_Dept_Name (
+    c_course   OUT SYS_REFCURSOR
+)
+    IS
+BEGIN
+    OPEN c_course FOR
+        SELECT
+            DEPT_NAME
+       
+        FROM
+            course;--COURSE_ID
+
+END;
 End;
 
