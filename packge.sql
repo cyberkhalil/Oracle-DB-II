@@ -1,4 +1,4 @@
-CREATE OR REPLACE PACKAGE all_course IS
+CREATE OR REPLACE PACKAGE university IS
  PROCEDURE allstudent2 (
     allstudent2   OUT SYS_REFCURSOR
 );
@@ -52,7 +52,7 @@ body;
 
 
 
-create or replace package body all_course
+create or replace package body university 
 is
 PROCEDURE allstudent (
     s_allstudent   OUT student%rowtype
