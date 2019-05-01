@@ -16,6 +16,7 @@
  */
 package gui;
 
+import gui.coursesFrames.EditCourses;
 import gui.studentsFrames.EditStudents;
 import javax.swing.JFrame;
 import util.GUI_Util;
@@ -105,6 +106,11 @@ public class MainMenu extends javax.swing.JFrame {
         );
 
         jButton2.setText("Edit Courses");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Edit Course Takes");
 
@@ -244,6 +250,12 @@ public class MainMenu extends javax.swing.JFrame {
         GUI_Util.linkFrameToButton(frame, jButton1);
         frame.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        JFrame frame = new EditCourses();
+        GUI_Util.linkFrameToButton(frame, jButton1);
+        frame.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

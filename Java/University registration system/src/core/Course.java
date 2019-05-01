@@ -54,7 +54,7 @@ public class Course {
     /**
      * @return the COURSE_ID
      */
-    public String getCOURSE_ID() {
+    public String getId() {
         return COURSE_ID;
     }
 

@@ -110,11 +110,11 @@ public final class GUI_Util {
         });
     }
 
-    public static void exitConfirm(Component rootPane) throws HeadlessException {
+    public static void exitConfirm(Component rootPane) {
         int confirm = JOptionPane.showConfirmDialog(
                 rootPane, "Are You Sure to Close Application?",
                 "Exit Confirmation", JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE);
+                JOptionPane.WARNING_MESSAGE);
         if (confirm == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
@@ -132,4 +132,14 @@ public final class GUI_Util {
         }
         return promotedString;
     }
+
+    public static boolean promoteConfirm(
+            Component rootPane, String msg, String title) {
+        int confirm = JOptionPane.showConfirmDialog(
+                rootPane, msg,
+                title, JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+        return confirm == JOptionPane.YES_OPTION;
+    }
+
 }

@@ -68,17 +68,17 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="studentDepartmentLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="studentNameLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="studentIdLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="studentTotalCreditLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="courseDepartmentLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="courseTitleLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="courseIdLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="courseCreditsLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="studentDepartmentTf" alignment="0" max="32767" attributes="0"/>
-                      <Component id="studentCreditTf" alignment="0" pref="120" max="32767" attributes="0"/>
-                      <Component id="studentNameTf" alignment="0" max="32767" attributes="0"/>
-                      <Component id="studentIdTf" alignment="0" max="32767" attributes="0"/>
+                      <Component id="courseDepartmentTf" alignment="0" max="32767" attributes="0"/>
+                      <Component id="courseCreditsTf" alignment="0" pref="120" max="32767" attributes="0"/>
+                      <Component id="courseTitleTf" alignment="0" max="32767" attributes="0"/>
+                      <Component id="courseIdTf" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="38" max="32767" attributes="0"/>
               </Group>
@@ -89,23 +89,23 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="studentIdLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="studentIdTf" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="courseIdLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="courseIdTf" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="studentNameLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="studentNameTf" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="courseTitleLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="courseTitleTf" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="studentDepartmentLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="studentDepartmentTf" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="courseDepartmentLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="courseDepartmentTf" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="studentCreditTf" min="-2" max="-2" attributes="0"/>
-                      <Component id="studentTotalCreditLbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="courseCreditsTf" min="-2" max="-2" attributes="0"/>
+                      <Component id="courseCreditsLbl" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
@@ -113,42 +113,42 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="studentIdLbl">
+        <Component class="javax.swing.JLabel" name="courseIdLbl">
           <Properties>
             <Property name="text" type="java.lang.String" value="Id :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="studentNameLbl">
+        <Component class="javax.swing.JLabel" name="courseTitleLbl">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Name :"/>
+            <Property name="text" type="java.lang.String" value="Title :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="studentDepartmentLbl">
+        <Component class="javax.swing.JLabel" name="courseDepartmentLbl">
           <Properties>
             <Property name="text" type="java.lang.String" value="Department :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="studentTotalCreditLbl">
+        <Component class="javax.swing.JLabel" name="courseCreditsLbl">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Total Credit :"/>
+            <Property name="text" type="java.lang.String" value="Credits :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="studentDepartmentTf">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="studentNameTf">
+        <Component class="javax.swing.JTextField" name="courseDepartmentTf">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="studentIdTf">
+        <Component class="javax.swing.JTextField" name="courseTitleTf">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="studentCreditTf">
+        <Component class="javax.swing.JTextField" name="courseIdTf">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="courseCreditsTf">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
@@ -164,9 +164,9 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="newStudentBtn" min="-2" max="-2" attributes="0"/>
+                          <Component id="newCoursetBtn" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="deleteStudentBtn" min="-2" max="-2" attributes="0"/>
+                          <Component id="deleteCourseBtn" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="editNameBtn" min="-2" max="-2" attributes="0"/>
@@ -178,7 +178,7 @@
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
-                  <Component id="editTotalCreditBtn" min="-2" max="-2" attributes="0"/>
+                  <Component id="editCreditsBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -192,11 +192,11 @@
                       <Component id="editDepartmentBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="editTotalCreditBtn" min="-2" max="-2" attributes="0"/>
+                  <Component id="editCreditsBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="newStudentBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="deleteStudentBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="newCoursetBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="deleteCourseBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -204,22 +204,22 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="newStudentBtn">
+        <Component class="javax.swing.JButton" name="newCoursetBtn">
           <Properties>
-            <Property name="text" type="java.lang.String" value="new Student"/>
+            <Property name="text" type="java.lang.String" value="new Course"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="deleteStudentBtn">
+        <Component class="javax.swing.JButton" name="deleteCourseBtn">
           <Properties>
-            <Property name="text" type="java.lang.String" value="delete Student"/>
+            <Property name="text" type="java.lang.String" value="delete Course"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteStudentBtnActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteCourseBtnActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="editNameBtn">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Edit Name"/>
+            <Property name="text" type="java.lang.String" value="Edit Title"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editNameBtnActionPerformed"/>
@@ -233,9 +233,9 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editDepartmentBtnActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="editTotalCreditBtn">
+        <Component class="javax.swing.JButton" name="editCreditsBtn">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Edit Total Credits"/>
+            <Property name="text" type="java.lang.String" value="Edit Credits"/>
           </Properties>
         </Component>
       </SubComponents>
