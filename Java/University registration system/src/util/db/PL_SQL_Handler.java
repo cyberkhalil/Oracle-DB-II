@@ -50,12 +50,66 @@ public final class PL_SQL_Handler {
         ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
         return rs;
     }
-    
-    public static ResultSet Displayallcourseinformation() throws SQLException {
+
+    public static ResultSet displayCourseInformation() throws SQLException {
         String call = "{CALL university.allcourse(?)}";
         CallableStatement statment
                 = getConnection().prepareCall(call);
         statment.registerOutParameter(1, OracleTypes.CURSOR);
+        statment.execute();
+        ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
+        return rs;
+    }
+
+    public static ResultSet DisplayCourseCreditInformation() throws SQLException {
+        String call = "{CALL university.allcourse_credit(?)}";
+        CallableStatement statment
+                = getConnection().prepareCall(call);
+        statment.registerOutParameter(1, OracleTypes.CURSOR);
+        statment.execute();
+        ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
+        return rs;
+    }
+
+    public static ResultSet displayInformationAboutCourseTakes() throws SQLException {
+        String call = "{CALL university.tcourse_eq_ttakes(?)}";
+        CallableStatement statment
+                = getConnection().prepareCall(call);
+        statment.registerOutParameter(1, OracleTypes.CURSOR);
+        statment.execute();
+        ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
+        return rs;
+    }
+
+    public static ResultSet DisplayingStudentNameIDCourses() throws SQLException {
+        String call = "{CALL university.student_name_and_id(?)}";
+        CallableStatement statment
+                = getConnection().prepareCall(call);
+        statment.registerOutParameter(1, OracleTypes.CURSOR);
+        statment.execute();
+        ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
+        return rs;
+    }
+
+    public static ResultSet DisplayNumberOfStudents() throws SQLException {
+        String call = "{CALL university.count_and_title_of_course(?)}";
+        CallableStatement statment
+                = getConnection().prepareCall(call);
+        statment.registerOutParameter(1, OracleTypes.CURSOR);
+        statment.execute();
+        ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
+        return rs;
+    }
+
+    public static ResultSet Insert_Student() throws SQLException {
+        String call = "{CALL university.Insert_Student(?,?,?,?)}";
+        CallableStatement statment
+                = getConnection().prepareCall(call);
+        statment.registerOutParameter(1, OracleTypes.VARCHAR);
+        statment.registerOutParameter(2, OracleTypes.VARCHAR);
+        statment.registerOutParameter(3, OracleTypes.VARCHAR);
+        statment.registerOutParameter(4, OracleTypes.NUMBER);
+
         statment.execute();
         ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
         return rs;
