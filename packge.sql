@@ -74,7 +74,7 @@ END;
 BEGIN
     OPEN c_course FOR
         SELECT
-            title
+            *
         FROM
             course c,
             takes t
