@@ -164,7 +164,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="newCoursetBtn" min="-2" max="-2" attributes="0"/>
+                          <Component id="newCourseBtn" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="deleteCourseBtn" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -195,7 +195,7 @@
                   <Component id="editCreditsBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="newCoursetBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="newCourseBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="deleteCourseBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -204,10 +204,13 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="newCoursetBtn">
+        <Component class="javax.swing.JButton" name="newCourseBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="new Course"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newCourseBtnActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="deleteCourseBtn">
           <Properties>

@@ -22,7 +22,7 @@ import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.Vector;    //TODO 3 try to change vector to arraylist
+import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -70,7 +70,7 @@ public final class GUI_Util {
 
     public static DefaultTableModel buildTableModel(ResultSet rs)
             throws SQLException {
-
+        // TODO 3 try to use arrays instead of vectors
         ResultSetMetaData metaData = rs.getMetaData();
 
         // names of columns

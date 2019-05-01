@@ -27,7 +27,7 @@ import util.db.DBConnection;
  */
 public class Course {
 
-    private final String COURSE_ID;
+    private final String iD;
     private String title;
     private String departmentName;
     private double credits;
@@ -48,14 +48,14 @@ public class Course {
         title = rs.getString("title");
         departmentName = rs.getString("dept_name");
         credits = rs.getDouble("credits");
-        this.COURSE_ID = COURSE_ID;
+        this.iD = COURSE_ID;
     }
 
     /**
-     * @return the COURSE_ID
+     * @return the iD
      */
     public String getId() {
-        return COURSE_ID;
+        return iD;
     }
 
     /**
@@ -74,7 +74,7 @@ public class Course {
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setString(1, title);
-        preparedStatement.setString(2, COURSE_ID);
+        preparedStatement.setString(2, iD);
         preparedStatement.executeUpdate();
 
         this.title = title;
@@ -97,7 +97,7 @@ public class Course {
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setString(1, departmentName);
-        preparedStatement.setString(2, COURSE_ID);
+        preparedStatement.setString(2, iD);
         preparedStatement.executeUpdate();
         this.departmentName = departmentName;
     }
@@ -119,7 +119,7 @@ public class Course {
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setDouble(1, credits);
-        preparedStatement.setString(2, COURSE_ID);
+        preparedStatement.setString(2, iD);
         preparedStatement.executeUpdate();
 
         this.credits = credits;
@@ -133,7 +133,7 @@ public class Course {
         String query = "Delete from student where course_id=?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setString(1, COURSE_ID);
+        preparedStatement.setString(1, iD);
         preparedStatement.executeUpdate();
         this.title = null;
         this.credits = -1;

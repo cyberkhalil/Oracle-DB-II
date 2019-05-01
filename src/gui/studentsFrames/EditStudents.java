@@ -294,7 +294,7 @@ public class EditStudents extends DefaultFrame {
     private void editTotalCreditBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editTotalCreditBtnActionPerformed
         GUI_Util.promoteSpinner("Student Total Credit", "New student total credit :",
                 "Set Total Credit",
-                new SpinnerNumberModel(0, 0, Double.MAX_VALUE, 10),
+                new SpinnerNumberModel(0.0, 0.0, 10_000_000.0, 10.0),
                 (double newTotalCredit) -> {
                     try {
                         selectedStudent.setTotalCerdit(newTotalCredit);
@@ -309,7 +309,7 @@ public class EditStudents extends DefaultFrame {
 
     private void newStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newStudentBtnActionPerformed
         JFrame frame = new AddNewStudent();
-        //GUI_Util.linkFrameToButton(frame, newStudentBtn);
+        GUI_Util.linkFrameToButton(frame, newStudentBtn);
         frame.setVisible(true);
     }//GEN-LAST:event_newStudentBtnActionPerformed
 

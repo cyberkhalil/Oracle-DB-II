@@ -110,15 +110,17 @@ public final class PL_SQL_Handler {
         return rs;
     }
 
-    public static void Insert_Student() throws SQLException {
-        String call = "{CALL university.Insert_Student(?,?,?,?)}";
-        CallableStatement statment
-                = getConnection().prepareCall(call);
-        statment.registerOutParameter(1, OracleTypes.VARCHAR);
-        statment.registerOutParameter(2, OracleTypes.VARCHAR);
-        statment.registerOutParameter(3, OracleTypes.VARCHAR);
-        statment.registerOutParameter(4, OracleTypes.NUMBER);
+    public static void Insert_Student(String studentId, String studentName,
+            String studentDepartmentName, double studentTotalCredit)
+            throws SQLException {
 
+        String call = "{CALL university.Insert_Student(?,?,?,?)}";
+        CallableStatement statment = getConnection().prepareCall(call);
+
+        statment.setString(1, studentId);
+        statment.setString(2, studentName);
+        statment.setString(3, studentDepartmentName);
+        statment.setDouble(4, studentTotalCredit);
         statment.execute();
     }
 
