@@ -4,15 +4,11 @@ CREATE OR REPLACE PACKAGE university IS
 );
 
 
-    PROCEDURE allstudent (
-        s_allstudent   OUT student%rowtype
-    );
+  
 /*
 p2
 */
-    PROCEDURE allcourse (
-        c_allcourse   OUT course%rowtype
-    );
+  
     PROCEDURE allcourse_credit (
         c_course   OUT SYS_REFCURSOR
     );
@@ -54,45 +50,9 @@ body;
 
 create or replace package body university 
 is
-PROCEDURE allstudent (
-    s_allstudent   OUT student%rowtype
-)
-    IS
-BEGIN     
---select * into S_AllStudent  from Student where Student.ID='19991'; this is for test
 
-    SELECT
-        *
-    INTO
-        s_allstudent
-    FROM
-        student;
-
-EXCEPTION
-    WHEN others THEN
-        dbms_output.put_line(sqlerrm);
-END;
 --
-PROCEDURE allcourse (
-    c_allcourse   OUT course%rowtype
-)
-    IS
-BEGIN     
 
---select * into C_AllCourse from COURSE where COURSE_ID='BIO-101';--COURSE_ID
-
-    SELECT
-        *
-    INTO
-        c_allcourse
-    FROM
-        course;--COURSE_ID
-
-EXCEPTION
-    WHEN others THEN
-        dbms_output.put_line(sqlerrm);
-END;
---
 PROCEDURE allcourse_credit (
     c_course   OUT SYS_REFCURSOR
 )
@@ -202,3 +162,4 @@ EXCEPTION
         dbms_output.put_line(sqlerrm);
 END;
 End;
+

@@ -42,7 +42,7 @@ public final class PL_SQL_Handler {
     }
 
     public static ResultSet displayStudentInformation() throws SQLException {
-        String call = "{CALL allstudent2(?)}";
+        String call = "{CALL university.allstudent2(?)}";
         CallableStatement statment
                 = getConnection().prepareCall(call);
         statment.registerOutParameter(1, OracleTypes.CURSOR);
