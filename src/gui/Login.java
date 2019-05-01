@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import util.db.DBConnection;
-import util.GUI_Util;
+import util.gui.GUI_Util;
 import util.db.DbUtil;
 
 public class Login extends javax.swing.JFrame {
@@ -142,7 +142,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_LoginBtnActionPerformed
 
     private void login() {
-        // TODO. progress bar and waiting gui.
+        // TODO 1 progress bar and waiting gui.
         try {
             DBConnection.establishConnection(
                     userNameTf.getText(),

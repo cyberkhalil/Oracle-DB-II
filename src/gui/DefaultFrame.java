@@ -16,7 +16,7 @@
  */
 package gui;
 
-import static util.GUI_Util.exitConfirm;
+import static util.gui.GUI_Util.exitConfirm;
 
 /**
  *

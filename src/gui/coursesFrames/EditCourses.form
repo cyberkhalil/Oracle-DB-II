@@ -237,6 +237,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Edit Credits"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editCreditsBtnActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

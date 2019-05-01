@@ -41,8 +41,7 @@ public final class DbUtil {
             = new File("src/sql/student_pkg.sql");
     private static final File COURSE_PACKAGE_FILE
             = new File("src/sql/course_pkg.sql");
-    //
-     private static final File UNIVERSITY_PACKAGE_BODY_FILE
+    private static final File UNIVERSITY_PACKAGE_BODY_FILE
             = new File("src/sql/university_pkg_body.sql");
     private static final File STUDENT_PACKAGE_BODY_FILE
             = new File("src/sql/student_pkg_body.sql");
@@ -93,7 +92,6 @@ public final class DbUtil {
     }
 
     public static void createUniversityPackages() throws SQLException, IOException {
-
         createUniversityPackage();
         createStudentPackage();
         createCoursePackage();
@@ -102,16 +100,14 @@ public final class DbUtil {
     private static void createCoursePackage() throws IOException, SQLException {
         String course_pkg = IO_Util.readFile(
                 COURSE_PACKAGE_FILE.toString(), StandardCharsets.UTF_8);
+        CallableStatement statment
+                = getConnection().prepareCall(course_pkg);
+        statment.execute();
 
         String course_pkg_body = IO_Util.readFile(
                 COURSE_PACKAGE_BODY_FILE.toString(), StandardCharsets.UTF_8);
-
-        CallableStatement statment
-                = getConnection().prepareCall(course_pkg);
-
         CallableStatement statment2
                 = getConnection().prepareCall(course_pkg_body);
-        statment.execute();
         statment2.execute();
 
     }
@@ -121,14 +117,12 @@ public final class DbUtil {
                 STUDENT_PACKAGE_FILE.toString(), StandardCharsets.UTF_8);
         CallableStatement statment
                 = getConnection().prepareCall(student_pkg);
-        
-        
-         String student_pkg_body = IO_Util.readFile(
+
+        String student_pkg_body = IO_Util.readFile(
                 STUDENT_PACKAGE_BODY_FILE.toString(), StandardCharsets.UTF_8);
         CallableStatement statment2
                 = getConnection().prepareCall(student_pkg_body);
-        
-        
+
         statment.execute();
         statment2.execute();
 
@@ -139,8 +133,8 @@ public final class DbUtil {
                 UNIVERSITY_PACKAGE_FILE.toString(), StandardCharsets.UTF_8);
         CallableStatement statment
                 = getConnection().prepareCall(university_pkg);
-        
-            String university_pkg_body = IO_Util.readFile(
+
+        String university_pkg_body = IO_Util.readFile(
                 UNIVERSITY_PACKAGE_BODY_FILE.toString(), StandardCharsets.UTF_8);
         CallableStatement statment2
                 = getConnection().prepareCall(university_pkg_body);

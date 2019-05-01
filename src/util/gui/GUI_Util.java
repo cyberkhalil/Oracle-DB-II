@@ -14,20 +14,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package util;
+package util.gui;
 
 import java.awt.Component;
-import java.awt.HeadlessException;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.Vector;
+import java.util.Vector;    //TODO 3 try to change vector to arraylist
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -140,6 +140,33 @@ public final class GUI_Util {
                 title, JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE);
         return confirm == JOptionPane.YES_OPTION;
+    }
+
+    public static void promoteSpinner(String title, String labelTxt,
+            String buttonTxt, SpinnerNumberModel spinnerNumberModel,
+            DoSomethingWithSpinner dsws) {
+        JFrame promoteFrame
+                = new PromoteSpinner(title, labelTxt, spinnerNumberModel, buttonTxt, dsws);
+        promoteFrame.setVisible(true);
+    }
+
+    public static void promoteIntegerBySpinner(String title, String labelTxt,
+            String buttonTxt, DoSomethingWithSpinner dsws) {
+        JFrame promoteFrame = new PromoteSpinner(
+                title, labelTxt,
+                new SpinnerNumberModel(0, Integer.MIN_VALUE, Integer.MAX_VALUE, 1),
+                buttonTxt,
+                dsws);
+        promoteFrame.setVisible(true);
+    }
+
+    public static abstract interface DoSomethingWithSpinner {
+
+        /**
+         * @param spinnerValue the value of the spinner
+         * @return true to close or false to not close
+         */
+        abstract boolean doSomething(double spinnerValue);
     }
 
 }

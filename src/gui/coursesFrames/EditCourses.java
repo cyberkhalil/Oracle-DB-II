@@ -20,9 +20,10 @@ import core.Course;
 import gui.DefaultFrame;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableModel;
-import util.GUI_Util;
-import static util.GUI_Util.buildTableModel;
+import util.gui.GUI_Util;
+import static util.gui.GUI_Util.buildTableModel;
 import static util.db.PL_SQL_Handler.displayCourseInformation;
 
 /**
@@ -151,6 +152,11 @@ public class EditCourses extends DefaultFrame {
         });
 
         editCreditsBtn.setText("Edit Credits");
+        editCreditsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editCreditsBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -278,6 +284,22 @@ public class EditCourses extends DefaultFrame {
         }
         updateTable();
     }//GEN-LAST:event_deleteCourseBtnActionPerformed
+
+    private void editCreditsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCreditsBtnActionPerformed
+        GUI_Util.promoteSpinner("Course Credits", "New course credits :",
+                "Set Course Credit",
+                new SpinnerNumberModel(0, 0, Double.MAX_VALUE, 10),
+                (double newCredits) -> {
+                    try {
+                        selectedCourse.setCredits(newCredits);
+                        return true;
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(rootPane, ex);
+                    }
+                    return false;
+                });
+        updateTable();
+    }//GEN-LAST:event_editCreditsBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel courseCreditsLbl;

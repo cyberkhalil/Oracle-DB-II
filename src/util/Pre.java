@@ -26,7 +26,7 @@ public final class Pre {
     }
 
     public static boolean checkOracleInstalled() {
-        // TODO..
+        // TODO 2 implement this
         return true;
     }
 }

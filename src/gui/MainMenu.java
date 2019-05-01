@@ -19,8 +19,8 @@ package gui;
 import gui.coursesFrames.EditCourses;
 import gui.studentsFrames.EditStudents;
 import javax.swing.JFrame;
-import util.GUI_Util;
-import static util.GUI_Util.exitConfirm;
+import util.gui.GUI_Util;
+import static util.gui.GUI_Util.exitConfirm;
 
 /**
  *

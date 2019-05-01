@@ -19,12 +19,11 @@ package gui.studentsFrames;
 import core.Student;
 import gui.DefaultFrame;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableModel;
-import util.GUI_Util;
-import static util.GUI_Util.buildTableModel;
+import util.gui.GUI_Util;
+import static util.gui.GUI_Util.buildTableModel;
 import static util.db.PL_SQL_Handler.displayStudentInformation;
 
 /**
@@ -153,6 +152,11 @@ public class EditStudents extends DefaultFrame {
         });
 
         editTotalCreditBtn.setText("Edit Total Credits");
+        editTotalCreditBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editTotalCreditBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -280,6 +284,22 @@ public class EditStudents extends DefaultFrame {
         }
         updateTable();
     }//GEN-LAST:event_deleteStudentBtnActionPerformed
+
+    private void editTotalCreditBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editTotalCreditBtnActionPerformed
+        GUI_Util.promoteSpinner("Student Total Credit", "New student total credit :",
+                "Set Total Credit",
+                new SpinnerNumberModel(0, 0, Double.MAX_VALUE, 10),
+                (double newTotalCredit) -> {
+                    try {
+                        selectedStudent.setTotalCerdit(newTotalCredit);
+                        return true;
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(rootPane, ex);
+                    }
+                    return false;
+                });
+        updateTable();
+    }//GEN-LAST:event_editTotalCreditBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton deleteStudentBtn;
