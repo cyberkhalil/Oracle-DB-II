@@ -239,7 +239,6 @@ BEGIN
 OPEN  allstudent2 for
     SELECT
         *
-   
     FROM
         student;
 
