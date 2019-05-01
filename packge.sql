@@ -1,18 +1,14 @@
 CREATE OR REPLACE PACKAGE university IS
- PROCEDURE allstudent2 (
-    allstudent2   OUT SYS_REFCURSOR
+ PROCEDURE allstudent (
+    allstudent   OUT SYS_REFCURSOR
 );
 
 
-    PROCEDURE allstudent (
-        s_allstudent   OUT student%rowtype
-    );
+  
 /*
 p2
 */
-    PROCEDURE allcourse (
-        c_allcourse   OUT course%rowtype
-    );
+  
     PROCEDURE allcourse_credit (
         c_course   OUT SYS_REFCURSOR
     );
@@ -35,8 +31,8 @@ p2
         tot_cred IN student.TOT_CRED%type
     );
 
-PROCEDURE allcourse2 (
-    allcourse2   OUT SYS_REFCURSOR
+PROCEDURE allcourse (
+    allcourse   OUT SYS_REFCURSOR
 );
 END;
 
@@ -54,45 +50,9 @@ body;
 
 create or replace package body university 
 is
-PROCEDURE allstudent (
-    s_allstudent   OUT student%rowtype
-)
-    IS
-BEGIN     
---select * into S_AllStudent  from Student where Student.ID='19991'; this is for test
 
-    SELECT
-        *
-    INTO
-        s_allstudent
-    FROM
-        student;
-
-EXCEPTION
-    WHEN others THEN
-        dbms_output.put_line(sqlerrm);
-END;
 --
-PROCEDURE allcourse (
-    c_allcourse   OUT course%rowtype
-)
-    IS
-BEGIN     
 
---select * into C_AllCourse from COURSE where COURSE_ID='BIO-101';--COURSE_ID
-
-    SELECT
-        *
-    INTO
-        c_allcourse
-    FROM
-        course;--COURSE_ID
-
-EXCEPTION
-    WHEN others THEN
-        dbms_output.put_line(sqlerrm);
-END;
---
 PROCEDURE allcourse_credit (
     c_course   OUT SYS_REFCURSOR
 )
@@ -114,7 +74,7 @@ END;
 BEGIN
     OPEN c_course FOR
         SELECT
-            title
+            *
         FROM
             course c,
             takes t
@@ -167,13 +127,13 @@ BEGIN
 INSERT INTO Student (ID, Name, DEPT_Name, TOT_CRED)
 VALUES (ID, Name, DEPT_Name, TOT_CRED);
 End;
-PROCEDURE allstudent2 (
-    allstudent2   OUT SYS_REFCURSOR
+PROCEDURE allstudent (
+    allstudent   OUT SYS_REFCURSOR
 )
     IS
 BEGIN     
 --select * into S_AllStudent  from Student where Student.ID='19991'; this is for test
-OPEN  allstudent2 for
+OPEN  allstudent for
     SELECT
         *
     FROM
@@ -183,14 +143,14 @@ EXCEPTION
     WHEN others THEN
         dbms_output.put_line(sqlerrm);
 END;
-PROCEDURE allcourse2 (
-    allcourse2   OUT SYS_REFCURSOR
+PROCEDURE allcourse (
+    allcourse   OUT SYS_REFCURSOR
 )
     IS
 BEGIN     
 
 --select * into C_AllCourse from COURSE where COURSE_ID='BIO-101';--COURSE_ID
-OPEN allcourse2 for
+OPEN allcourse for
     SELECT
         *
    
@@ -202,3 +162,4 @@ EXCEPTION
         dbms_output.put_line(sqlerrm);
 END;
 End;
+
