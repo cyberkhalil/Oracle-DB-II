@@ -32,17 +32,15 @@ import static util.db.DBConnection.getConnection;
  */
 public final class DbUtil {
 
-    private static final int DB_TABLES_NUMBER = 11;//TODO...
+    private static final int DB_TABLES_NUMBER = 11;
     private static final File SCHEMA_FILE = new File("src/sql/universitySchema.sql");
     private static final File DROP_DB_FILE = new File("src/sql/dropDB.sql");
     private static final File UNIVERSITY_PACKAGE_FILE
             = new File("src/sql/university_pkg.sql");
-    //
     private static final File STUDENT_PACKAGE_FILE
-            = new File("src/sql/Student_pkg.sql");
-     private static final File COURSE_PACKAGE_FILE
-            = new File("src/sql/Course_pkg.sql");
-    // TODO.... same as above for student and course packages
+            = new File("src/sql/student_pkg.sql");
+    private static final File COURSE_PACKAGE_FILE
+            = new File("src/sql/course_pkg.sql");
 
     private DbUtil() {
     }
@@ -87,30 +85,34 @@ public final class DbUtil {
         statment.execute();
     }
 
-    private static void createUniversityPackages() throws SQLException, IOException {
+    public static void createUniversityPackages() throws SQLException, IOException {
 
-        {
-            String university_pkg = IO_Util.readFile(
-                    UNIVERSITY_PACKAGE_FILE.toString(), StandardCharsets.UTF_8);
-            CallableStatement statment
-                    = getConnection().prepareCall(university_pkg);
-            statment.execute();
-        }
-        {
-             String Student_pkg = IO_Util.readFile(
-                    STUDENT_PACKAGE_FILE.toString(), StandardCharsets.UTF_8);
-            CallableStatement statment
-                    = getConnection().prepareCall(Student_pkg);
-            statment.execute();
-            // TODO.... same as above for student package -Student_pkg
-        }
-        {
-             String Course_pkg = IO_Util.readFile(
-                    COURSE_PACKAGE_FILE.toString(), StandardCharsets.UTF_8);
-            CallableStatement statment
-                    = getConnection().prepareCall(Course_pkg);
-            statment.execute();
-            // TODO.... same as above for course  package
-        }
+        createUniversityPackage();
+        createStudentPackage();
+        createCoursePackage();
+    }
+
+    private static void createCoursePackage() throws IOException, SQLException {
+        String course_pkg = IO_Util.readFile(
+                COURSE_PACKAGE_FILE.toString(), StandardCharsets.UTF_8);
+        CallableStatement statment
+                = getConnection().prepareCall(course_pkg);
+        statment.execute();
+    }
+
+    private static void createStudentPackage() throws SQLException, IOException {
+        String student_pkg = IO_Util.readFile(
+                STUDENT_PACKAGE_FILE.toString(), StandardCharsets.UTF_8);
+        CallableStatement statment
+                = getConnection().prepareCall(student_pkg);
+        statment.execute();
+    }
+
+    private static void createUniversityPackage() throws IOException, SQLException {
+        String university_pkg = IO_Util.readFile(
+                UNIVERSITY_PACKAGE_FILE.toString(), StandardCharsets.UTF_8);
+        CallableStatement statment
+                = getConnection().prepareCall(university_pkg);
+        statment.execute();
     }
 }
