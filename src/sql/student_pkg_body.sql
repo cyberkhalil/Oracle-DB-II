@@ -74,10 +74,8 @@ CREATE OR REPLACE PACKAGE BODY student_pkg IS
         allstudent OUT SYS_REFCURSOR
     ) IS
     BEGIN
-        OPEN allstudent FOR SELECT
-                                *
-                            FROM
-                                student;
+        OPEN allstudent FOR SELECT ID as "STUDENT ID" ,Name as "STUDENT NAME" ,TOT_CRED as "TOTAL CRED"  ,DEPT_NAME as "DEPARTMENT NAME"  FROM student;
+
 
     EXCEPTION
         WHEN OTHERS THEN
@@ -91,12 +89,8 @@ CREATE OR REPLACE PACKAGE BODY student_pkg IS
         s_id       IN         student.id%TYPE
     ) IS
     BEGIN
-        OPEN c_course FOR SELECT
-                              *
-                          FROM
-                              takes t
-                          WHERE
-                              t.id = s_id;
+        OPEN c_course FOR SELECT ID as "STUDENT ID" ,COURSE_ID as "COURSE ID" ,SEC_ID as "SECTION ID"  ,SEMESTER as "SEMESTER",
+YEAR as "YEAR",GRADE as "GRADE" from takes t WHERE t.id = s_id;
 
     END;
         /* delete_student */

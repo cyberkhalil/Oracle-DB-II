@@ -74,10 +74,8 @@ CREATE OR REPLACE PACKAGE BODY course_pkg IS
         allcourse OUT SYS_REFCURSOR
     ) IS
     BEGIN
-        OPEN allcourse FOR SELECT
-                               *
-                           FROM
-                               course;--COURSE_ID
+        OPEN allcourse FOR SELECT COURSE_ID as "COURSE ID" ,CREDITS as "CREDITS" ,TITLE as "TITLE"  ,DEPT_NAME as "DEPARTMENT NAME"  FROM course;
+--COURSE_ID
 
     EXCEPTION
         WHEN OTHERS THEN
@@ -111,12 +109,8 @@ PROCEDURE get_course_takes (
     IS
 BEGIN
     OPEN c_course FOR
-    SELECT
-                               *
-                           FROM
-                               takes
-                           WHERE
-                               course_id = c_id;
+   SELECT ID as "STUDENT ID" ,COURSE_ID as "COURSE ID" ,SEC_ID as "SECTION ID"  ,SEMESTER as "SEMESTER",
+YEAR as "YEAR",GRADE as "GRADE" FROM takes WHERE course_id =c_id;
   
 END;
         /* get_course_by_id */
