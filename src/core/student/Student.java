@@ -40,7 +40,13 @@ public class Student {
      * @throws SQLException
      */
     public Student(String ID) throws SQLException {
-        // TODO 7 use pl/sql procedure as in course constractor
+        // TODO 7 use pl/sql procedure student_name_and_ida
+
+        String call = "{CALL student_pkg.student_name_and_ida(?)}";
+        CallableStatement statment = getConnection().prepareCall(call);
+        statment.setString(1, this.ID);
+        statment.execute();
+        /*
         String query = "select * from student where ID=?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
@@ -51,7 +57,7 @@ public class Student {
         name = rs.getString("name");
         departmentName = rs.getString("dept_name");
         totalCerdit = rs.getDouble("tot_cred");
-        this.ID = ID;
+        this.ID = ID;*/
     }
 
     /**
