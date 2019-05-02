@@ -45,7 +45,10 @@ public final class PL_SQL_Handler {
     public static ResultSet getAllTables() throws SQLException {
         String query = "select * from tab";
         PreparedStatement statment
-                = getConnection().prepareStatement(query);
+                = getConnection().prepareStatement(
+                        query,
+                        ResultSet.TYPE_SCROLL_INSENSITIVE,
+                        ResultSet.CONCUR_READ_ONLY);
         ResultSet rs = statment.executeQuery();
         return rs;
     }
