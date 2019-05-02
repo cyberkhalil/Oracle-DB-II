@@ -40,7 +40,14 @@ public class Course {
      * @throws SQLException
      */
     public Course(String COURSE_ID) throws SQLException {
-        // TODO 9 use pl/sql procedure
+        // TODO 9 use pl/sql procedure allcourse_with_Id
+          String call = "{CALL course_pkg.allcourse_with_Id(?)}";
+        CallableStatement statment = getConnection().prepareCall(call);
+        statment.setString(1, this.iD);
+        statment.execute();
+
+        /*
+        
         String query = "select * from course where course_id=?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
@@ -51,7 +58,8 @@ public class Course {
         title = rs.getString("title");
         departmentName = rs.getString("dept_name");
         credits = rs.getDouble("credits");
-        this.iD = COURSE_ID;
+        this.iD = COURSE_ID;*/
+        
     }
 
     /**

@@ -154,16 +154,31 @@ CREATE OR REPLACE PACKAGE BODY course_pkg IS
         RETURN c_coursea;
     END;
 
+    PROCEDURE allcourse_with_id (
+        allcourse   OUT         SYS_REFCURSOR,
+        c_id        IN          course.course_id%TYPE
+    ) IS
+    BEGIN
+        OPEN allcourse FOR SELECT
+                               *
+                           FROM
+                               course
+                           WHERE
+                               course_id = c_id;--COURSE_ID
 
-PROCEDURE delete_course (
-     c_id in course.course_id%type
-     )
-     IS
-     Begin
-     DELETE
-FROM
-    course
-WHERE
-    course_id =c_id;
+    EXCEPTION
+        WHEN OTHERS THEN
+            dbms_output.put_line(sqlerrm);
     END;
+
+    PROCEDURE delete_course (
+        c_id   IN     course.course_id%TYPE
+    ) IS
+    BEGIN
+        DELETE FROM course
+        WHERE
+            course_id = c_id;
+
+    END;
+
 END;
