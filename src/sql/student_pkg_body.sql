@@ -106,4 +106,16 @@ BEGIN
 
    RETURN c_coursea;
 END;
+
+PROCEDURE Delete_Student (
+     S_id in Student.ID%type
+     )
+     IS
+     Begin
+     DELETE
+FROM
+    Student
+WHERE
+    ID =S_id;
+    END;
 End;
