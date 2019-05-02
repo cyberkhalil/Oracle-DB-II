@@ -3,9 +3,7 @@ CREATE OR REPLACE PACKAGE university IS
         allstudent OUT SYS_REFCURSOR
     );
 
-    PROCEDURE tcourse_eq_ttakes (
-        c_course OUT SYS_REFCURSOR
-    );
+   
 
     PROCEDURE student_name_and_id (
         c_course OUT SYS_REFCURSOR

@@ -121,4 +121,20 @@ END;
 
     END;
 
+ FUNCTION tcourse_eq_ttakesa(
+     c_id in course.COURSE_ID%type)
+   RETURN SYS_REFCURSOR
+AS
+   c_coursea SYS_REFCURSOR;
+BEGIN
+ 
+   OPEN c_coursea FOR SELECT
+                              *
+                          FROM
+                              takes   
+                          WHERE
+                              course_id = c_id;
+   RETURN c_coursea;
+END;
+    
 End;

@@ -1,19 +1,28 @@
 CREATE OR REPLACE PACKAGE student_pkg IS
--- TODO 6 add function like constrator return the student record from student table
--- TODO 7 add deleteStudent procedure
-    PROCEDURE setname (
-        ids      IN       student.id%TYPE,
-        s_name   IN       student.name%TYPE
-    );
+ function getName 
+(IDS Student.ID%type) 
+return varchar2;
 
-    PROCEDURE setdept_name (
-        ids           IN            student.id%TYPE,
-        s_dept_name   IN            student.dept_name%TYPE
-    );
+function getDepartmentName 
+(IDS Student.ID%type) 
+return varchar2;
 
-    PROCEDURE settotalcerdit (
-        ids             IN              student.id%TYPE,
-        s_totalcerdit   IN              student.tot_cred%TYPE
-    );
+function getTotalCerdit 
+(IDS Student.ID%type) 
+return Number;
 
+PROCEDURE SetName (
+    IDS in Student.ID%type,
+    S_Name in Student.Name%type
+);
+
+PROCEDURE SetDEPT_NAME (
+    IDS in Student.ID%type,
+    S_DEPT_NAME in Student.DEPT_NAME%type
+);
+PROCEDURE SetTotalCerdit (
+    IDS in Student.ID%type,
+    S_TotalCerdit in Student.TOT_CRED%type
+);
 END;
+

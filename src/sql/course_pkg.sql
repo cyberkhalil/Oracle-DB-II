@@ -41,4 +41,7 @@ PROCEDURE count_and_title_of_course (
         count_and_title_of_course OUT SYS_REFCURSOR
     );    
     
+    FUNCTION tcourse_eq_ttakesa(
+     c_id in course.COURSE_ID%type)
+   RETURN SYS_REFCURSOR;
 END;

@@ -2,20 +2,7 @@ CREATE OR REPLACE PACKAGE BODY university IS
 
 -- TODO 5 accept input course_id and move to course package
 
-    PROCEDURE tcourse_eq_ttakes (
-        c_course OUT SYS_REFCURSOR
-    ) IS
-    BEGIN
-        OPEN c_course FOR SELECT
-                              *
-                          FROM
-                              course   c,
-                              takes    t
-                          WHERE
-                              c.course_id = t.course_id;
-
-    END;
-
+ 
 -- TODO accept input student_id & return course name
 
     PROCEDURE student_name_and_id (

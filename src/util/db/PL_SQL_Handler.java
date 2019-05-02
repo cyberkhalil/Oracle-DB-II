@@ -76,7 +76,7 @@ public final class PL_SQL_Handler {
     // TODO 5 change this to take String input and get the result
     public static ResultSet displayInformationAboutCourseTakes()
             throws SQLException {
-        String call = "{CALL university.tcourse_eq_ttakes(?)}";
+        String call = "{CALL Course_pkg.tcourse_eq_ttakesa(?)}";
         CallableStatement statment
                 = getConnection().prepareCall(call);
         statment.registerOutParameter(1, OracleTypes.CURSOR);
