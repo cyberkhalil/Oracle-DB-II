@@ -45,7 +45,11 @@ CREATE OR REPLACE PACKAGE course_pkg IS
     FUNCTION tcourse_eq_ttakesa (
         c_id   IN     course.course_id%TYPE
     ) RETURN SYS_REFCURSOR;
-
+    
+PROCEDURE allcourse_with_Id (
+        allcourse OUT SYS_REFCURSOR,
+          C_id in COURSE.COURSE_ID%type
+    );
 -- TODO 9 create procedure take course id as input & return course record
 -- TODO 10 create delete procedure take course id and delete record from course table
 

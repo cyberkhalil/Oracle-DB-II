@@ -153,5 +153,18 @@ CREATE OR REPLACE PACKAGE BODY course_pkg IS
 
         RETURN c_coursea;
     END;
+    PROCEDURE allcourse_with_Id (
+        allcourse OUT SYS_REFCURSOR,
+          C_id in COURSE.COURSE_ID%type
+    ) IS
+    BEGIN
+        OPEN allcourse FOR SELECT
+                               *
+                           FROM
+                               course where COURSE_ID = C_id;--COURSE_ID
 
+    EXCEPTION
+        WHEN OTHERS THEN
+            dbms_output.put_line(sqlerrm);
+    END;
 END;
