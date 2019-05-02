@@ -1,47 +1,52 @@
-CREATE OR REPLACE PACKAGE Course_pkg IS
- function getTitle 
-(COURSE_IDC Course.COURSE_ID%type) 
-return varchar2;
+CREATE OR REPLACE PACKAGE course_pkg IS
+    -- TODO 8 remove all get's from pkg and pkg body.
+    FUNCTION gettitle (
+        course_idc course.course_id%TYPE
+    ) RETURN VARCHAR2;
 
-function getDepartmentName 
-(COURSE_IDC Course.COURSE_ID%type) 
-return varchar2;
+    FUNCTION getdepartmentname (
+        course_idc course.course_id%TYPE
+    ) RETURN VARCHAR2;
 
-function getTotalCerdit
-(COURSE_IDC Course.COURSE_ID%type) 
-return Number;
+    FUNCTION gettotalcerdit (
+        course_idc course.course_id%TYPE
+    ) RETURN NUMBER;
 
-PROCEDURE SetTitle (
-    COURSE_IDC in Course.COURSE_ID%type,
-    S_Title in Course.Title%type
-);
-PROCEDURE SetDepartmentName  (
-    COURSE_IDC in Course.COURSE_ID%type,
-    S_DEPT_NAME in Course.Title%type
-);
-PROCEDURE SetTotalCerdit  (
-    COURSE_IDC in Course.COURSE_ID%type,
-    C_CREDITS in COURSE.CREDITS%type
-);
+    PROCEDURE set_title (
+        course_idc   IN           course.course_id%TYPE,
+        s_title      IN           course.title%TYPE
+    );
 
- 
+    PROCEDURE set_department_name (
+        course_idc    IN            course.course_id%TYPE,
+        s_dept_name   IN            course.title%TYPE
+    );
 
-PROCEDURE Insert_Course (
-    C_COURSE_ID   in Course.COURSE_ID%type,
-        C_Title   in Course.Title%type,
-        DEPT_Name   in Course.DEPT_Name%type,
-        C_CREDITS   in Course.CREDITS%type
-);
+    PROCEDURE set_cerdits (
+        course_idc   IN           course.course_id%TYPE,
+        c_credits    IN           course.credits%TYPE
+    );
 
-PROCEDURE allcourse (
+    PROCEDURE insert_course (
+        c_course_id   IN            course.course_id%TYPE,
+        c_title       IN            course.title%TYPE,
+        dept_name     IN            course.dept_name%TYPE,
+        c_credits     IN            course.credits%TYPE
+    );
+
+    PROCEDURE allcourse (
         allcourse OUT SYS_REFCURSOR
     );
-    
-PROCEDURE count_and_title_of_course (
+
+    PROCEDURE count_and_title_of_course (
         count_and_title_of_course OUT SYS_REFCURSOR
-    );    
-    
-    FUNCTION tcourse_eq_ttakesa(
-     c_id in course.COURSE_ID%type)
-   RETURN SYS_REFCURSOR;
+    );
+
+    FUNCTION tcourse_eq_ttakesa (
+        c_id   IN     course.course_id%TYPE
+    ) RETURN SYS_REFCURSOR;
+
+-- TODO 9 create procedure take course id as input & return course record
+-- TODO 10 create delete procedure take course id and delete record from course table
+
 END;

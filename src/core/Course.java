@@ -16,10 +16,12 @@
  */
 package core;
 
+import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import util.db.DBConnection;
+import static util.db.DBConnection.getConnection;
 
 /**
  *
@@ -38,6 +40,7 @@ public class Course {
      * @throws SQLException
      */
     public Course(String COURSE_ID) throws SQLException {
+        // TODO 9 use pl/sql procedure
         String query = "select * from course where course_id=?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
@@ -66,40 +69,10 @@ public class Course {
     }
 
     /**
-     * @param title the title to set
-     * @throws java.sql.SQLException
-     */
-    public void setTitle(String title) throws SQLException {
-        String query = "Update student set title=? where course_id=?";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setString(1, title);
-        preparedStatement.setString(2, iD);
-        preparedStatement.executeUpdate();
-
-        this.title = title;
-    }
-
-    /**
      * @return the departmentName
      */
     public String getDepartmentName() {
         return departmentName;
-    }
-
-    /**
-     * @param departmentName the departmentName to set
-     * @throws java.sql.SQLException
-     */
-    public void setDepartmentName(String departmentName) throws SQLException {
-
-        String query = "Update student set DEPT_NAME=? where course_id=?";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setString(1, departmentName);
-        preparedStatement.setString(2, iD);
-        preparedStatement.executeUpdate();
-        this.departmentName = departmentName;
     }
 
     /**
@@ -110,18 +83,41 @@ public class Course {
     }
 
     /**
+     * @param title the title to set
+     * @throws java.sql.SQLException
+     */
+    public void setTitle(String title) throws SQLException {
+        String call = "{CALL course_pkg.set_title(?,?)}";
+        CallableStatement statment = getConnection().prepareCall(call);
+        statment.setString(1, this.iD);
+        statment.setString(2, title);
+        statment.execute();
+        this.title = title;
+    }
+
+    /**
+     * @param departmentName the departmentName to set
+     * @throws java.sql.SQLException
+     */
+    public void setDepartmentName(String departmentName) throws SQLException {
+        String call = "{CALL course_pkg.set_department_name(?,?)}";
+        CallableStatement statment = getConnection().prepareCall(call);
+        statment.setString(1, this.iD);
+        statment.setString(2, departmentName);
+        statment.execute();
+        this.departmentName = departmentName;
+    }
+
+    /**
      * @param credits the credits to set
      * @throws java.sql.SQLException
      */
     public void setCredits(double credits) throws SQLException {
-
-        String query = "Update student set credits=? where course_id=?";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setDouble(1, credits);
-        preparedStatement.setString(2, iD);
-        preparedStatement.executeUpdate();
-
+        String call = "{CALL course_pkg.set_cerdits(?,?)}";
+        CallableStatement statment = getConnection().prepareCall(call);
+        statment.setString(1, this.iD);
+        statment.setDouble(2, credits);
+        statment.execute();
         this.credits = credits;
     }
 
@@ -130,6 +126,7 @@ public class Course {
      * @throws SQLException
      */
     public void delete() throws SQLException {
+        // TODO 10 use the pl/sql procedure
         String query = "Delete from student where course_id=?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);

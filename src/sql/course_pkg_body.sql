@@ -1,73 +1,91 @@
-create or replace package body Course_pkg
-is
-function getTitle 
-(COURSE_IDC Course.COURSE_ID%type) 
-return varchar2
-is 
-TitleCourse varchar2(50) ;
-Begin
-  select TITLE into TitleCourse 
-  from Course where COURSE_ID =COURSE_IDC;
-  
-return TitleCourse;
-End;
+CREATE OR REPLACE PACKAGE BODY course_pkg IS
 
-function getDepartmentName 
-(COURSE_IDC Course.COURSE_ID%type) 
-return varchar2
-is 
-DepartmentName  varchar2(20) ;
-Begin
-  select DEPT_NAME into DepartmentName  
-  from Course where COURSE_ID =COURSE_IDC;
-  
-return DepartmentName ;
-End;
+    FUNCTION gettitle (
+        course_idc course.course_id%TYPE
+    ) RETURN VARCHAR2 IS
+        titlecourse VARCHAR2(50);
+    BEGIN
+        SELECT
+            title
+        INTO titlecourse
+        FROM
+            course
+        WHERE
+            course_id = course_idc;
 
+        RETURN titlecourse;
+    END;
 
-function getTotalCerdit
-(COURSE_IDC Course.COURSE_ID%type) 
-return Number
-is 
-C_CREDITS  varchar2(5) ;
-Begin
-  select CREDITS into C_CREDITS  
-  from Course where COURSE_ID =COURSE_IDC;
-  
-return C_CREDITS ;
-End;
+    FUNCTION getdepartmentname (
+        course_idc course.course_id%TYPE
+    ) RETURN VARCHAR2 IS
+        departmentname VARCHAR2(20);
+    BEGIN
+        SELECT
+            dept_name
+        INTO departmentname
+        FROM
+            course
+        WHERE
+            course_id = course_idc;
 
+        RETURN departmentname;
+    END;
 
-PROCEDURE SetTitle (
-    COURSE_IDC in Course.COURSE_ID%type,
-    S_Title in Course.Title%type
-)
-    IS
-BEGIN
-    UPDATE  Course set TiTle = S_Title where COURSE_ID=COURSE_IDC;
+    FUNCTION gettotalcerdit (
+        course_idc course.course_id%TYPE
+    ) RETURN NUMBER IS
+        c_credits VARCHAR2(5);
+    BEGIN
+        SELECT
+            credits
+        INTO c_credits
+        FROM
+            course
+        WHERE
+            course_id = course_idc;
 
-END;
+        RETURN c_credits;
+    END;
 
-PROCEDURE SetDepartmentName  (
-    COURSE_IDC in Course.COURSE_ID%type,
-    S_DEPT_NAME in Course.Title%type
-)
-    IS
-BEGIN
-    UPDATE  Course set DEPT_NAME = S_DEPT_NAME where COURSE_ID=COURSE_IDC;
+    PROCEDURE settitle (
+        course_idc   IN           course.course_id%TYPE,
+        s_title      IN           course.title%TYPE
+    ) IS
+    BEGIN
+        UPDATE course
+        SET
+            title = s_title
+        WHERE
+            course_id = course_idc;
 
-END;
+    END;
 
+    PROCEDURE setdepartmentname (
+        course_idc    IN            course.course_id%TYPE,
+        s_dept_name   IN            course.title%TYPE
+    ) IS
+    BEGIN
+        UPDATE course
+        SET
+            dept_name = s_dept_name
+        WHERE
+            course_id = course_idc;
 
-PROCEDURE SetTotalCerdit  (
-    COURSE_IDC in Course.COURSE_ID%type,
-    C_CREDITS in COURSE.CREDITS%type
-)
-    IS
-BEGIN
-    UPDATE  Course set CREDITS = C_CREDITS where COURSE_ID=COURSE_IDC;
+    END;
 
-END;
+    PROCEDURE settotalcerdit (
+        course_idc   IN           course.course_id%TYPE,
+        c_credits    IN           course.credits%TYPE
+    ) IS
+    BEGIN
+        UPDATE course
+        SET
+            credits = c_credits
+        WHERE
+            course_id = course_idc;
+
+    END;
 
     PROCEDURE insert_course (
         c_course_id   IN            course.course_id%TYPE,
@@ -90,7 +108,7 @@ END;
 
     END;
 
- PROCEDURE allcourse (
+    PROCEDURE allcourse (
         allcourse OUT SYS_REFCURSOR
     ) IS
     BEGIN
@@ -104,7 +122,7 @@ END;
             dbms_output.put_line(sqlerrm);
     END;
 
-  PROCEDURE count_and_title_of_course (
+    PROCEDURE count_and_title_of_course (
         count_and_title_of_course OUT SYS_REFCURSOR
     ) IS
     BEGIN
@@ -121,20 +139,19 @@ END;
 
     END;
 
- FUNCTION tcourse_eq_ttakesa(
-     c_id in course.COURSE_ID%type)
-   RETURN SYS_REFCURSOR
-AS
-   c_coursea SYS_REFCURSOR;
-BEGIN
- 
-   OPEN c_coursea FOR SELECT
-                              *
-                          FROM
-                              takes   
-                          WHERE
-                              course_id = c_id;
-   RETURN c_coursea;
+    FUNCTION tcourse_eq_ttakesa (
+        c_id   IN     course.course_id%TYPE
+    ) RETURN SYS_REFCURSOR AS
+        c_coursea SYS_REFCURSOR;
+    BEGIN
+        OPEN c_coursea FOR SELECT
+                               *
+                           FROM
+                               takes
+                           WHERE
+                               course_id = c_id;
+
+        RETURN c_coursea;
+    END;
+
 END;
-    
-End;

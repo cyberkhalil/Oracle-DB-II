@@ -142,7 +142,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_LoginBtnActionPerformed
 
     private void login() {
-        // TODO 1 progress bar and waiting gui.
+        // TODO 100 progress bar and waiting gui.
         try {
             DBConnection.establishConnection(
                     userNameTf.getText(),

@@ -35,18 +35,18 @@ public final class DbUtil {
     private static final int DB_TABLES_NUMBER = 11;
     private static final File SCHEMA_FILE = new File("src/sql/universitySchema.sql");
     private static final File DROP_DB_FILE = new File("src/sql/dropDB.sql");
-    private static final File UNIVERSITY_PACKAGE_FILE
-            = new File("src/sql/university_pkg.sql");
     private static final File STUDENT_PACKAGE_FILE
             = new File("src/sql/student_pkg.sql");
-    private static final File COURSE_PACKAGE_FILE
-            = new File("src/sql/course_pkg.sql");
-    private static final File UNIVERSITY_PACKAGE_BODY_FILE
-            = new File("src/sql/university_pkg_body.sql");
     private static final File STUDENT_PACKAGE_BODY_FILE
             = new File("src/sql/student_pkg_body.sql");
+    private static final File COURSE_PACKAGE_FILE
+            = new File("src/sql/course_pkg.sql");
     private static final File COURSE_PACKAGE_BODY_FILE
             = new File("src/sql/course_pkg_body.sql");
+    private static final File DEPARTMENT_PACKAGE_FILE
+            = new File("src/sql/department_pkg.sql");
+    private static final File DEPARTMENT_PACKAGE_BODY_FILE
+            = new File("src/sql/department_pkg_body.sql");
 
     private DbUtil() {
     }
@@ -92,7 +92,7 @@ public final class DbUtil {
     }
 
     public static void createUniversityPackages() throws SQLException, IOException {
-        createUniversityPackage();
+        createDepartmentPackage();
         createStudentPackage();
         createCoursePackage();
     }
@@ -125,21 +125,19 @@ public final class DbUtil {
 
         statment.execute();
         statment2.execute();
-
     }
 
-    private static void createUniversityPackage() throws IOException, SQLException {
+    private static void createDepartmentPackage() throws IOException, SQLException {
         String university_pkg = IO_Util.readFile(
-                UNIVERSITY_PACKAGE_FILE.toString(), StandardCharsets.UTF_8);
+                DEPARTMENT_PACKAGE_FILE.toString(), StandardCharsets.UTF_8);
         CallableStatement statment
                 = getConnection().prepareCall(university_pkg);
 
         String university_pkg_body = IO_Util.readFile(
-                UNIVERSITY_PACKAGE_BODY_FILE.toString(), StandardCharsets.UTF_8);
+                DEPARTMENT_PACKAGE_BODY_FILE.toString(), StandardCharsets.UTF_8);
         CallableStatement statment2
                 = getConnection().prepareCall(university_pkg_body);
         statment.execute();
         statment2.execute();
-
     }
 }

@@ -42,5 +42,6 @@ CREATE OR REPLACE PACKAGE student_pkg IS
     ) RETURN SYS_REFCURSOR;
 
     -- TODO 6 create delete procedure accept student id and delete student record
-
+    
+    -- TODO 7 create procedure take student id as input & return student record.
 END;
