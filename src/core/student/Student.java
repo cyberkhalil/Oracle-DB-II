@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package core;
+package core.student;
 
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
@@ -27,45 +27,45 @@ import static util.db.DBConnection.getConnection;
  *
  * @author A7med
  */
-public class Course {
+public class Student {
 
-    private final String iD;
-    private String title;
+    private final String ID;
+    private String name;
     private String departmentName;
-    private double credits;
+    private double totalCerdit;
 
     /**
      *
-     * @param COURSE_ID
+     * @param ID
      * @throws SQLException
      */
-    public Course(String COURSE_ID) throws SQLException {
-        // TODO 9 use pl/sql procedure
-        String query = "select * from course where course_id=?";
+    public Student(String ID) throws SQLException {
+        // TODO 7 use pl/sql procedure
+        String query = "select * from student where ID=?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setString(1, COURSE_ID);
+        preparedStatement.setString(1, ID);
         ResultSet rs = preparedStatement.executeQuery();
         rs.next();
 
-        title = rs.getString("title");
+        name = rs.getString("name");
         departmentName = rs.getString("dept_name");
-        credits = rs.getDouble("credits");
-        this.iD = COURSE_ID;
+        totalCerdit = rs.getDouble("tot_cred");
+        this.ID = ID;
     }
 
     /**
-     * @return the iD
+     * @return the ID
      */
-    public String getId() {
-        return iD;
+    public String getID() {
+        return ID;
     }
 
     /**
-     * @return the title
+     * @return the name
      */
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
     /**
@@ -76,23 +76,24 @@ public class Course {
     }
 
     /**
-     * @return the credits
+     * @return the totalCerdit
      */
-    public double getCredits() {
-        return credits;
+    public double getTotalCerdit() {
+        return totalCerdit;
     }
 
     /**
-     * @param title the title to set
+     * @param name the name to set
      * @throws java.sql.SQLException
      */
-    public void setTitle(String title) throws SQLException {
-        String call = "{CALL course_pkg.set_title(?,?)}";
-        CallableStatement statment = getConnection().prepareCall(call);
-        statment.setString(1, this.iD);
-        statment.setString(2, title);
+    public void setName(String name) throws SQLException {
+        String call = "{CALL student_pkg.setname(?,?)}";
+        CallableStatement statment
+                = getConnection().prepareCall(call);
+        statment.setString(1, ID);
+        statment.setString(2, name);
         statment.execute();
-        this.title = title;
+        this.name = name;
     }
 
     /**
@@ -100,25 +101,26 @@ public class Course {
      * @throws java.sql.SQLException
      */
     public void setDepartmentName(String departmentName) throws SQLException {
-        String call = "{CALL course_pkg.set_department_name(?,?)}";
-        CallableStatement statment = getConnection().prepareCall(call);
-        statment.setString(1, this.iD);
+        String call = "{CALL student_pkg.setdept_name(?,?)}";
+        CallableStatement statment
+                = getConnection().prepareCall(call);
+        statment.setString(1, ID);
         statment.setString(2, departmentName);
         statment.execute();
         this.departmentName = departmentName;
     }
 
     /**
-     * @param credits the credits to set
+     * @param totalCerdit the totalCerdit to set
      * @throws java.sql.SQLException
      */
-    public void setCredits(double credits) throws SQLException {
-        String call = "{CALL course_pkg.set_cerdits(?,?)}";
-        CallableStatement statment = getConnection().prepareCall(call);
-        statment.setString(1, this.iD);
-        statment.setDouble(2, credits);
+    public void setTotalCerdit(double totalCerdit) throws SQLException {
+        String call = "{CALL student_pkg.getTotalCerdit(?,?)}";
+        CallableStatement statment
+                = getConnection().prepareCall(call);
+        statment.setString(1, ID);
+        statment.setDouble(2, totalCerdit);
         statment.execute();
-        this.credits = credits;
     }
 
     /**
@@ -126,14 +128,13 @@ public class Course {
      * @throws SQLException
      */
     public void delete() throws SQLException {
-        // TODO 10 use the pl/sql procedure
-        String query = "Delete from student where course_id=?";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setString(1, iD);
-        preparedStatement.executeUpdate();
-        this.title = null;
-        this.credits = -1;
+        String call = "{CALL student_pkg.Delete_Student(?)}";
+        CallableStatement statment = getConnection().prepareCall(call);
+        statment.setString(1, ID);
+        statment.execute();
+
+        this.name = null;
+        this.totalCerdit = -1;
         this.departmentName = null;
     }
 

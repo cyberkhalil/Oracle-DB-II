@@ -16,7 +16,7 @@
  */
 package gui.coursesFrames;
 
-import core.Course;
+import core.course.Course;
 import gui.DefaultFrame;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
