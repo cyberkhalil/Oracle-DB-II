@@ -104,22 +104,21 @@ CREATE OR REPLACE PACKAGE BODY course_pkg IS
     END;
 
         /* get_course_takes */
-
-    FUNCTION get_course_takes (
-        c_id   IN     course.course_id%TYPE
-    ) RETURN SYS_REFCURSOR AS
-        c_coursea SYS_REFCURSOR;
-    BEGIN
-        OPEN c_coursea FOR SELECT
+PROCEDURE get_course_takes (
+    c_course   OUT SYS_REFCURSOR,
+ c_id  IN  course.course_id%TYPE
+)
+    IS
+BEGIN
+    OPEN c_course FOR
+    SELECT
                                *
                            FROM
                                takes
                            WHERE
                                course_id = c_id;
-
-        RETURN c_coursea;
-    END;
-    
+  
+END;
         /* get_course_by_id */
 
     PROCEDURE get_course_by_id (

@@ -29,9 +29,10 @@ CREATE OR REPLACE PACKAGE course_pkg IS
         count_and_title_of_course OUT SYS_REFCURSOR
     );
 
-    FUNCTION get_course_takes (
-        c_id   IN     course.course_id%TYPE
-    ) RETURN SYS_REFCURSOR;
+   PROCEDURE get_course_takes (
+    c_course   OUT SYS_REFCURSOR,
+ c_id  IN  course.course_id%TYPE
+);
 
     PROCEDURE get_course_by_id (
         allcourse   OUT         SYS_REFCURSOR,
