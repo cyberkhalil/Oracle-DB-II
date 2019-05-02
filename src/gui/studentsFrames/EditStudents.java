@@ -157,7 +157,7 @@ public class EditStudents extends DefaultFrame {
             }
         });
 
-        editStudentCoursesBtn.setText("Edit Student Courses");
+        editStudentCoursesBtn.setText("Show Student Courses");
         editStudentCoursesBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editStudentCoursesBtnActionPerformed(evt);
@@ -260,7 +260,7 @@ public class EditStudents extends DefaultFrame {
     }//GEN-LAST:event_editNameBtnActionPerformed
 
     private void editDepartmentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editDepartmentBtnActionPerformed
-        // TODO 13 use promote ComboBox and give departement names as content
+        // TODO 3 use promote ComboBox and give departement names as content
         if (!validSelection()) {
             return;
         }

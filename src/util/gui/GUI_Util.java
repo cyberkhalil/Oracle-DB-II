@@ -72,7 +72,7 @@ public final class GUI_Util {
 
     public static DefaultTableModel buildTableModel(ResultSet rs)
             throws SQLException {
-        // TODO 3 try to use arrays instead of vectors
+        // TODO 8 try to use arrays instead of vectors
         ResultSetMetaData metaData = rs.getMetaData();
 
         // names of columns
@@ -110,7 +110,7 @@ public final class GUI_Util {
         while (rs.next()) {
             arrayList.add(rs.getString(1));
         }
-        // TODO 3 try to use arrays instead of vectors
+        // TODO 9 try to use arrays instead of vectors
         return new DefaultComboBoxModel(arrayList.toArray());
     }
 

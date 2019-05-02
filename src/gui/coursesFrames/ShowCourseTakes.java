@@ -72,7 +72,6 @@ public class ShowCourseTakes extends DefaultFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO 7 selectedCourseTake..
         updateTable();
     }//GEN-LAST:event_jTable1MouseClicked
 

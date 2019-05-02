@@ -142,7 +142,7 @@ public final class DbUtil {
     }
 
     private static int countAllTables() throws SQLException {
-        // TODO 16 use pl/sql here instead of sql
+        // TODO 6 use pl/sql here instead of sql
         String query = "select count(*) from tab";
         PreparedStatement statment
                 = getConnection().prepareStatement(query);
@@ -152,7 +152,7 @@ public final class DbUtil {
     }
 
     private static ResultSet getAllTables() throws SQLException {
-        // TODO 17 use pl/sql here instead of sql
+        // TODO 7 use pl/sql here instead of sql
         String query = "select * from tab";
         PreparedStatement statment
                 = getConnection().prepareStatement(

@@ -16,6 +16,7 @@
  */
 package gui;
 
+import javax.swing.JOptionPane;
 import static util.gui.GUI_Util.exitConfirm;
 
 /**
@@ -36,17 +37,35 @@ public class DefaultFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
+        SettingsMenu = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
 
-        jMenu2.setText("Settings");
+        SettingsMenu.setText("Settings");
+
+        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/licnse.png"))); // NOI18N
+        jMenuItem5.setText("License");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        SettingsMenu.add(jMenuItem5);
+
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/about.png"))); // NOI18N
+        jMenuItem3.setText("About");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        SettingsMenu.add(jMenuItem3);
 
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logout.png"))); // NOI18N
         jMenuItem2.setText("Log out");
@@ -55,7 +74,7 @@ public class DefaultFrame extends javax.swing.JFrame {
                 jMenuItem2ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
+        SettingsMenu.add(jMenuItem2);
 
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit.png"))); // NOI18N
         jMenuItem1.setText("Exit");
@@ -64,15 +83,9 @@ public class DefaultFrame extends javax.swing.JFrame {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        SettingsMenu.add(jMenuItem1);
 
-        jMenuBar1.add(jMenu2);
-
-        jMenu1.setText("About");
-        jMenuBar1.add(jMenu1);
-
-        jMenu3.setText("Help");
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(SettingsMenu);
 
         setJMenuBar(jMenuBar1);
 
@@ -99,12 +112,45 @@ public class DefaultFrame extends javax.swing.JFrame {
         exitConfirm(rootPane);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        JOptionPane.showMessageDialog(rootPane,
+                "This program belongs to AyShe2 (أي شيئ) coraporation xD "
+                + "just kidding\n"
+                + "\n I mean this program made for Moumen Younis as "
+                + "DataBase II course which\n"
+                + "we learned using oracle pl/sql from and we are using it "
+                + "here ..\n\n"
+                + "Thanks for Netbeans , Git , Gitlab & BeautyEye"
+                + "\n\n                            "
+                + "This Free Software is under GPL3"
+        );
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        JOptionPane.showMessageDialog(rootPane,
+                " Copyright (C) 2019 AyShe2\n"
+                + "\n"
+                + " This program is free software: you can redistribute it and/or modify\n"
+                + " it under the terms of the GNU General Public License as published by\n"
+                + " the Free Software Foundation, either version 3 of the License, or\n"
+                + " (at your option) any later version.\n"
+                + "\n"
+                + " This program is distributed in the hope that it will be useful,\n"
+                + " but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+                + " MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+                + " GNU General Public License for more details.\n"
+                + "\n"
+                + " You should have received a copy of the GNU General Public License\n"
+                + " along with this program.  If not, see <http://www.gnu.org/licenses/>."
+        );
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu SettingsMenu;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem5;
     // End of variables declaration//GEN-END:variables
 }

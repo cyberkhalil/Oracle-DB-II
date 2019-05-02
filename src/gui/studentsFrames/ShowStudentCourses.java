@@ -72,14 +72,6 @@ public class ShowStudentCourses extends DefaultFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-// TODO 20 selected studentTake
-//        int i = jTable1.getSelectedRow();
-//        TableModel tableModel = jTable1.getModel();
-//        try {
-//            selectedStudent = new Student((String) tableModel.getValueAt(i, 0));
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(rootPane, ex);
-//        }
         updateTable();
     }//GEN-LAST:event_jTable1MouseClicked
 
