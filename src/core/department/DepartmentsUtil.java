@@ -14,10 +14,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package util.db;
+package core.department;
 
 import java.sql.CallableStatement;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import oracle.jdbc.OracleCallableStatement;
@@ -28,19 +27,9 @@ import static util.db.DBConnection.getConnection;
  *
  * @author User
  */
-public final class PL_SQL_Handler {
+public final class DepartmentsUtil {
 
-    private PL_SQL_Handler() {
-    }
-
-    public static ResultSet DisplayNumberOfStudents() throws SQLException {
-        String call = "{CALL Course_pkg.count_and_title_of_course(?)}";
-        CallableStatement statment
-                = getConnection().prepareCall(call);
-        statment.registerOutParameter(1, OracleTypes.CURSOR);
-        statment.execute();
-        ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
-        return rs;
+    private DepartmentsUtil() {
     }
 
     public static ResultSet displayDepartmentNames() throws SQLException {

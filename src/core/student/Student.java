@@ -40,7 +40,7 @@ public class Student {
      * @throws SQLException
      */
     public Student(String ID) throws SQLException {
-        // TODO 7 use pl/sql procedure
+        // TODO 7 use pl/sql procedure as in course constractor
         String query = "select * from student where ID=?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);

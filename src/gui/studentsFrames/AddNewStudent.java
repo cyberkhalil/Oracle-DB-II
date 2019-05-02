@@ -16,12 +16,12 @@
  */
 package gui.studentsFrames;
 
-import static core.student.StudentUtil.Insert_Student;
+import static core.department.DepartmentsUtil.displayDepartmentNames;
+import static core.student.StudentsUtil.Insert_Student;
 import java.sql.SQLException;
 import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
-import util.db.PL_SQL_Handler;
 import util.gui.GUI_Util;
 
 /**
@@ -164,7 +164,7 @@ public class AddNewStudent extends javax.swing.JFrame {
     private ComboBoxModel<String> getDepartmentNameModel() {
         try {
             return GUI_Util.buildComboBoxModel(
-                    PL_SQL_Handler.displayDepartmentNames());
+                    displayDepartmentNames());
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }

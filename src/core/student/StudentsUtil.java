@@ -27,9 +27,9 @@ import static util.db.DBConnection.getConnection;
  *
  * @author User
  */
-public final class StudentUtil {
+public final class StudentsUtil {
 
-    private StudentUtil() {
+    private StudentsUtil() {
     }
 
     public static ResultSet displayStudentInformation() throws SQLException {
@@ -59,8 +59,7 @@ public final class StudentUtil {
     public static ResultSet DisplayingStudentNameIDCourses(String sutdentId) throws SQLException {
 //        TODO 18 procsdure name maight be changed
         String call = "{? = CALL student_pkg.student_name_and_id(?)}";
-        CallableStatement statment
-                = getConnection().prepareCall(call);
+        CallableStatement statment = getConnection().prepareCall(call);
         statment.registerOutParameter(1, OracleTypes.CURSOR);
         statment.setString(2, sutdentId);
         statment.execute();

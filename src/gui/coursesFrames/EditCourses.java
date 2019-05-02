@@ -17,7 +17,7 @@
 package gui.coursesFrames;
 
 import core.course.Course;
-import static core.course.CourseUtil.displayCourseInformation;
+import static core.course.CoursesUtil.displayCourseInformation;
 import gui.DefaultFrame;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;

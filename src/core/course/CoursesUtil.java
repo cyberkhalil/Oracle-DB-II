@@ -27,9 +27,9 @@ import static util.db.DBConnection.getConnection;
  *
  * @author User
  */
-public final class CourseUtil {
+public final class CoursesUtil {
 
-    private CourseUtil() {
+    private CoursesUtil() {
     }
 
     public static ResultSet displayCourseInformation() throws SQLException {
@@ -49,6 +49,16 @@ public final class CourseUtil {
                 = getConnection().prepareCall(call);
         statment.registerOutParameter(1, OracleTypes.CURSOR);
         statment.setString(2, courseId);
+        statment.execute();
+        ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
+        return rs;
+    }
+
+    public static ResultSet DisplayNumberOfStudents() throws SQLException {
+        String call = "{CALL Course_pkg.count_and_title_of_course(?)}";
+        CallableStatement statment
+                = getConnection().prepareCall(call);
+        statment.registerOutParameter(1, OracleTypes.CURSOR);
         statment.execute();
         ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
         return rs;
