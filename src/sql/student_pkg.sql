@@ -34,6 +34,8 @@ CREATE OR REPLACE PACKAGE student_pkg IS
 PROCEDURE Delete_Student (
      S_id in Student.ID%type
      );
-    
+    FUNCTION Student_with_id(
+     S_id in Student.ID%type)
+   RETURN SYS_REFCURSOR;
     -- TODO 7 create procedure take student id as input & return student record. student_name_and_ida
 END;

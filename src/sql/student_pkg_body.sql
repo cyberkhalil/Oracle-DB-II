@@ -86,4 +86,17 @@ FROM
 WHERE
     ID =S_id;
     END;
+    
+     FUNCTION Student_with_id(
+     S_id in Student.ID%type)
+   RETURN SYS_REFCURSOR
+AS
+   c_coursea SYS_REFCURSOR;
+BEGIN
+ -- TODO 18 make this procedure display student id, name & all takes information for 
+--this student also change procsdure name
+          OPEN c_coursea FOR SELECT * FROM Student   WHERE  ID = S_id;
+
+   RETURN c_coursea;
+END;         
 End;
