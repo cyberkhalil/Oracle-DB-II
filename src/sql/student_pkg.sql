@@ -37,4 +37,7 @@ CREATE OR REPLACE PACKAGE student_pkg IS
         s_id   IN     student.id%TYPE
     ) RETURN SYS_REFCURSOR;
 
+ FUNCTION Student_Name_id(
+     S_id in Student.ID%type)
+   RETURN SYS_REFCURSOR;
 END;

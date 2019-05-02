@@ -131,4 +131,17 @@ CREATE OR REPLACE PACKAGE BODY student_pkg IS
         RETURN c_coursea;
     END;
 
+FUNCTION Student_Name_id(
+     S_id in Student.ID%type)
+   RETURN SYS_REFCURSOR
+AS
+   c_coursea SYS_REFCURSOR;
+BEGIN
+ -- TODO 18 make this procedure display student id, name & all takes information for 
+--this student also change procsdure name
+          OPEN c_coursea FOR SELECT s.ID, s.name ,c.Title,c.Course_id FROM course c, takes  t, student s  WHERE t.id = S_id  AND s.id = t.id;
+
+
+   RETURN c_coursea;
+END;         
 END;
