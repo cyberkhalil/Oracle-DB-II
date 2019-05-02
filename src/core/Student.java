@@ -128,18 +128,11 @@ public class Student {
      * @throws SQLException
      */
     public void delete() throws SQLException {
-        
-        
         String call = "{CALL student_pkg.Delete_Student(?)}";
         CallableStatement statment = getConnection().prepareCall(call);
         statment.setString(1, ID);
         statment.execute();
-        
-        String query = "Delete from student where ID=?";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setString(1, ID);
-        preparedStatement.executeUpdate();
+
         this.name = null;
         this.totalCerdit = -1;
         this.departmentName = null;

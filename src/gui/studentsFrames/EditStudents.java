@@ -19,7 +19,6 @@ package gui.studentsFrames;
 import core.Student;
 import gui.DefaultFrame;
 import java.sql.SQLException;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableModel;
@@ -255,6 +254,7 @@ public class EditStudents extends DefaultFrame {
     }//GEN-LAST:event_editNameBtnActionPerformed
 
     private void editDepartmentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editDepartmentBtnActionPerformed
+        // TODO 13 use promote ComboBox and give departement names as content
         if (!validSelection()) {
             return;
         }

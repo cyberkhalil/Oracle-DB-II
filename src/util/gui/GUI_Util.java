@@ -172,5 +172,5 @@ public final class GUI_Util {
          */
         abstract boolean doSomething(double spinnerValue);
     }
-
+    // TOOD create promoteComboBox function
 }
