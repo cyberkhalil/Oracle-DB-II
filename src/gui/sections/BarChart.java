@@ -17,7 +17,6 @@
 package gui.sections;
 
 import java.awt.Color;
-import java.awt.GraphicsConfiguration;
 import java.awt.Paint;
 import java.sql.ResultSet;
 import java.sql.SQLException;
