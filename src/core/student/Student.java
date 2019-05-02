@@ -45,7 +45,6 @@ public class Student {
         statment.registerOutParameter(1, OracleTypes.CURSOR);
         statment.setString(2, id);
         statment.execute();
-        statment.execute();
         ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
         rs.next();
 
@@ -123,12 +122,11 @@ public class Student {
         return totalCerdit;
     }
 
-    public static ResultSet getStudentCourses(String sutdentId)
-            throws SQLException {
+    public ResultSet getCourses() throws SQLException {
         String call = "{? = CALL student_pkg.get_student_courses(?)}";
         CallableStatement statment = getConnection().prepareCall(call);
         statment.registerOutParameter(1, OracleTypes.CURSOR);
-        statment.setString(2, sutdentId);
+        statment.setString(2, ID);
         statment.execute();
         ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
         return rs;

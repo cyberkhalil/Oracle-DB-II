@@ -25,6 +25,7 @@ import javax.swing.table.TableModel;
 import util.gui.GUI_Util;
 import static util.gui.GUI_Util.buildTableModel;
 import static core.student.StudentsUtil.getAllStudents;
+import static util.gui.GUI_Util.linkFrameToButton;
 
 /**
  *
@@ -62,7 +63,7 @@ public class EditStudents extends DefaultFrame {
         editNameBtn = new javax.swing.JButton();
         editDepartmentBtn = new javax.swing.JButton();
         editTotalCreditBtn = new javax.swing.JButton();
-        editStudentTakesBtn = new javax.swing.JButton();
+        editStudentCoursesBtn = new javax.swing.JButton();
 
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -156,10 +157,10 @@ public class EditStudents extends DefaultFrame {
             }
         });
 
-        editStudentTakesBtn.setText("Edit Student Takes");
-        editStudentTakesBtn.addActionListener(new java.awt.event.ActionListener() {
+        editStudentCoursesBtn.setText("Edit Student Courses");
+        editStudentCoursesBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editStudentTakesBtnActionPerformed(evt);
+                editStudentCoursesBtnActionPerformed(evt);
             }
         });
 
@@ -182,7 +183,7 @@ public class EditStudents extends DefaultFrame {
                 .addGap(27, 27, 27))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(57, 57, 57)
-                .addComponent(editStudentTakesBtn)
+                .addComponent(editStudentCoursesBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -193,7 +194,7 @@ public class EditStudents extends DefaultFrame {
                     .addComponent(editNameBtn)
                     .addComponent(editDepartmentBtn))
                 .addGap(18, 18, 18)
-                .addComponent(editStudentTakesBtn)
+                .addComponent(editStudentCoursesBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(editTotalCreditBtn)
@@ -308,15 +309,17 @@ public class EditStudents extends DefaultFrame {
         updateTable();
     }//GEN-LAST:event_editTotalCreditBtnActionPerformed
 
-    private void editStudentTakesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editStudentTakesBtnActionPerformed
-        // TODO 1 use student takes method in new Frame here
-    }//GEN-LAST:event_editStudentTakesBtnActionPerformed
+    private void editStudentCoursesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editStudentCoursesBtnActionPerformed
+        EditStudentCourses frame = new EditStudentCourses(selectedStudent);
+        linkFrameToButton(frame, editStudentCoursesBtn);
+        frame.setVisible(true);
+    }//GEN-LAST:event_editStudentCoursesBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton deleteStudentBtn;
     private javax.swing.JButton editDepartmentBtn;
     private javax.swing.JButton editNameBtn;
-    private javax.swing.JButton editStudentTakesBtn;
+    private javax.swing.JButton editStudentCoursesBtn;
     private javax.swing.JButton editTotalCreditBtn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

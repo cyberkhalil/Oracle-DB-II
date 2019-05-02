@@ -25,7 +25,7 @@ CREATE OR REPLACE PACKAGE course_pkg IS
         allcourse OUT SYS_REFCURSOR
     );
 
-    PROCEDURE get_all_courses_students_number (
+    PROCEDURE get_courses_students_number (
         count_and_title_of_course OUT SYS_REFCURSOR
     );
 

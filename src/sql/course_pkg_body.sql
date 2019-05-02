@@ -1,6 +1,7 @@
 CREATE OR REPLACE PACKAGE BODY course_pkg IS
 
         /* set_title */
+
     PROCEDURE set_title (
         course_idc   IN           course.course_id%TYPE,
         s_title      IN           course.title%TYPE
@@ -15,6 +16,7 @@ CREATE OR REPLACE PACKAGE BODY course_pkg IS
     END;
 
         /* set_department_name */
+
     PROCEDURE set_department_name (
         course_idc    IN            course.course_id%TYPE,
         s_dept_name   IN            course.title%TYPE
@@ -29,6 +31,7 @@ CREATE OR REPLACE PACKAGE BODY course_pkg IS
     END;
 
         /* set_cerdits */
+
     PROCEDURE set_cerdits (
         course_idc   IN           course.course_id%TYPE,
         c_credits    IN           course.credits%TYPE
@@ -42,8 +45,8 @@ CREATE OR REPLACE PACKAGE BODY course_pkg IS
 
     END;
 
-
         /* create_course */
+
     PROCEDURE create_course (
         c_course_id   IN            course.course_id%TYPE,
         c_title       IN            course.title%TYPE,
@@ -66,6 +69,7 @@ CREATE OR REPLACE PACKAGE BODY course_pkg IS
     END;
     
         /* get_all_courses */
+
     PROCEDURE get_all_courses (
         allcourse OUT SYS_REFCURSOR
     ) IS
@@ -80,8 +84,9 @@ CREATE OR REPLACE PACKAGE BODY course_pkg IS
             dbms_output.put_line(sqlerrm);
     END;
 
-        /* get_all_courses_students_number */
-    PROCEDURE get_all_courses_students_number (
+        /* get_courses_students_number */
+
+    PROCEDURE get_courses_students_number (
         count_and_title_of_course OUT SYS_REFCURSOR
     ) IS
     BEGIN
@@ -98,8 +103,8 @@ CREATE OR REPLACE PACKAGE BODY course_pkg IS
 
     END;
 
-
         /* get_course_takes */
+
     FUNCTION get_course_takes (
         c_id   IN     course.course_id%TYPE
     ) RETURN SYS_REFCURSOR AS

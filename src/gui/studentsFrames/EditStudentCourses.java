@@ -16,19 +16,30 @@
  */
 package gui.studentsFrames;
 
+import core.student.Student;
 import gui.DefaultFrame;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import static util.gui.GUI_Util.buildTableModel;
 
 /**
  *
  * @author User
  */
-public class EditStudentTakesFrame extends DefaultFrame {
+public class EditStudentCourses extends DefaultFrame {
 
     /**
      * Creates new form EditStudentTakesFrame
+     *
+     * @param student
      */
-    public EditStudentTakesFrame(String sutdentId) {
+    public EditStudentCourses(Student student) {
         initComponents();
+        try {
+            jTable1.setModel(buildTableModel(student.getCourses()));
+        } catch (SQLException ex) {
+            JOptionPane.showConfirmDialog(rootPane, ex);
+        }
     }
 
     @SuppressWarnings("unchecked")
