@@ -37,23 +37,7 @@ CREATE OR REPLACE PACKAGE BODY university IS
 
 -- TODO accept input course_id
 
-    PROCEDURE count_and_title_of_course (
-        count_and_title_of_course OUT SYS_REFCURSOR
-    ) IS
-    BEGIN
-        OPEN count_and_title_of_course FOR SELECT
-                                               c.title,
-                                               COUNT(t.id)
-                                           FROM
-                                               takes    t,
-                                               course   c
-                                           WHERE
-                                               t.course_id = c.course_id
-                                           GROUP BY
-                                               c.title;
-
-    END;
-
+  
 -- TODO move to student package
 
     PROCEDURE insert_student (
@@ -95,42 +79,8 @@ CREATE OR REPLACE PACKAGE BODY university IS
 
 -- TODO move to courses package
 
-    PROCEDURE allcourse (
-        allcourse OUT SYS_REFCURSOR
-    ) IS
-    BEGIN
-        OPEN allcourse FOR SELECT
-                               *
-                           FROM
-                               course;--COURSE_ID
-
-    EXCEPTION
-        WHEN OTHERS THEN
-            dbms_output.put_line(sqlerrm);
-    END;
-
+   
 -- TODO move to course package
-
-    PROCEDURE insert_course (
-        c_course_id   IN            course.course_id%TYPE,
-        c_title       IN            course.title%TYPE,
-        dept_name     IN            course.dept_name%TYPE,
-        c_credits     IN            course.credits%TYPE
-    ) IS
-    BEGIN
-        INSERT INTO course (
-            course_id,
-            title,
-            dept_name,
-            credits
-        ) VALUES (
-            c_course_id,
-            c_title,
-            dept_name,
-            c_credits
-        );
-
-    END;
 
 -- TODO move to department package
 

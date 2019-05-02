@@ -25,5 +25,20 @@ PROCEDURE SetTotalCerdit  (
 );
 
  
- 
+
+PROCEDURE Insert_Course (
+    C_COURSE_ID   in Course.COURSE_ID%type,
+        C_Title   in Course.Title%type,
+        DEPT_Name   in Course.DEPT_Name%type,
+        C_CREDITS   in Course.CREDITS%type
+);
+
+PROCEDURE allcourse (
+        allcourse OUT SYS_REFCURSOR
+    );
+    
+PROCEDURE count_and_title_of_course (
+        count_and_title_of_course OUT SYS_REFCURSOR
+    );    
+    
 END;
