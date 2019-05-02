@@ -94,4 +94,16 @@ PROCEDURE insert_student (
             dbms_output.put_line(sqlerrm);
     END;
 
+
+ FUNCTION student_name_and_ida(
+     S_id in Student.ID%type)
+   RETURN SYS_REFCURSOR
+AS
+   c_coursea SYS_REFCURSOR;
+BEGIN
+ 
+          OPEN c_coursea FOR SELECT c.Title FROM course c, takes  t, student s  WHERE t.id = S_id  AND s.id = t.id;
+
+   RETURN c_coursea;
+END;
 End;

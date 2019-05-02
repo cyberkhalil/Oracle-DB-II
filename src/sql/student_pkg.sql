@@ -35,7 +35,9 @@ PROCEDURE SetTotalCerdit (
  PROCEDURE allstudent (
         allstudent OUT SYS_REFCURSOR
     );
-
+FUNCTION student_name_and_ida(
+     S_id in Student.ID%type)
+   RETURN SYS_REFCURSOR;
     
 END;
 
