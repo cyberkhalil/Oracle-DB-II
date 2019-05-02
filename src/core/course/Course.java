@@ -126,12 +126,10 @@ public class Course {
      * @throws SQLException
      */
     public void delete() throws SQLException {
-        // TODO 10 use the pl/sql procedure
-        String query = "Delete from student where course_id=?";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setString(1, iD);
-        preparedStatement.executeUpdate();
+        String call = "{CALL course_pkg.delete_course(?)}";
+        CallableStatement statment = getConnection().prepareCall(call);
+        statment.setString(1, iD);
+        statment.execute();
         this.title = null;
         this.credits = -1;
         this.departmentName = null;

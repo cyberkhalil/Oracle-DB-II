@@ -47,6 +47,8 @@ CREATE OR REPLACE PACKAGE course_pkg IS
     ) RETURN SYS_REFCURSOR;
 
 -- TODO 9 create procedure take course id as input & return course record
--- TODO 10 create delete procedure take course id and delete record from course table
 
+PROCEDURE delete_course (
+     c_id in course.course_id%type
+     );
 END;

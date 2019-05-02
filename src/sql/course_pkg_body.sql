@@ -154,4 +154,16 @@ CREATE OR REPLACE PACKAGE BODY course_pkg IS
         RETURN c_coursea;
     END;
 
+
+PROCEDURE delete_course (
+     c_id in course.course_id%type
+     )
+     IS
+     Begin
+     DELETE
+FROM
+    course
+WHERE
+    course_id =c_id;
+    END;
 END;

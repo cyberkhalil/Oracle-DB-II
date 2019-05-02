@@ -44,7 +44,6 @@ CREATE OR REPLACE PACKAGE student_pkg IS
 PROCEDURE Delete_Student (
      S_id in Student.ID%type
      );
-    -- TODO 6 create delete procedure accept student id and delete student record
     
     -- TODO 7 create procedure take student id as input & return student record.
 END;
