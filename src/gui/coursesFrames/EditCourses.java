@@ -17,6 +17,7 @@
 package gui.coursesFrames;
 
 import core.course.Course;
+import static core.course.CourseUtil.displayCourseInformation;
 import gui.DefaultFrame;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -24,7 +25,6 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableModel;
 import util.gui.GUI_Util;
 import static util.gui.GUI_Util.buildTableModel;
-import static util.db.PL_SQL_Handler.displayCourseInformation;
 
 /**
  *
@@ -308,7 +308,7 @@ public class EditCourses extends DefaultFrame {
     }//GEN-LAST:event_editCreditsBtnActionPerformed
 
     private void editCourseTakesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCourseTakesActionPerformed
-        // TODO 11 add code here
+        // TODO 11 use course takes method in new Frame here
     }//GEN-LAST:event_editCourseTakesActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

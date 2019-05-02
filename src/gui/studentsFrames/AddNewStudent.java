@@ -16,9 +16,8 @@
  */
 package gui.studentsFrames;
 
+import static core.student.StudentUtil.Insert_Student;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
@@ -140,7 +139,7 @@ public class AddNewStudent extends javax.swing.JFrame {
 
     private void registerStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerStudentBtnActionPerformed
         try {
-            PL_SQL_Handler.Insert_Student(studentNameTf.getText(),
+            Insert_Student(studentNameTf.getText(),
                     this.studentNameTf.getText(),
                     (String) this.studentDepartmentCb.getSelectedItem(),
                     (double) this.studentTotalCreditSp.getValue());

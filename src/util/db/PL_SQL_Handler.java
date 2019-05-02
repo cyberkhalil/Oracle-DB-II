@@ -53,38 +53,6 @@ public final class PL_SQL_Handler {
         return rs;
     }
 
-    public static ResultSet displayStudentInformation() throws SQLException {
-        String call = "{CALL student_pkg.allstudent(?)}";
-        CallableStatement statment
-                = getConnection().prepareCall(call);
-        statment.registerOutParameter(1, OracleTypes.CURSOR);
-        statment.execute();
-        ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
-        return rs;
-    }
-
-    public static ResultSet displayCourseInformation() throws SQLException {
-        String call = "{CALL Course_pkg.allcourse(?)}";
-        CallableStatement statment
-                = getConnection().prepareCall(call);
-        statment.registerOutParameter(1, OracleTypes.CURSOR);
-        statment.execute();
-        ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
-        return rs;
-    }
-
-    // TODO 5 change this to take String input and get the result
-    public static ResultSet displayInformationAboutCourseTakes()
-            throws SQLException {
-        String call = "{CALL Course_pkg.tcourse_eq_ttakesa(?)}";
-        CallableStatement statment
-                = getConnection().prepareCall(call);
-        statment.registerOutParameter(1, OracleTypes.CURSOR);
-        statment.execute();
-        ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
-        return rs;
-    }
-
     public static ResultSet DisplayingStudentNameIDCourses() throws SQLException {
         String call = "{CALL student_pkg.student_name_and_id(?)}";
         CallableStatement statment
@@ -103,20 +71,6 @@ public final class PL_SQL_Handler {
         statment.execute();
         ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
         return rs;
-    }
-
-    public static void Insert_Student(String studentId, String studentName,
-            String studentDepartmentName, double studentTotalCredit)
-            throws SQLException {
-
-        String call = "{CALL student_pkg.Insert_Student(?,?,?,?)}";
-        CallableStatement statment = getConnection().prepareCall(call);
-
-        statment.setString(1, studentId);
-        statment.setString(2, studentName);
-        statment.setString(3, studentDepartmentName);
-        statment.setDouble(4, studentTotalCredit);
-        statment.execute();
     }
 
     public static ResultSet displayDepartmentNames() throws SQLException {

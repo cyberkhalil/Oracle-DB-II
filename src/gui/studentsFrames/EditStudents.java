@@ -24,7 +24,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableModel;
 import util.gui.GUI_Util;
 import static util.gui.GUI_Util.buildTableModel;
-import static util.db.PL_SQL_Handler.displayStudentInformation;
+import static core.student.StudentUtil.displayStudentInformation;
 
 /**
  *
@@ -157,6 +157,11 @@ public class EditStudents extends DefaultFrame {
         });
 
         editStudentTakesBtn.setText("Edit Student Takes");
+        editStudentTakesBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editStudentTakesBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -302,6 +307,10 @@ public class EditStudents extends DefaultFrame {
                 });
         updateTable();
     }//GEN-LAST:event_editTotalCreditBtnActionPerformed
+
+    private void editStudentTakesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editStudentTakesBtnActionPerformed
+        // TODO 1 use student takes method in new Frame here
+    }//GEN-LAST:event_editStudentTakesBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton deleteStudentBtn;
