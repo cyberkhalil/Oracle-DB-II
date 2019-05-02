@@ -40,7 +40,7 @@ public class Student {
      * @throws SQLException
      */
     public Student(String id) throws SQLException {
-        String call = "{? = CALL student_pkg.get_student_by_id(?)}";
+        String call = "{CALL student_pkg.get_student_by_id(?,?)}";
         CallableStatement statment = getConnection().prepareCall(call);
         statment.registerOutParameter(1, OracleTypes.CURSOR);
         statment.setString(2, id);
@@ -123,7 +123,7 @@ public class Student {
     }
 
     public ResultSet getCourses() throws SQLException {
-        String call = "{? = CALL student_pkg.get_student_courses(?)}";
+        String call = "{CALL student_pkg.get_student_courses(?,?)}";
         CallableStatement statment = getConnection().prepareCall(call);
         statment.registerOutParameter(1, OracleTypes.CURSOR);
         statment.setString(2, ID);

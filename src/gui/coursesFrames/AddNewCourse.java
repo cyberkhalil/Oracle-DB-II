@@ -16,6 +16,7 @@
  */
 package gui.coursesFrames;
 
+import core.course.CoursesUtil;
 import static core.department.DepartmentsUtil.displayDepartmentNames;
 import java.sql.SQLException;
 import javax.swing.ComboBoxModel;
@@ -64,6 +65,11 @@ public class AddNewCourse extends javax.swing.JFrame {
         courseCreditsLbl.setText("Credits :");
 
         createCourseBtn.setText("Create New Course");
+        createCourseBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createCourseBtnActionPerformed(evt);
+            }
+        });
 
         courseCreditsSp.setModel(new SpinnerNumberModel(0.0, 0.0, 10000000.0, 10.0));
         courseCreditsSp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -129,6 +135,20 @@ public class AddNewCourse extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void createCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createCourseBtnActionPerformed
+        try {
+            CoursesUtil.createCourse(courseIdTf.getText(),
+                    this.courseTitleTf.getText(),
+                    (String) this.courseDepartmentCb.getSelectedItem(),
+                    (double) this.courseCreditsSp.getValue());
+
+            JOptionPane.showMessageDialog(
+                    rootPane, "Course Created Successfully");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
+        }
+    }//GEN-LAST:event_createCourseBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel courseCreditsLbl;

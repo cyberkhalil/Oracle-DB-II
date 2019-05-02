@@ -122,7 +122,7 @@ public class Course {
     }
 
     public ResultSet getCourseTakes() throws SQLException {
-        String call = "{? = CALL Course_pkg.get_course_takes(?)}";
+        String call = "{CALL Course_pkg.get_course_takes(?,?)}";
         CallableStatement statment = getConnection().prepareCall(call);
         statment.registerOutParameter(1, OracleTypes.CURSOR);
         statment.setString(2, this.ID);

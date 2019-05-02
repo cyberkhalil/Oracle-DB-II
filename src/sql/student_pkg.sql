@@ -26,22 +26,22 @@ CREATE OR REPLACE PACKAGE student_pkg IS
     );
 
     PROCEDURE get_student_courses (
-    c_course   OUT SYS_REFCURSOR,
-            s_id  IN  student.id%TYPE
+        c_course   OUT        SYS_REFCURSOR,
+        s_id       IN         student.id%TYPE
+    );
 
-);
     PROCEDURE delete_student (
         s_id   IN     student.id%TYPE
     );
 
-    PROCEDURE get_student_by_id(
-    c_course   OUT SYS_REFCURSOR,
-            s_id  IN  student.id%TYPE
+    PROCEDURE get_student_by_id (
+        c_course   OUT        SYS_REFCURSOR,
+        s_id       IN         student.id%TYPE
+    );
 
-);
- PROCEDURE Student_Name_id(
-    c_course   OUT SYS_REFCURSOR,
-            S_id  IN  student.id%TYPE
+    PROCEDURE student_name_id (
+        c_course   OUT        SYS_REFCURSOR,
+        s_id       IN         student.id%TYPE
+    );
 
-);
 END;

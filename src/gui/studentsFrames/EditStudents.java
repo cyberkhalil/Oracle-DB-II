@@ -294,6 +294,10 @@ public class EditStudents extends DefaultFrame {
             }
         }
         updateTable();
+        studentIdTf.setText("");
+        studentNameTf.setText("");
+        studentDepartmentTf.setText("");
+        studentCreditTf.setText("");
     }//GEN-LAST:event_deleteStudentBtnActionPerformed
 
     private void editTotalCreditBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editTotalCreditBtnActionPerformed
@@ -303,17 +307,17 @@ public class EditStudents extends DefaultFrame {
                 (double newTotalCredit) -> {
                     try {
                         selectedStudent.setTotalCerdit(newTotalCredit);
+                        updateTable();
                         return true;
                     } catch (SQLException ex) {
                         JOptionPane.showMessageDialog(rootPane, ex);
                     }
                     return false;
                 });
-        updateTable();
     }//GEN-LAST:event_editTotalCreditBtnActionPerformed
 
     private void editStudentCoursesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editStudentCoursesBtnActionPerformed
-        EditStudentCourses frame = new EditStudentCourses(selectedStudent);
+        ShowStudentCourses frame = new ShowStudentCourses(selectedStudent);
         linkFrameToButton(frame, editStudentCoursesBtn);
         frame.setVisible(true);
     }//GEN-LAST:event_editStudentCoursesBtnActionPerformed

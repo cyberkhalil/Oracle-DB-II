@@ -86,22 +86,19 @@ CREATE OR REPLACE PACKAGE BODY student_pkg IS
 
         /* get_student_courses */
 
-   PROCEDURE get_student_courses (
-    c_course   OUT SYS_REFCURSOR,
-            s_id  IN  student.id%TYPE
+    PROCEDURE get_student_courses (
+        c_course   OUT        SYS_REFCURSOR,
+        s_id       IN         student.id%TYPE
+    ) IS
+    BEGIN
+        OPEN c_course FOR SELECT
+                              *
+                          FROM
+                              takes t
+                          WHERE
+                              t.id = s_id;
 
-)
-    IS
-BEGIN
-    OPEN c_course FOR
-      SELECT
-                               *
-                           FROM
-                               takes t
-                           WHERE
-                               t.id = s_id;
-
-END;
+    END;
         /* delete_student */
 
     PROCEDURE delete_student (
@@ -116,34 +113,40 @@ END;
 
         /* get_student_by_id */
 
-  PROCEDURE get_student_by_id(
-    c_course   OUT SYS_REFCURSOR,
-            s_id  IN  student.id%TYPE
+    PROCEDURE get_student_by_id (
+        c_course   OUT        SYS_REFCURSOR,
+        s_id       IN         student.id%TYPE
+    ) IS
+    BEGIN
+        OPEN c_course FOR SELECT
+                              *
+                          FROM
+                              student
+                          WHERE
+                              id = s_id;
 
-)
-    IS
-BEGIN
-    OPEN c_course FOR
-       SELECT
-                               *
-                           FROM
-                               student
-                           WHERE
-                               id = s_id;
+    END;
 
-END;
- -- TODO 18 make this procedure display student id, name (,) all takes information for 
+    PROCEDURE student_name_id (
+        c_course   OUT        SYS_REFCURSOR,
+        s_id       IN         student.id%TYPE
+    ) IS
+    -- TODO 18 make this procedure display student id, name (,) all takes information for 
     --this student also change procsdure name
-   PROCEDURE Student_Name_id (
-    c_course   OUT SYS_REFCURSOR,
-            S_id  IN  student.id%TYPE
+    BEGIN
+        OPEN c_course FOR SELECT
+                              s.id,
+                              s.name,
+                              c.title,
+                              c.course_id
+                          FROM
+                              course    c,
+                              takes     t,
+                              student   s
+                          WHERE
+                              t.id = s_id
+                              AND s.id = t.id;
 
-)
-    IS
-BEGIN
-    OPEN c_course FOR
-    SELECT s.ID, s.name ,c.Title,c.Course_id FROM course c, takes  t, student s  WHERE t.id = S_id  AND s.id = t.id;
-    
+    END;
 
-END;      
 END;

@@ -312,7 +312,7 @@ public class EditCourses extends DefaultFrame {
     }//GEN-LAST:event_editCreditsBtnActionPerformed
 
     private void editCourseTakesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCourseTakesActionPerformed
-        EditCourseTakes frame = new EditCourseTakes(selectedCourse);
+        ShowCourseTakes frame = new ShowCourseTakes(selectedCourse);
         linkFrameToButton(frame, editCourseTakes);
         frame.setVisible(true);
     }//GEN-LAST:event_editCourseTakesActionPerformed

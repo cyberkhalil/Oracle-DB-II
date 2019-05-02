@@ -143,6 +143,9 @@ public class AddNewStudent extends javax.swing.JFrame {
                     this.studentNameTf.getText(),
                     (String) this.studentDepartmentCb.getSelectedItem(),
                     (double) this.studentTotalCreditSp.getValue());
+
+            JOptionPane.showMessageDialog(
+                    rootPane, "Student Registered Successfully");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
