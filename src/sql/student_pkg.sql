@@ -25,19 +25,23 @@ CREATE OR REPLACE PACKAGE student_pkg IS
         allstudent OUT SYS_REFCURSOR
     );
 
-    FUNCTION get_student_courses (
-        s_id   IN     student.id%TYPE
-    ) RETURN SYS_REFCURSOR;
+    PROCEDURE get_student_courses (
+    c_course   OUT SYS_REFCURSOR,
+            s_id  IN  student.id%TYPE
 
+);
     PROCEDURE delete_student (
         s_id   IN     student.id%TYPE
     );
 
-    FUNCTION get_student_by_id (
-        s_id   IN     student.id%TYPE
-    ) RETURN SYS_REFCURSOR;
+    PROCEDURE get_student_by_id(
+    c_course   OUT SYS_REFCURSOR,
+            s_id  IN  student.id%TYPE
 
- FUNCTION Student_Name_id(
-     S_id in Student.ID%type)
-   RETURN SYS_REFCURSOR;
+);
+ PROCEDURE Student_Name_id(
+    c_course   OUT SYS_REFCURSOR,
+            S_id  IN  student.id%TYPE
+
+);
 END;

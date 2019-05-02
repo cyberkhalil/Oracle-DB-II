@@ -86,22 +86,22 @@ CREATE OR REPLACE PACKAGE BODY student_pkg IS
 
         /* get_student_courses */
 
-    FUNCTION get_student_courses (
-        s_id   IN     student.id%TYPE
-    ) RETURN SYS_REFCURSOR AS
-        c_coursea SYS_REFCURSOR;
-    BEGIN
- -- TODO 5 make this function display student id, name & all courses (names and id's) for a student id
-        OPEN c_coursea FOR SELECT
+   PROCEDURE get_student_courses (
+    c_course   OUT SYS_REFCURSOR,
+            s_id  IN  student.id%TYPE
+
+)
+    IS
+BEGIN
+    OPEN c_course FOR
+      SELECT
                                *
                            FROM
                                takes t
                            WHERE
                                t.id = s_id;
 
-        RETURN c_coursea;
-    END;
-
+END;
         /* delete_student */
 
     PROCEDURE delete_student (
@@ -116,32 +116,34 @@ CREATE OR REPLACE PACKAGE BODY student_pkg IS
 
         /* get_student_by_id */
 
-    FUNCTION get_student_by_id (
-        s_id   IN     student.id%TYPE
-    ) RETURN SYS_REFCURSOR AS
-        c_coursea SYS_REFCURSOR;
-    BEGIN
-        OPEN c_coursea FOR SELECT
+  PROCEDURE get_student_by_id(
+    c_course   OUT SYS_REFCURSOR,
+            s_id  IN  student.id%TYPE
+
+)
+    IS
+BEGIN
+    OPEN c_course FOR
+       SELECT
                                *
                            FROM
                                student
                            WHERE
                                id = s_id;
 
-        RETURN c_coursea;
-    END;
+END;
+ -- TODO 18 make this procedure display student id, name (,) all takes information for 
+    --this student also change procsdure name
+   PROCEDURE Student_Name_id (
+    c_course   OUT SYS_REFCURSOR,
+            S_id  IN  student.id%TYPE
 
-FUNCTION Student_Name_id(
-     S_id in Student.ID%type)
-   RETURN SYS_REFCURSOR
-AS
-   c_coursea SYS_REFCURSOR;
+)
+    IS
 BEGIN
- -- TODO 18 make this procedure display student id, name & all takes information for 
---this student also change procsdure name
-          OPEN c_coursea FOR SELECT s.ID, s.name ,c.Title,c.Course_id FROM course c, takes  t, student s  WHERE t.id = S_id  AND s.id = t.id;
+    OPEN c_course FOR
+    SELECT s.ID, s.name ,c.Title,c.Course_id FROM course c, takes  t, student s  WHERE t.id = S_id  AND s.id = t.id;
+    
 
-
-   RETURN c_coursea;
-END;         
+END;      
 END;
