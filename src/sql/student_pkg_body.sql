@@ -58,5 +58,40 @@ PROCEDURE SetTotalCerdit (
 BEGIN
     UPDATE  STUDENT set TOT_CRED = S_TotalCerdit where ID=IDS;
 END;
+PROCEDURE insert_student (
+        id          IN          student.id%TYPE,
+        name        IN          student.name%TYPE,
+        dept_name   IN          student.dept_name%TYPE,
+        tot_cred    IN          student.tot_cred%TYPE
+    ) IS
+    BEGIN
+        INSERT INTO student (
+            id,
+            name,
+            dept_name,
+            tot_cred
+        ) VALUES (
+            id,
+            name,
+            dept_name,
+            tot_cred
+        );
+
+    END;
+    
+    
+    PROCEDURE allstudent (
+        allstudent OUT SYS_REFCURSOR
+    ) IS
+    BEGIN
+        OPEN allstudent FOR SELECT
+                                *
+                            FROM
+                                student;
+
+    EXCEPTION
+        WHEN OTHERS THEN
+            dbms_output.put_line(sqlerrm);
+    END;
 
 End;

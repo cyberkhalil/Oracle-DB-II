@@ -24,5 +24,14 @@ PROCEDURE SetTotalCerdit (
     IDS in Student.ID%type,
     S_TotalCerdit in Student.TOT_CRED%type
 );
+
+    PROCEDURE insert_student (
+        id          IN          student.id%TYPE,
+        name        IN          student.name%TYPE,
+        dept_name   IN          student.dept_name%TYPE,
+        tot_cred    IN          student.tot_cred%TYPE
+    );
+
+    
 END;
 

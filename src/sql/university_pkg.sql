@@ -11,14 +11,6 @@ CREATE OR REPLACE PACKAGE university IS
 
  
 
-    PROCEDURE insert_student (
-        id          IN          student.id%TYPE,
-        name        IN          student.name%TYPE,
-        dept_name   IN          student.dept_name%TYPE,
-        tot_cred    IN          student.tot_cred%TYPE
-    );
-
-    
 
 
 PROCEDURE Get_Dept_Name (
