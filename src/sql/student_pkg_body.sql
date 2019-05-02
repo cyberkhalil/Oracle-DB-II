@@ -1,38 +1,5 @@
 create or replace package body student_pkg
 is
- function getName 
-(IDS Student.ID%type) 
-return varchar2
-is 
-nameStudent varchar2(5) ;
-Begin
-  select Name into nameStudent 
-  from STUDENT where ID =IDS;
-  
-return nameStudent;
-End;
-function getDepartmentName 
-(IDS Student.ID%type) 
-return varchar2
-is 
-DepartmentName  varchar2(5) ;
-Begin
-  select DEPT_NAME into DepartmentName  
-  from STUDENT where ID =IDS;
-  
-return DepartmentName ;
-End;
-function getTotalCerdit 
-(IDS Student.ID%type) 
-return Number
-is 
-TOT_CREDa  varchar2(5) ;
-Begin
-  select TOT_CRED into TOT_CREDa  
-  from STUDENT where ID =IDS;
-  
-return TOT_CREDa ;
-End;
 PROCEDURE SetName (
     IDS in Student.ID%type,
     S_Name in Student.Name%type
@@ -101,7 +68,8 @@ PROCEDURE insert_student (
 AS
    c_coursea SYS_REFCURSOR;
 BEGIN
- -- TODO 18 make this procedure display student id, name & all takes information for this student also change procsdure name
+ -- TODO 18 make this procedure display student id, name & all takes information for 
+--this student also change procsdure name
           OPEN c_coursea FOR SELECT * FROM takes  t WHERE t.id = S_id;
 
    RETURN c_coursea;

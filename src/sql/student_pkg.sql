@@ -1,15 +1,5 @@
 CREATE OR REPLACE PACKAGE student_pkg IS
-    FUNCTION getname (
-        ids student.id%TYPE
-    ) RETURN VARCHAR2;
-
-    FUNCTION getdepartmentname (
-        ids student.id%TYPE
-    ) RETURN VARCHAR2;
-
-    FUNCTION gettotalcerdit (
-        ids student.id%TYPE
-    ) RETURN NUMBER;
+    
 
     PROCEDURE setname (
         ids      IN       student.id%TYPE,
@@ -45,5 +35,5 @@ PROCEDURE Delete_Student (
      S_id in Student.ID%type
      );
     
-    -- TODO 7 create procedure take student id as input & return student record.
+    -- TODO 7 create procedure take student id as input & return student record. student_name_and_ida
 END;

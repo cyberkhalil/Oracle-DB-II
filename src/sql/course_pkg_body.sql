@@ -1,53 +1,6 @@
 CREATE OR REPLACE PACKAGE BODY course_pkg IS
 
-    FUNCTION gettitle (
-        course_idc course.course_id%TYPE
-    ) RETURN VARCHAR2 IS
-        titlecourse VARCHAR2(50);
-    BEGIN
-        SELECT
-            title
-        INTO titlecourse
-        FROM
-            course
-        WHERE
-            course_id = course_idc;
-
-        RETURN titlecourse;
-    END;
-
-    FUNCTION getdepartmentname (
-        course_idc course.course_id%TYPE
-    ) RETURN VARCHAR2 IS
-        departmentname VARCHAR2(20);
-    BEGIN
-        SELECT
-            dept_name
-        INTO departmentname
-        FROM
-            course
-        WHERE
-            course_id = course_idc;
-
-        RETURN departmentname;
-    END;
-
-    FUNCTION gettotalcerdit (
-        course_idc course.course_id%TYPE
-    ) RETURN NUMBER IS
-        c_credits VARCHAR2(5);
-    BEGIN
-        SELECT
-            credits
-        INTO c_credits
-        FROM
-            course
-        WHERE
-            course_id = course_idc;
-
-        RETURN c_credits;
-    END;
-
+  
     PROCEDURE settitle (
         course_idc   IN           course.course_id%TYPE,
         s_title      IN           course.title%TYPE

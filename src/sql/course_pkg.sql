@@ -1,17 +1,5 @@
 CREATE OR REPLACE PACKAGE course_pkg IS
-    -- TODO 8 remove all get's from pkg and pkg body.
-    FUNCTION gettitle (
-        course_idc course.course_id%TYPE
-    ) RETURN VARCHAR2;
-
-    FUNCTION getdepartmentname (
-        course_idc course.course_id%TYPE
-    ) RETURN VARCHAR2;
-
-    FUNCTION gettotalcerdit (
-        course_idc course.course_id%TYPE
-    ) RETURN NUMBER;
-
+    
     PROCEDURE set_title (
         course_idc   IN           course.course_id%TYPE,
         s_title      IN           course.title%TYPE
