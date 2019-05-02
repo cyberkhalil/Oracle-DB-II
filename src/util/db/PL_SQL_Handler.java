@@ -86,7 +86,7 @@ public final class PL_SQL_Handler {
     }
 
     public static ResultSet DisplayingStudentNameIDCourses() throws SQLException {
-        String call = "{CALL university.student_name_and_id(?)}";
+        String call = "{CALL student_pkg.student_name_and_id(?)}";
         CallableStatement statment
                 = getConnection().prepareCall(call);
         statment.registerOutParameter(1, OracleTypes.CURSOR);
@@ -120,7 +120,7 @@ public final class PL_SQL_Handler {
     }
 
     public static ResultSet displayDepartmentNames() throws SQLException {
-        String call = "{CALL university.Get_Dept_Name(?)}";
+        String call = "{CALL department_pkg.Get_Dept_Name(?)}";
         CallableStatement statment
                 = getConnection().prepareCall(call);
         statment.registerOutParameter(1, OracleTypes.CURSOR);

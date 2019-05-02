@@ -31,6 +31,10 @@ PROCEDURE SetTotalCerdit (
         dept_name   IN          student.dept_name%TYPE,
         tot_cred    IN          student.tot_cred%TYPE
     );
+    
+ PROCEDURE allstudent (
+        allstudent OUT SYS_REFCURSOR
+    );
 
     
 END;
