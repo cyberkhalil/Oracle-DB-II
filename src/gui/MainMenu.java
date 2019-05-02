@@ -16,9 +16,10 @@
  */
 package gui;
 
+import gui.coursesFrames.AddNewCourse;
 import gui.coursesFrames.EditCourses;
+import gui.studentsFrames.AddNewStudent;
 import gui.studentsFrames.EditStudents;
-import javax.swing.JFrame;
 import util.gui.GUI_Util;
 import static util.gui.GUI_Util.exitConfirm;
 
@@ -40,13 +41,13 @@ public class MainMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        newStudentBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        newCourseBtn = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
@@ -66,6 +67,15 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Students");
+
+        newStudentBtn.setText("New Student");
+        newStudentBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newStudentBtnActionPerformed(evt);
+            }
+        });
+
         jButton1.setText("Edit Students");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,36 +83,30 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Edit Student Takes");
-
-        jLabel1.setText("Students");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton3))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jButton1)))
+                .addGap(55, 55, 55)
+                .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(newStudentBtn)
+                    .addComponent(jButton1))
+                .addGap(21, 21, 21))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(newStudentBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3)
-                .addGap(30, 30, 30))
+                .addContainerGap())
         );
 
         jButton2.setText("Edit Courses");
@@ -112,9 +116,14 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Edit Course Takes");
-
         jLabel2.setText("Courses");
+
+        newCourseBtn.setText("New Course");
+        newCourseBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newCourseBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -126,22 +135,20 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGap(47, 47, 47))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jButton2)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(newCourseBtn)
+                    .addComponent(jButton2))
+                .addGap(0, 25, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
+                .addComponent(newCourseBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
 
         jLabel3.setText("Sections");
@@ -221,7 +228,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addGap(0, 0, 0))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,22 +253,32 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JFrame frame = new EditStudents();
+        EditStudents frame = new EditStudents();
         GUI_Util.linkFrameToButton(frame, jButton1);
         frame.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        JFrame frame = new EditCourses();
+        EditCourses frame = new EditCourses();
         GUI_Util.linkFrameToButton(frame, jButton1);
         frame.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void newCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newCourseBtnActionPerformed
+        AddNewCourse frame = new AddNewCourse();
+        GUI_Util.linkFrameToButton(frame, newCourseBtn);
+        frame.setVisible(true);
+    }//GEN-LAST:event_newCourseBtnActionPerformed
+
+    private void newStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newStudentBtnActionPerformed
+        AddNewStudent frame = new AddNewStudent();
+        GUI_Util.linkFrameToButton(frame, newStudentBtn);
+        frame.setVisible(true);
+    }//GEN-LAST:event_newStudentBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -275,5 +292,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JButton newCourseBtn;
+    private javax.swing.JButton newStudentBtn;
     // End of variables declaration//GEN-END:variables
 }

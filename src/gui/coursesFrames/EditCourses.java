@@ -58,11 +58,11 @@ public class EditCourses extends DefaultFrame {
         courseIdTf = new javax.swing.JTextField();
         courseCreditsTf = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
-        newCourseBtn = new javax.swing.JButton();
         deleteCourseBtn = new javax.swing.JButton();
         editNameBtn = new javax.swing.JButton();
         editDepartmentBtn = new javax.swing.JButton();
         editCreditsBtn = new javax.swing.JButton();
+        editCourseTakes = new javax.swing.JButton();
 
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -104,7 +104,7 @@ public class EditCourses extends DefaultFrame {
                     .addComponent(courseCreditsTf, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                     .addComponent(courseTitleTf)
                     .addComponent(courseIdTf))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,13 +127,6 @@ public class EditCourses extends DefaultFrame {
                     .addComponent(courseCreditsLbl))
                 .addGap(20, 20, 20))
         );
-
-        newCourseBtn.setText("new Course");
-        newCourseBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newCourseBtnActionPerformed(evt);
-            }
-        });
 
         deleteCourseBtn.setText("delete Course");
         deleteCourseBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -163,6 +156,13 @@ public class EditCourses extends DefaultFrame {
             }
         });
 
+        editCourseTakes.setText("Edit course Takes");
+        editCourseTakes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editCourseTakesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -171,17 +171,17 @@ public class EditCourses extends DefaultFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(newCourseBtn)
+                        .addComponent(editCreditsBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(deleteCourseBtn))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(editNameBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                         .addComponent(editDepartmentBtn)))
                 .addGap(27, 27, 27))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(editCreditsBtn)
+                .addGap(66, 66, 66)
+                .addComponent(editCourseTakes)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -192,11 +192,11 @@ public class EditCourses extends DefaultFrame {
                     .addComponent(editNameBtn)
                     .addComponent(editDepartmentBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(editCreditsBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(editCourseTakes)
+                .addGap(11, 11, 11)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(newCourseBtn)
-                    .addComponent(deleteCourseBtn))
+                    .addComponent(deleteCourseBtn)
+                    .addComponent(editCreditsBtn))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -306,11 +306,9 @@ public class EditCourses extends DefaultFrame {
         updateTable();
     }//GEN-LAST:event_editCreditsBtnActionPerformed
 
-    private void newCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newCourseBtnActionPerformed
-        AddNewCourse frame = new AddNewCourse();
-        GUI_Util.linkFrameToButton(frame, newCourseBtn);
-        frame.setVisible(true);
-    }//GEN-LAST:event_newCourseBtnActionPerformed
+    private void editCourseTakesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCourseTakesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editCourseTakesActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel courseCreditsLbl;
@@ -322,6 +320,7 @@ public class EditCourses extends DefaultFrame {
     private javax.swing.JLabel courseTitleLbl;
     private javax.swing.JTextField courseTitleTf;
     private javax.swing.JButton deleteCourseBtn;
+    private javax.swing.JButton editCourseTakes;
     private javax.swing.JButton editCreditsBtn;
     private javax.swing.JButton editDepartmentBtn;
     private javax.swing.JButton editNameBtn;
@@ -329,7 +328,6 @@ public class EditCourses extends DefaultFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JButton newCourseBtn;
     // End of variables declaration//GEN-END:variables
 
     private void updateTable() {

@@ -16,7 +16,7 @@ CREATE OR REPLACE PACKAGE BODY university IS
 
     END;
 
--- TODO accept input student_id
+-- TODO accept input student_id & return course name
 
     PROCEDURE student_name_and_id (
         c_course OUT SYS_REFCURSOR
