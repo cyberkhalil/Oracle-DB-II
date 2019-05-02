@@ -52,8 +52,8 @@ public final class DbUtil {
     }
 
     public static boolean checkUniversitySchema() throws SQLException {
-        ResultSet rs = PL_SQL_Handler.getAllTables();
-        return PL_SQL_Handler.countAllTables() == DB_TABLES_NUMBER
+        ResultSet rs = getAllTables();
+        return countAllTables() == DB_TABLES_NUMBER
                 && rs.last() && rs.getString("TName").equals("TIME_SLOT");
     }
 
@@ -139,5 +139,27 @@ public final class DbUtil {
                 = getConnection().prepareCall(university_pkg_body);
         statment.execute();
         statment2.execute();
+    }
+
+    private static int countAllTables() throws SQLException {
+        // TODO 16 use pl/sql here instead of sql
+        String query = "select count(*) from tab";
+        PreparedStatement statment
+                = getConnection().prepareStatement(query);
+        ResultSet rs = statment.executeQuery();
+        rs.next();
+        return rs.getInt("COUNT(*)");
+    }
+
+    private static ResultSet getAllTables() throws SQLException {
+        // TODO 17 use pl/sql here instead of sql
+        String query = "select * from tab";
+        PreparedStatement statment
+                = getConnection().prepareStatement(
+                        query,
+                        ResultSet.TYPE_SCROLL_INSENSITIVE,
+                        ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = statment.executeQuery();
+        return rs;
     }
 }

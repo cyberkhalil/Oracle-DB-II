@@ -56,4 +56,15 @@ public final class StudentUtil {
         statment.execute();
     }
 
+    public static ResultSet DisplayingStudentNameIDCourses(String sutdentId) throws SQLException {
+//        TODO 18 procsdure name maight be changed
+        String call = "{? = CALL student_pkg.student_name_and_id(?)}";
+        CallableStatement statment
+                = getConnection().prepareCall(call);
+        statment.registerOutParameter(1, OracleTypes.CURSOR);
+        statment.setString(2, sutdentId);
+        statment.execute();
+        ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
+        return rs;
+    }
 }

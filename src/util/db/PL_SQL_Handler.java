@@ -33,36 +33,6 @@ public final class PL_SQL_Handler {
     private PL_SQL_Handler() {
     }
 
-    public static int countAllTables() throws SQLException {
-        String query = "select count(*) from tab";
-        PreparedStatement statment
-                = getConnection().prepareStatement(query);
-        ResultSet rs = statment.executeQuery();
-        rs.next();
-        return rs.getInt("COUNT(*)");
-    }
-
-    public static ResultSet getAllTables() throws SQLException {
-        String query = "select * from tab";
-        PreparedStatement statment
-                = getConnection().prepareStatement(
-                        query,
-                        ResultSet.TYPE_SCROLL_INSENSITIVE,
-                        ResultSet.CONCUR_READ_ONLY);
-        ResultSet rs = statment.executeQuery();
-        return rs;
-    }
-
-    public static ResultSet DisplayingStudentNameIDCourses() throws SQLException {
-        String call = "{CALL student_pkg.student_name_and_id(?)}";
-        CallableStatement statment
-                = getConnection().prepareCall(call);
-        statment.registerOutParameter(1, OracleTypes.CURSOR);
-        statment.execute();
-        ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
-        return rs;
-    }
-
     public static ResultSet DisplayNumberOfStudents() throws SQLException {
         String call = "{CALL Course_pkg.count_and_title_of_course(?)}";
         CallableStatement statment

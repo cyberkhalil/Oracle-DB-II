@@ -101,8 +101,8 @@ PROCEDURE insert_student (
 AS
    c_coursea SYS_REFCURSOR;
 BEGIN
- 
-          OPEN c_coursea FOR SELECT c.Title FROM course c, takes  t, student s  WHERE t.id = S_id  AND s.id = t.id;
+ -- TODO 18 make this procedure display student id, name & all takes information for this student also change procsdure name
+          OPEN c_coursea FOR SELECT * FROM takes  t WHERE t.id = S_id;
 
    RETURN c_coursea;
 END;
