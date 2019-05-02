@@ -54,7 +54,7 @@ public final class DbUtil {
     public static boolean checkUniversitySchema() throws SQLException {
         ResultSet rs = PL_SQL_Handler.getAllTables();
         return PL_SQL_Handler.countAllTables() == DB_TABLES_NUMBER
-                && rs.last() && rs.getString("Name").equals("TIME_SLOT");
+                && rs.last() && rs.getString("TName").equals("TIME_SLOT");
     }
 
     public static void applyUniversity() throws IOException, SQLException {
