@@ -1,7 +1,7 @@
 CREATE OR REPLACE PACKAGE BODY course_pkg IS
 
-  
-    PROCEDURE settitle (
+        /* set_title */
+    PROCEDURE set_title (
         course_idc   IN           course.course_id%TYPE,
         s_title      IN           course.title%TYPE
     ) IS
@@ -14,7 +14,8 @@ CREATE OR REPLACE PACKAGE BODY course_pkg IS
 
     END;
 
-    PROCEDURE setdepartmentname (
+        /* set_department_name */
+    PROCEDURE set_department_name (
         course_idc    IN            course.course_id%TYPE,
         s_dept_name   IN            course.title%TYPE
     ) IS
@@ -27,7 +28,8 @@ CREATE OR REPLACE PACKAGE BODY course_pkg IS
 
     END;
 
-    PROCEDURE settotalcerdit (
+        /* set_cerdits */
+    PROCEDURE set_cerdits (
         course_idc   IN           course.course_id%TYPE,
         c_credits    IN           course.credits%TYPE
     ) IS
@@ -40,7 +42,9 @@ CREATE OR REPLACE PACKAGE BODY course_pkg IS
 
     END;
 
-    PROCEDURE insert_course (
+
+        /* create_course */
+    PROCEDURE create_course (
         c_course_id   IN            course.course_id%TYPE,
         c_title       IN            course.title%TYPE,
         dept_name     IN            course.dept_name%TYPE,
@@ -60,8 +64,9 @@ CREATE OR REPLACE PACKAGE BODY course_pkg IS
         );
 
     END;
-
-    PROCEDURE allcourse (
+    
+        /* get_all_courses */
+    PROCEDURE get_all_courses (
         allcourse OUT SYS_REFCURSOR
     ) IS
     BEGIN
@@ -75,7 +80,8 @@ CREATE OR REPLACE PACKAGE BODY course_pkg IS
             dbms_output.put_line(sqlerrm);
     END;
 
-    PROCEDURE count_and_title_of_course (
+        /* get_all_courses_students_number */
+    PROCEDURE get_all_courses_students_number (
         count_and_title_of_course OUT SYS_REFCURSOR
     ) IS
     BEGIN
@@ -92,7 +98,9 @@ CREATE OR REPLACE PACKAGE BODY course_pkg IS
 
     END;
 
-    FUNCTION tcourse_eq_ttakesa (
+
+        /* get_course_takes */
+    FUNCTION get_course_takes (
         c_id   IN     course.course_id%TYPE
     ) RETURN SYS_REFCURSOR AS
         c_coursea SYS_REFCURSOR;

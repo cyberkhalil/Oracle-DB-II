@@ -1,31 +1,53 @@
-create or replace package body student_pkg
-is
-PROCEDURE SetName (
-    IDS in Student.ID%type,
-    S_Name in Student.Name%type
-)
-    IS
-BEGIN
-    UPDATE  STUDENT set Name = S_Name where ID=IDS;
+CREATE OR REPLACE PACKAGE BODY student_pkg IS
+        
+        /* set_name */
 
-END;
-PROCEDURE SetDEPT_NAME (
-    IDS in Student.ID%type,
-    S_DEPT_NAME in Student.DEPT_NAME%type
-)
-    IS
-BEGIN
-    UPDATE  STUDENT set DEPT_NAME = S_DEPT_NAME where ID=IDS;
-END;
-PROCEDURE SetTotalCerdit (
-    IDS in Student.ID%type,
-    S_TotalCerdit in Student.TOT_CRED%type
-)
-    IS
-BEGIN
-    UPDATE  STUDENT set TOT_CRED = S_TotalCerdit where ID=IDS;
-END;
-PROCEDURE insert_student (
+    PROCEDURE set_name (
+        ids      IN       student.id%TYPE,
+        s_name   IN       student.name%TYPE
+    ) IS
+    BEGIN
+        UPDATE student
+        SET
+            name = s_name
+        WHERE
+            id = ids;
+
+    END;
+
+        /* set_department_name */
+
+    PROCEDURE set_department_name (
+        ids           IN            student.id%TYPE,
+        s_dept_name   IN            student.dept_name%TYPE
+    ) IS
+    BEGIN
+        UPDATE student
+        SET
+            dept_name = s_dept_name
+        WHERE
+            id = ids;
+
+    END;
+
+        /* set_total_cerdit */
+
+    PROCEDURE set_total_cerdit (
+        ids             IN              student.id%TYPE,
+        s_totalcerdit   IN              student.tot_cred%TYPE
+    ) IS
+    BEGIN
+        UPDATE student
+        SET
+            tot_cred = s_totalcerdit
+        WHERE
+            id = ids;
+
+    END;
+
+        /* register_student */
+
+    PROCEDURE register_student (
         id          IN          student.id%TYPE,
         name        IN          student.name%TYPE,
         dept_name   IN          student.dept_name%TYPE,
@@ -45,9 +67,10 @@ PROCEDURE insert_student (
         );
 
     END;
-    
-    
-    PROCEDURE allstudent (
+
+        /* get_all_students */
+
+    PROCEDURE get_all_students (
         allstudent OUT SYS_REFCURSOR
     ) IS
     BEGIN
@@ -61,42 +84,51 @@ PROCEDURE insert_student (
             dbms_output.put_line(sqlerrm);
     END;
 
+        /* get_student_courses */
 
- FUNCTION student_name_and_ida(
-     S_id in Student.ID%type)
-   RETURN SYS_REFCURSOR
-AS
-   c_coursea SYS_REFCURSOR;
-BEGIN
- -- TODO 18 make this procedure display student id, name & all takes information for 
---this student also change procsdure name
-          OPEN c_coursea FOR SELECT * FROM takes  t WHERE t.id = S_id;
+    FUNCTION get_student_courses (
+        s_id   IN     student.id%TYPE
+    ) RETURN SYS_REFCURSOR AS
+        c_coursea SYS_REFCURSOR;
+    BEGIN
+ -- TODO 5 make this function display student id, name & all courses (names and id's) for a student id
+        OPEN c_coursea FOR SELECT
+                               *
+                           FROM
+                               takes t
+                           WHERE
+                               t.id = s_id;
 
-   RETURN c_coursea;
-END;
-
-PROCEDURE Delete_Student (
-     S_id in Student.ID%type
-     )
-     IS
-     Begin
-     DELETE
-FROM
-    Student
-WHERE
-    ID =S_id;
+        RETURN c_coursea;
     END;
-    
-     FUNCTION Student_with_id(
-     S_id in Student.ID%type)
-   RETURN SYS_REFCURSOR
-AS
-   c_coursea SYS_REFCURSOR;
-BEGIN
- -- TODO 18 make this procedure display student id, name & all takes information for 
---this student also change procsdure name
-          OPEN c_coursea FOR SELECT * FROM Student   WHERE  ID = S_id;
 
-   RETURN c_coursea;
-END;         
-End;
+        /* delete_student */
+
+    PROCEDURE delete_student (
+        s_id   IN     student.id%TYPE
+    ) IS
+    BEGIN
+        DELETE FROM student
+        WHERE
+            id = s_id;
+
+    END;
+
+        /* get_student_by_id */
+
+    FUNCTION get_student_by_id (
+        s_id   IN     student.id%TYPE
+    ) RETURN SYS_REFCURSOR AS
+        c_coursea SYS_REFCURSOR;
+    BEGIN
+        OPEN c_coursea FOR SELECT
+                               *
+                           FROM
+                               student
+                           WHERE
+                               id = s_id;
+
+        RETURN c_coursea;
+    END;
+
+END;

@@ -33,34 +33,33 @@ public final class CoursesUtil {
     }
 
     public static ResultSet displayCourseInformation() throws SQLException {
-        String call = "{CALL Course_pkg.allcourse(?)}";
-        CallableStatement statment
-                = getConnection().prepareCall(call);
+        String call = "{CALL Course_pkg.get_all_courses(?)}";
+        CallableStatement statment = getConnection().prepareCall(call);
         statment.registerOutParameter(1, OracleTypes.CURSOR);
         statment.execute();
         ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
         return rs;
     }
 
-    public static ResultSet displayInformationAboutCourseTakes(String courseId)
+    public static ResultSet getAllCoursesStudentsNumber() throws SQLException {
+        String call = "{CALL Course_pkg.get_all_courses_students_number(?)}";
+        CallableStatement statment = getConnection().prepareCall(call);
+        statment.registerOutParameter(1, OracleTypes.CURSOR);
+        statment.execute();
+        ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
+        return rs;
+    }
+
+    public static void createCourse(String courseId, String courseTitle,
+            String courseDepartmentName, double courseCredits)
             throws SQLException {
-        String call = "{? = CALL Course_pkg.tcourse_eq_ttakesa(?)}";
-        CallableStatement statment
-                = getConnection().prepareCall(call);
-        statment.registerOutParameter(1, OracleTypes.CURSOR);
-        statment.setString(2, courseId);
-        statment.execute();
-        ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
-        return rs;
-    }
+        String call = "{CALL course_pkg.create_course(?,?,?,?)}";
+        CallableStatement statment = getConnection().prepareCall(call);
 
-    public static ResultSet DisplayNumberOfStudents() throws SQLException {
-        String call = "{CALL Course_pkg.count_and_title_of_course(?)}";
-        CallableStatement statment
-                = getConnection().prepareCall(call);
-        statment.registerOutParameter(1, OracleTypes.CURSOR);
+        statment.setString(1, courseId);
+        statment.setString(2, courseTitle);
+        statment.setString(3, courseDepartmentName);
+        statment.setDouble(4, courseCredits);
         statment.execute();
-        ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
-        return rs;
     }
 }

@@ -122,6 +122,16 @@ public class Course {
         this.credits = credits;
     }
 
+    public static ResultSet getCourseTakes(String courseId) throws SQLException {
+        String call = "{? = CALL Course_pkg.get_course_takes(?)}";
+        CallableStatement statment = getConnection().prepareCall(call);
+        statment.registerOutParameter(1, OracleTypes.CURSOR);
+        statment.setString(2, courseId);
+        statment.execute();
+        ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
+        return rs;
+    }
+
     /**
      *
      * @throws SQLException

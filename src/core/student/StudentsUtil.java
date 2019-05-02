@@ -32,8 +32,8 @@ public final class StudentsUtil {
     private StudentsUtil() {
     }
 
-    public static ResultSet displayStudentInformation() throws SQLException {
-        String call = "{CALL student_pkg.allstudent(?)}";
+    public static ResultSet getAllStudents() throws SQLException {
+        String call = "{CALL student_pkg.get_all_students(?)}";
         CallableStatement statment
                 = getConnection().prepareCall(call);
         statment.registerOutParameter(1, OracleTypes.CURSOR);
@@ -42,11 +42,10 @@ public final class StudentsUtil {
         return rs;
     }
 
-    public static void Insert_Student(String studentId, String studentName,
+    public static void registerStudent(String studentId, String studentName,
             String studentDepartmentName, double studentTotalCredit)
             throws SQLException {
-
-        String call = "{CALL student_pkg.Insert_Student(?,?,?,?)}";
+        String call = "{CALL student_pkg.register_student(?,?,?,?)}";
         CallableStatement statment = getConnection().prepareCall(call);
 
         statment.setString(1, studentId);
@@ -56,14 +55,4 @@ public final class StudentsUtil {
         statment.execute();
     }
 
-    public static ResultSet DisplayingStudentNameIDCourses(String sutdentId) throws SQLException {
-//        TODO 18 procsdure name maight be changed
-        String call = "{? = CALL student_pkg.student_name_and_id(?)}";
-        CallableStatement statment = getConnection().prepareCall(call);
-        statment.registerOutParameter(1, OracleTypes.CURSOR);
-        statment.setString(2, sutdentId);
-        statment.execute();
-        ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
-        return rs;
-    }
 }

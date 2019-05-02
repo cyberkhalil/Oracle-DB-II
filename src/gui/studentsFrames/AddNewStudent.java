@@ -17,12 +17,12 @@
 package gui.studentsFrames;
 
 import static core.department.DepartmentsUtil.displayDepartmentNames;
-import static core.student.StudentsUtil.Insert_Student;
 import java.sql.SQLException;
 import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import util.gui.GUI_Util;
+import static core.student.StudentsUtil.registerStudent;
 
 /**
  *
@@ -139,7 +139,7 @@ public class AddNewStudent extends javax.swing.JFrame {
 
     private void registerStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerStudentBtnActionPerformed
         try {
-            Insert_Student(studentNameTf.getText(),
+            registerStudent(studentNameTf.getText(),
                     this.studentNameTf.getText(),
                     (String) this.studentDepartmentCb.getSelectedItem(),
                     (double) this.studentTotalCreditSp.getValue());

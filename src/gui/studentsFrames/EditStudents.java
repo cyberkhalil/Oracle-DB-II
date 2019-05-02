@@ -24,7 +24,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableModel;
 import util.gui.GUI_Util;
 import static util.gui.GUI_Util.buildTableModel;
-import static core.student.StudentsUtil.displayStudentInformation;
+import static core.student.StudentsUtil.getAllStudents;
 
 /**
  *
@@ -334,7 +334,7 @@ public class EditStudents extends DefaultFrame {
 
     private void updateTable() {
         try {
-            jTable1.setModel(buildTableModel(displayStudentInformation()));
+            jTable1.setModel(buildTableModel(getAllStudents()));
         } catch (SQLException ex) {
             JOptionPane.showConfirmDialog(rootPane, ex);
         }

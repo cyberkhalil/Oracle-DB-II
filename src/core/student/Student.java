@@ -17,10 +17,10 @@
 package core.student;
 
 import java.sql.CallableStatement;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import util.db.DBConnection;
+import oracle.jdbc.OracleCallableStatement;
+import oracle.jdbc.OracleTypes;
 import static util.db.DBConnection.getConnection;
 
 /**
@@ -36,28 +36,23 @@ public class Student {
 
     /**
      *
-     * @param ID
+     * @param id
      * @throws SQLException
      */
-    public Student(String ID) throws SQLException {
-        // TODO 7 use pl/sql procedure student_name_and_ida
-
-        String call = "{CALL student_pkg.student_name_and_ida(?)}";
+    public Student(String id) throws SQLException {
+        String call = "{? = CALL student_pkg.get_student_by_id(?)}";
         CallableStatement statment = getConnection().prepareCall(call);
-        statment.setString(1, this.ID);
+        statment.registerOutParameter(1, OracleTypes.CURSOR);
+        statment.setString(2, id);
         statment.execute();
-        /*
-        String query = "select * from student where ID=?";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setString(1, ID);
-        ResultSet rs = preparedStatement.executeQuery();
+        statment.execute();
+        ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
         rs.next();
 
         name = rs.getString("name");
         departmentName = rs.getString("dept_name");
         totalCerdit = rs.getDouble("tot_cred");
-        this.ID = ID;*/
+        this.ID = id;
     }
 
     /**
@@ -68,10 +63,37 @@ public class Student {
     }
 
     /**
+     * @param name the name to set
+     * @throws java.sql.SQLException
+     */
+    public void setName(String name) throws SQLException {
+        String call = "{CALL student_pkg.set_name(?,?)}";
+        CallableStatement statment
+                = getConnection().prepareCall(call);
+        statment.setString(1, ID);
+        statment.setString(2, name);
+        statment.execute();
+        this.name = name;
+    }
+
+    /**
      * @return the name
      */
     public String getName() {
         return name;
+    }
+
+    /**
+     * @param departmentName the departmentName to set
+     * @throws java.sql.SQLException
+     */
+    public void setDepartmentName(String departmentName) throws SQLException {
+        String call = "{CALL student_pkg.set_department_name(?,?)}";
+        CallableStatement statment = getConnection().prepareCall(call);
+        statment.setString(1, ID);
+        statment.setString(2, departmentName);
+        statment.execute();
+        this.departmentName = departmentName;
     }
 
     /**
@@ -82,51 +104,34 @@ public class Student {
     }
 
     /**
+     * @param totalCerdit the totalCerdit to set
+     * @throws java.sql.SQLException
+     */
+    public void setTotalCerdit(double totalCerdit) throws SQLException {
+        String call = "{CALL student_pkg.set_total_cerdit(?,?)}";
+        CallableStatement statment
+                = getConnection().prepareCall(call);
+        statment.setString(1, ID);
+        statment.setDouble(2, totalCerdit);
+        statment.execute();
+    }
+
+    /**
      * @return the totalCerdit
      */
     public double getTotalCerdit() {
         return totalCerdit;
     }
 
-    /**
-     * @param name the name to set
-     * @throws java.sql.SQLException
-     */
-    public void setName(String name) throws SQLException {
-        String call = "{CALL student_pkg.setname(?,?)}";
-        CallableStatement statment
-                = getConnection().prepareCall(call);
-        statment.setString(1, ID);
-        statment.setString(2, name);
+    public static ResultSet getStudentCourses(String sutdentId)
+            throws SQLException {
+        String call = "{? = CALL student_pkg.get_student_courses(?)}";
+        CallableStatement statment = getConnection().prepareCall(call);
+        statment.registerOutParameter(1, OracleTypes.CURSOR);
+        statment.setString(2, sutdentId);
         statment.execute();
-        this.name = name;
-    }
-
-    /**
-     * @param departmentName the departmentName to set
-     * @throws java.sql.SQLException
-     */
-    public void setDepartmentName(String departmentName) throws SQLException {
-        String call = "{CALL student_pkg.setdept_name(?,?)}";
-        CallableStatement statment
-                = getConnection().prepareCall(call);
-        statment.setString(1, ID);
-        statment.setString(2, departmentName);
-        statment.execute();
-        this.departmentName = departmentName;
-    }
-
-    /**
-     * @param totalCerdit the totalCerdit to set
-     * @throws java.sql.SQLException
-     */
-    public void setTotalCerdit(double totalCerdit) throws SQLException {
-        String call = "{CALL student_pkg.getTotalCerdit(?,?)}";
-        CallableStatement statment
-                = getConnection().prepareCall(call);
-        statment.setString(1, ID);
-        statment.setDouble(2, totalCerdit);
-        statment.execute();
+        ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
+        return rs;
     }
 
     /**
