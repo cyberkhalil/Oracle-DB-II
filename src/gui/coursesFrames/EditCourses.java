@@ -25,6 +25,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableModel;
 import util.gui.GUI_Util;
 import static util.gui.GUI_Util.buildTableModel;
+import static util.gui.GUI_Util.linkFrameToButton;
 
 /**
  *
@@ -279,6 +280,9 @@ public class EditCourses extends DefaultFrame {
     }//GEN-LAST:event_editDepartmentBtnActionPerformed
 
     private void deleteCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCourseBtnActionPerformed
+        if (!validSelection()) {
+            return;
+        }
         if (GUI_Util.promoteConfirm(rootPane,
                 "Are you sure you want to delete this course ?",
                 "Course Deletion")) {
@@ -308,7 +312,9 @@ public class EditCourses extends DefaultFrame {
     }//GEN-LAST:event_editCreditsBtnActionPerformed
 
     private void editCourseTakesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCourseTakesActionPerformed
-        // TODO 11 use course takes method in new Frame here
+        EditCourseTakes frame = new EditCourseTakes(selectedCourse);
+        linkFrameToButton(frame, editCourseTakes);
+        frame.setVisible(true);
     }//GEN-LAST:event_editCourseTakesActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

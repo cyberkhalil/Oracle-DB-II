@@ -119,8 +119,10 @@ CREATE OR REPLACE PACKAGE BODY course_pkg IS
 
         RETURN c_coursea;
     END;
+    
+        /* get_course_by_id */
 
-    PROCEDURE allcourse_with_id (
+    PROCEDURE get_course_by_id (
         allcourse   OUT         SYS_REFCURSOR,
         c_id        IN          course.course_id%TYPE
     ) IS
@@ -136,6 +138,8 @@ CREATE OR REPLACE PACKAGE BODY course_pkg IS
         WHEN OTHERS THEN
             dbms_output.put_line(sqlerrm);
     END;
+
+        /* delete_course */
 
     PROCEDURE delete_course (
         c_id   IN     course.course_id%TYPE

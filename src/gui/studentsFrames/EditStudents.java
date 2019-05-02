@@ -281,6 +281,9 @@ public class EditStudents extends DefaultFrame {
     }//GEN-LAST:event_editDepartmentBtnActionPerformed
 
     private void deleteStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteStudentBtnActionPerformed
+        if (!validSelection()) {
+            return;
+        }
         if (GUI_Util.promoteConfirm(rootPane,
                 "Are you sure you want to delete this student ?",
                 "Student Deletion")) {

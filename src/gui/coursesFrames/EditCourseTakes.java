@@ -14,9 +14,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package gui.studentsFrames;
+package gui.coursesFrames;
 
-import core.student.Student;
+import core.course.Course;
 import gui.DefaultFrame;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -26,18 +26,18 @@ import static util.gui.GUI_Util.buildTableModel;
  *
  * @author User
  */
-public class EditStudentCourses extends DefaultFrame {
+public class EditCourseTakes extends DefaultFrame {
 
-    private final Student student;
+    private final Course course;
 
     /**
-     * Creates new form EditStudentTakesFrame
+     * Creates new form EditCourseTakes
      *
-     * @param student
+     * @param course
      */
-    public EditStudentCourses(Student student) {
+    public EditCourseTakes(Course course) {
         initComponents();
-        this.student = student;
+        this.course = course;
         updateTable();
     }
 
@@ -62,7 +62,7 @@ public class EditStudentCourses extends DefaultFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 204, Short.MAX_VALUE)
+            .addGap(0, 225, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -88,16 +88,17 @@ public class EditStudentCourses extends DefaultFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-// TODO 20 selected studentTake
-//        int i = jTable1.getSelectedRow();
-//        TableModel tableModel = jTable1.getModel();
-//        try {
-//            selectedStudent = new Student((String) tableModel.getValueAt(i, 0));
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(rootPane, ex);
-//        }
+        // TODO 7 selectedCourseTake..
         updateTable();
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void updateTable() {
+        try {
+            jTable1.setModel(buildTableModel(this.course.getCourseTakes()));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -105,12 +106,4 @@ public class EditStudentCourses extends DefaultFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-
-    private void updateTable() {
-        try {
-            jTable1.setModel(buildTableModel(student.getCourses()));
-        } catch (SQLException ex) {
-            JOptionPane.showConfirmDialog(rootPane, ex);
-        }
-    }
 }

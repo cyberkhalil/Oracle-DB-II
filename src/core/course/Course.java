@@ -29,7 +29,7 @@ import static util.db.DBConnection.getConnection;
  */
 public class Course {
 
-    private final String iD;
+    private final String ID;
     private String title;
     private String departmentName;
     private double credits;
@@ -40,11 +40,10 @@ public class Course {
      * @throws SQLException
      */
     public Course(String COURSE_ID) throws SQLException {
-        String call = "{? = CALL course_pkg.allcourse_with_Id(?)}";
+        String call = "{CALL course_pkg.get_course_by_id(?,?)}";
         CallableStatement statment = getConnection().prepareCall(call);
         statment.registerOutParameter(1, OracleTypes.CURSOR);
         statment.setString(2, COURSE_ID);
-        statment.execute();
         statment.execute();
         ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
         rs.next();
@@ -52,14 +51,14 @@ public class Course {
         title = rs.getString("title");
         departmentName = rs.getString("dept_name");
         credits = rs.getDouble("credits");
-        this.iD = COURSE_ID;
+        this.ID = COURSE_ID;
     }
 
     /**
      * @return the iD
      */
     public String getId() {
-        return iD;
+        return ID;
     }
 
     /**
@@ -90,7 +89,7 @@ public class Course {
     public void setTitle(String title) throws SQLException {
         String call = "{CALL course_pkg.set_title(?,?)}";
         CallableStatement statment = getConnection().prepareCall(call);
-        statment.setString(1, this.iD);
+        statment.setString(1, this.ID);
         statment.setString(2, title);
         statment.execute();
         this.title = title;
@@ -103,7 +102,7 @@ public class Course {
     public void setDepartmentName(String departmentName) throws SQLException {
         String call = "{CALL course_pkg.set_department_name(?,?)}";
         CallableStatement statment = getConnection().prepareCall(call);
-        statment.setString(1, this.iD);
+        statment.setString(1, this.ID);
         statment.setString(2, departmentName);
         statment.execute();
         this.departmentName = departmentName;
@@ -116,17 +115,17 @@ public class Course {
     public void setCredits(double credits) throws SQLException {
         String call = "{CALL course_pkg.set_cerdits(?,?)}";
         CallableStatement statment = getConnection().prepareCall(call);
-        statment.setString(1, this.iD);
+        statment.setString(1, this.ID);
         statment.setDouble(2, credits);
         statment.execute();
         this.credits = credits;
     }
 
-    public static ResultSet getCourseTakes(String courseId) throws SQLException {
+    public ResultSet getCourseTakes() throws SQLException {
         String call = "{? = CALL Course_pkg.get_course_takes(?)}";
         CallableStatement statment = getConnection().prepareCall(call);
         statment.registerOutParameter(1, OracleTypes.CURSOR);
-        statment.setString(2, courseId);
+        statment.setString(2, this.ID);
         statment.execute();
         ResultSet rs = ((OracleCallableStatement) statment).getCursor(1);
         return rs;
@@ -139,7 +138,7 @@ public class Course {
     public void delete() throws SQLException {
         String call = "{CALL course_pkg.delete_course(?)}";
         CallableStatement statment = getConnection().prepareCall(call);
-        statment.setString(1, iD);
+        statment.setString(1, ID);
         statment.execute();
         this.title = null;
         this.credits = -1;

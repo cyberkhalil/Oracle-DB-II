@@ -42,7 +42,7 @@ public final class CoursesUtil {
     }
 
     public static ResultSet getAllCoursesStudentsNumber() throws SQLException {
-        String call = "{CALL Course_pkg.get_all_courses_students_number(?)}";
+        String call = "{CALL Course_pkg.get_courses_students_number(?)}";
         CallableStatement statment = getConnection().prepareCall(call);
         statment.registerOutParameter(1, OracleTypes.CURSOR);
         statment.execute();

@@ -33,7 +33,7 @@ CREATE OR REPLACE PACKAGE course_pkg IS
         c_id   IN     course.course_id%TYPE
     ) RETURN SYS_REFCURSOR;
 
-    PROCEDURE allcourse_with_id (
+    PROCEDURE get_course_by_id (
         allcourse   OUT         SYS_REFCURSOR,
         c_id        IN          course.course_id%TYPE
     );
