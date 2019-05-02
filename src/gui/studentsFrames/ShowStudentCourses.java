@@ -83,7 +83,6 @@ public class ShowStudentCourses extends DefaultFrame {
         updateTable();
     }//GEN-LAST:event_jTable1MouseClicked
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

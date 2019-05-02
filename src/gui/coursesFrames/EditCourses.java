@@ -293,6 +293,10 @@ public class EditCourses extends DefaultFrame {
             }
         }
         updateTable();
+        courseIdTf.setText("");
+        courseTitleTf.setText("");
+        courseDepartmentTf.setText("");
+        courseCreditsTf.setText("");
     }//GEN-LAST:event_deleteCourseBtnActionPerformed
 
     private void editCreditsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCreditsBtnActionPerformed
@@ -302,13 +306,13 @@ public class EditCourses extends DefaultFrame {
                 (double newCredits) -> {
                     try {
                         selectedCourse.setCredits(newCredits);
+                        updateTable();
                         return true;
                     } catch (SQLException ex) {
                         JOptionPane.showMessageDialog(rootPane, ex);
                     }
                     return false;
                 });
-        updateTable();
     }//GEN-LAST:event_editCreditsBtnActionPerformed
 
     private void editCourseTakesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCourseTakesActionPerformed

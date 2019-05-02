@@ -39,9 +39,4 @@ CREATE OR REPLACE PACKAGE student_pkg IS
         s_id       IN         student.id%TYPE
     );
 
-    PROCEDURE student_name_id (
-        c_course   OUT        SYS_REFCURSOR,
-        s_id       IN         student.id%TYPE
-    );
-
 END;

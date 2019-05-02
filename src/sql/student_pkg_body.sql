@@ -127,26 +127,4 @@ CREATE OR REPLACE PACKAGE BODY student_pkg IS
 
     END;
 
-    PROCEDURE student_name_id (
-        c_course   OUT        SYS_REFCURSOR,
-        s_id       IN         student.id%TYPE
-    ) IS
-    -- TODO 18 make this procedure display student id, name (,) all takes information for 
-    --this student also change procsdure name
-    BEGIN
-        OPEN c_course FOR SELECT
-                              s.id,
-                              s.name,
-                              c.title,
-                              c.course_id
-                          FROM
-                              course    c,
-                              takes     t,
-                              student   s
-                          WHERE
-                              t.id = s_id
-                              AND s.id = t.id;
-
-    END;
-
 END;

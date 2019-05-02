@@ -84,7 +84,6 @@ public class ShowCourseTakes extends DefaultFrame {
         }
     }
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
