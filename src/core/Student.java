@@ -127,7 +127,13 @@ public class Student {
      * @throws SQLException
      */
     public void delete() throws SQLException {
-        // TODO 6 use the pl/sql procedure
+        
+        
+        String call = "{CALL student_pkg.Delete_Student(?)}";
+        CallableStatement statment = getConnection().prepareCall(call);
+        statment.setString(1, ID);
+        statment.execute();
+        
         String query = "Delete from student where ID=?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);

@@ -41,6 +41,9 @@ CREATE OR REPLACE PACKAGE student_pkg IS
         s_id   IN     student.id%TYPE
     ) RETURN SYS_REFCURSOR;
 
+PROCEDURE Delete_Student (
+     S_id in Student.ID%type
+     );
     -- TODO 6 create delete procedure accept student id and delete student record
 
 END;
