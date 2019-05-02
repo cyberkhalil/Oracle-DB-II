@@ -38,9 +38,9 @@ public final class Main {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-        if (!Pre.checkOracleInstalled()) {
-            // TODO 4 create and call another method here
-        }
+//        if (!Pre.checkOracleInstalled()) {
+//            // TODO 4 un comment me & create and call another method here
+//        }
         invokeLater(() -> {
             new Login().setVisible(true);
         });
