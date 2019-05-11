@@ -16,7 +16,6 @@
  */
 package util.db;
 
-import java.awt.List;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -108,8 +107,7 @@ public final class DbUtil {
 
         String course_pkg_body = IO_Util.readFile(
                 COURSE_PACKAGE_BODY_FILE.toString(), StandardCharsets.UTF_8);
-        CallableStatement statment2
-                = getConnection().prepareCall(course_pkg_body);
+        CallableStatement statment2 = getConnection().prepareCall(course_pkg_body);
         statment2.execute();
 
     }
@@ -117,13 +115,11 @@ public final class DbUtil {
     private static void createStudentPackage() throws SQLException, IOException {
         String student_pkg = IO_Util.readFile(
                 STUDENT_PACKAGE_FILE.toString(), StandardCharsets.UTF_8);
-        CallableStatement statment
-                = getConnection().prepareCall(student_pkg);
+        CallableStatement statment = getConnection().prepareCall(student_pkg);
 
         String student_pkg_body = IO_Util.readFile(
                 STUDENT_PACKAGE_BODY_FILE.toString(), StandardCharsets.UTF_8);
-        CallableStatement statment2
-                = getConnection().prepareCall(student_pkg_body);
+        CallableStatement statment2 = getConnection().prepareCall(student_pkg_body);
 
         statment.execute();
         statment2.execute();
@@ -132,8 +128,7 @@ public final class DbUtil {
     private static void createDepartmentPackage() throws IOException, SQLException {
         String university_pkg = IO_Util.readFile(
                 DEPARTMENT_PACKAGE_FILE.toString(), StandardCharsets.UTF_8);
-        CallableStatement statment
-                = getConnection().prepareCall(university_pkg);
+        CallableStatement statment = getConnection().prepareCall(university_pkg);
 
         String university_pkg_body = IO_Util.readFile(
                 DEPARTMENT_PACKAGE_BODY_FILE.toString(), StandardCharsets.UTF_8);
@@ -144,23 +139,19 @@ public final class DbUtil {
     }
 
     private static int countAllTables() throws SQLException {
-        // TODO 6 use pl/sql here instead of sql
         String query = "select count(*) from tab";
-        PreparedStatement statment
-                = getConnection().prepareStatement(query);
+        PreparedStatement statment = getConnection().prepareStatement(query);
         ResultSet rs = statment.executeQuery();
         rs.next();
         return rs.getInt("COUNT(*)");
     }
 
     private static ResultSet getAllTables() throws SQLException {
-        // TODO 7 use pl/sql here instead of sql
         String query = "select * from tab";
-        PreparedStatement statment
-                = getConnection().prepareStatement(
-                        query,
-                        ResultSet.TYPE_SCROLL_INSENSITIVE,
-                        ResultSet.CONCUR_READ_ONLY);
+        PreparedStatement statment = getConnection().prepareStatement(
+                query,
+                ResultSet.TYPE_SCROLL_INSENSITIVE,
+                ResultSet.CONCUR_READ_ONLY);
         ResultSet rs = statment.executeQuery();
         return rs;
     }
