@@ -20,7 +20,6 @@ import gui.Login;
 import static java.awt.EventQueue.invokeLater;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
-import util.Pre;
 
 /**
  *
@@ -38,9 +37,6 @@ public final class Main {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-//        if (!Pre.checkOracleInstalled()) {
-//            // TODO 4 un comment me & create and call another method here
-//        }
         invokeLater(() -> {
             new Login().setVisible(true);
         });
