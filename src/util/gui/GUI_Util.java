@@ -24,6 +24,8 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
+import javafx.scene.control.ComboBox;
+import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -160,7 +162,18 @@ public final class GUI_Util {
             String buttonTxt, SpinnerNumberModel spinnerNumberModel,
             DoSomethingWithSpinner dsws) {
         JFrame promoteFrame
-                = new PromoteSpinner(title, labelTxt, spinnerNumberModel, buttonTxt, dsws);
+                = new PromoteSpinner(title, labelTxt, spinnerNumberModel, buttonTxt,
+                        dsws);
+        promoteFrame.setVisible(true);
+    }
+
+    public static void promoteComboBox(String title, String labelTxt,
+            String buttonTxt, ComboBoxModel comboBoxModel,
+            DoSomethingWithComboBox dswcb) {
+
+        JFrame promoteFrame = new PromoteComboBox(
+                title, labelTxt, comboBoxModel, buttonTxt, dswcb);
+
         promoteFrame.setVisible(true);
     }
 
@@ -172,5 +185,13 @@ public final class GUI_Util {
          */
         abstract boolean doSomething(double spinnerValue);
     }
-    // TOOD create promoteComboBox function
+
+    public static abstract interface DoSomethingWithComboBox {
+
+        /**
+         * @param choice
+         * @return true to close or false to not close
+         */
+        abstract boolean doSomething(String choice);
+    }
 }

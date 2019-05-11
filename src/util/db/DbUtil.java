@@ -16,6 +16,7 @@
  */
 package util.db;
 
+import java.awt.List;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -23,6 +24,7 @@ import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import util.IO_Util;
 import static util.db.DBConnection.getConnection;
 
@@ -161,5 +163,14 @@ public final class DbUtil {
                         ResultSet.CONCUR_READ_ONLY);
         ResultSet rs = statment.executeQuery();
         return rs;
+    }
+
+    public static String[] resultSetToSigleColoumnArray(ResultSet rs)
+            throws SQLException {
+        ArrayList<String> arrayList = new ArrayList<>();
+        while (rs.next()) {
+            arrayList.add(rs.getString(1));
+        }
+        return arrayList.toArray(new String[1]);
     }
 }

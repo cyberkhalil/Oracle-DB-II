@@ -18,14 +18,18 @@ package gui.coursesFrames;
 
 import core.course.Course;
 import static core.course.CoursesUtil.displayCourseInformation;
+import static core.department.DepartmentsUtil.displayDepartmentNames;
 import gui.DefaultFrame;
 import java.sql.SQLException;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableModel;
+import util.db.DbUtil;
 import util.gui.GUI_Util;
 import static util.gui.GUI_Util.buildTableModel;
 import static util.gui.GUI_Util.linkFrameToButton;
+import static util.gui.GUI_Util.promoteComboBox;
 
 /**
  *
@@ -259,24 +263,37 @@ public class EditCourses extends DefaultFrame {
     }//GEN-LAST:event_editNameBtnActionPerformed
 
     private void editDepartmentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editDepartmentBtnActionPerformed
-        // TODO 2 use promote ComboBox and give departement names as content
         if (!validSelection()) {
             return;
         }
-        String newCourseDepartmentName = GUI_Util.promoteString(
-                rootPane,
-                "New course department name:",
-                "Course department",
-                "Coursedepartment name can't be empty !");
-        if (newCourseDepartmentName == null) {
+        String[] arr;
+        try {
+            arr = DbUtil.resultSetToSigleColoumnArray(
+                    displayDepartmentNames()
+            );
+        } catch (SQLException ex) {
+            JOptionPane.showConfirmDialog(rootPane, ex);
             return;
         }
-        try {
-            selectedCourse.setDepartmentName(newCourseDepartmentName);
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
-        }
-        updateTable();
+        promoteComboBox(
+                "Course Department Name",
+                "New department name:",
+                "Set department name",
+                new DefaultComboBoxModel(arr),
+                (String choice) -> {
+                    try {
+                        selectedCourse.setDepartmentName(choice);
+
+                        JOptionPane.showMessageDialog(rootPane,
+                                "Department Changed Successfully");
+                        updateTable();
+                        return true;
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(rootPane, ex);
+                        return false;
+                    }
+                });
+
     }//GEN-LAST:event_editDepartmentBtnActionPerformed
 
     private void deleteCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCourseBtnActionPerformed
