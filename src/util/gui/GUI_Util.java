@@ -24,7 +24,6 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
-import javafx.scene.control.ComboBox;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -74,30 +73,30 @@ public final class GUI_Util {
 
     public static DefaultTableModel buildTableModel(ResultSet rs)
             throws SQLException {
-        // TODO 8 try to use arrays instead of vectors
         ResultSetMetaData metaData = rs.getMetaData();
 
         // names of columns
-        Vector<String> columnNames = new Vector<>();
+        ArrayList<String> columnNames = new ArrayList<>();
         int columnCount = metaData.getColumnCount();
         for (int column = 1; column <= columnCount; column++) {
             columnNames.add(metaData.getColumnName(column));
         }
 
         // data of the table
-        Vector<Vector<Object>> data = new Vector<>();
+        ArrayList<Object[]> data = new ArrayList<>();
         while (rs.next()) {
-            Vector<Object> vector = new Vector<>();
+            Object[] data1 = new Object[columnCount];
             for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
-                vector.add(rs.getObject(columnIndex));
+                data1[columnIndex - 1] = (rs.getObject(columnIndex));
             }
-            data.add(vector);
+            data.add(data1);
         }
-
-        return new DefaultTableModel(data, columnNames) {
+        return new DefaultTableModel(
+                data.toArray(new Object[data.size()][columnCount]),
+                columnNames.toArray()) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                //all cells false
+                // for preventing any cell edit
                 return false;
             }
         };
@@ -108,11 +107,9 @@ public final class GUI_Util {
             throws SQLException {
 
         ArrayList<String> arrayList = new ArrayList<>();
-
         while (rs.next()) {
             arrayList.add(rs.getString(1));
         }
-        // TODO 9 try to use arrays instead of vectors
         return new DefaultComboBoxModel(arrayList.toArray());
     }
 
