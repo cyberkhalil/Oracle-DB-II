@@ -276,7 +276,7 @@ public class EditStudents extends DefaultFrame {
             JOptionPane.showConfirmDialog(rootPane, ex);
             return;
         }
-        promoteComboBox(
+        linkFrameToButton(promoteComboBox(
                 "Course Department Name",
                 "New department name:",
                 "Set department name",
@@ -293,7 +293,7 @@ public class EditStudents extends DefaultFrame {
                         JOptionPane.showMessageDialog(rootPane, ex);
                         return false;
                     }
-                });
+                }), editDepartmentBtn);
     }//GEN-LAST:event_editDepartmentBtnActionPerformed
 
     private void deleteStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteStudentBtnActionPerformed
@@ -317,7 +317,10 @@ public class EditStudents extends DefaultFrame {
     }//GEN-LAST:event_deleteStudentBtnActionPerformed
 
     private void editTotalCreditBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editTotalCreditBtnActionPerformed
-        GUI_Util.promoteSpinner("Student Total Credit", "New student total credit :",
+        if (!validSelection()) {
+            return;
+        }
+        linkFrameToButton(GUI_Util.promoteSpinner("Student Total Credit", "New student total credit :",
                 "Set Total Credit",
                 new SpinnerNumberModel(0.0, 0.0, 10_000_000.0, 10.0),
                 (double newTotalCredit) -> {
@@ -329,10 +332,13 @@ public class EditStudents extends DefaultFrame {
                         JOptionPane.showMessageDialog(rootPane, ex);
                     }
                     return false;
-                });
+                }), editTotalCreditBtn);
     }//GEN-LAST:event_editTotalCreditBtnActionPerformed
 
     private void editStudentCoursesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editStudentCoursesBtnActionPerformed
+        if (!validSelection()) {
+            return;
+        }
         ShowStudentCourses frame = new ShowStudentCourses(selectedStudent);
         linkFrameToButton(frame, editStudentCoursesBtn);
         frame.setVisible(true);

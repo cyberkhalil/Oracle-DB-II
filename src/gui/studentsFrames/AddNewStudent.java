@@ -139,7 +139,7 @@ public class AddNewStudent extends javax.swing.JFrame {
 
     private void registerStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerStudentBtnActionPerformed
         try {
-            registerStudent(studentNameTf.getText(),
+            registerStudent(sutdentIdTf.getText(),
                     this.studentNameTf.getText(),
                     (String) this.studentDepartmentCb.getSelectedItem(),
                     (double) this.studentTotalCreditSp.getValue());

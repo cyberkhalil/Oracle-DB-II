@@ -275,7 +275,7 @@ public class EditCourses extends DefaultFrame {
             JOptionPane.showConfirmDialog(rootPane, ex);
             return;
         }
-        promoteComboBox(
+        linkFrameToButton(promoteComboBox(
                 "Course Department Name",
                 "New department name:",
                 "Set department name",
@@ -292,7 +292,7 @@ public class EditCourses extends DefaultFrame {
                         JOptionPane.showMessageDialog(rootPane, ex);
                         return false;
                     }
-                });
+                }), editDepartmentBtn);
 
     }//GEN-LAST:event_editDepartmentBtnActionPerformed
 
@@ -317,22 +317,31 @@ public class EditCourses extends DefaultFrame {
     }//GEN-LAST:event_deleteCourseBtnActionPerformed
 
     private void editCreditsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCreditsBtnActionPerformed
-        GUI_Util.promoteSpinner("Course Credits", "New course credits :",
-                "Set Course Credit",
-                new SpinnerNumberModel(0.0, 0.0, 10_000_000.0, 10.0),
-                (double newCredits) -> {
-                    try {
-                        selectedCourse.setCredits(newCredits);
-                        updateTable();
-                        return true;
-                    } catch (SQLException ex) {
-                        JOptionPane.showMessageDialog(rootPane, ex);
-                    }
-                    return false;
-                });
+        if (!validSelection()) {
+            return;
+        }
+        linkFrameToButton(
+                GUI_Util.promoteSpinner("Course Credits", "New course credits :",
+                        "Set Course Credit",
+                        new SpinnerNumberModel(0.0, 0.0, 10_000_000.0, 10.0),
+                        (double newCredits) -> {
+                            try {
+                                selectedCourse.setCredits(newCredits);
+                                updateTable();
+                                return true;
+                            } catch (SQLException ex) {
+                                JOptionPane.showMessageDialog(rootPane, ex);
+                            }
+                            return false;
+                        }),
+                editCreditsBtn);
     }//GEN-LAST:event_editCreditsBtnActionPerformed
 
     private void editCourseTakesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCourseTakesActionPerformed
+
+        if (!validSelection()) {
+            return;
+        }
         ShowCourseTakes frame = new ShowCourseTakes(selectedCourse);
         linkFrameToButton(frame, editCourseTakes);
         frame.setVisible(true);

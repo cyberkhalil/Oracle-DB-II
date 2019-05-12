@@ -155,16 +155,17 @@ public final class GUI_Util {
         return confirm == JOptionPane.YES_OPTION;
     }
 
-    public static void promoteSpinner(String title, String labelTxt,
+    public static JFrame promoteSpinner(String title, String labelTxt,
             String buttonTxt, SpinnerNumberModel spinnerNumberModel,
             DoSomethingWithSpinner dsws) {
         JFrame promoteFrame
                 = new PromoteSpinner(title, labelTxt, spinnerNumberModel, buttonTxt,
                         dsws);
         promoteFrame.setVisible(true);
+        return promoteFrame;
     }
 
-    public static void promoteComboBox(String title, String labelTxt,
+    public static JFrame promoteComboBox(String title, String labelTxt,
             String buttonTxt, ComboBoxModel comboBoxModel,
             DoSomethingWithComboBox dswcb) {
 
@@ -172,6 +173,7 @@ public final class GUI_Util {
                 title, labelTxt, comboBoxModel, buttonTxt, dswcb);
 
         promoteFrame.setVisible(true);
+        return promoteFrame;
     }
 
     public static abstract interface DoSomethingWithSpinner {

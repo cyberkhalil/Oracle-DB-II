@@ -218,7 +218,7 @@ public class MainMenu extends DefaultFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         EditCourses frame = new EditCourses();
-        GUI_Util.linkFrameToButton(frame, jButton1);
+        GUI_Util.linkFrameToButton(frame, jButton2);
         frame.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -236,7 +236,7 @@ public class MainMenu extends DefaultFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         ShowSections frame = new ShowSections();
-        GUI_Util.linkFrameToButton(frame, newStudentBtn);
+        GUI_Util.linkFrameToButton(frame, jButton5);
         frame.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
