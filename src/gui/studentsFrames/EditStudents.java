@@ -305,15 +305,15 @@ public class EditStudents extends DefaultFrame {
                 "Student Deletion")) {
             try {
                 selectedStudent.delete();
+                updateTable();
+                studentIdTf.setText("");
+                studentNameTf.setText("");
+                studentDepartmentTf.setText("");
+                studentCreditTf.setText("");
             } catch (SQLException ex) {
                 JOptionPane.showConfirmDialog(rootPane, ex);
             }
         }
-        updateTable();
-        studentIdTf.setText("");
-        studentNameTf.setText("");
-        studentDepartmentTf.setText("");
-        studentCreditTf.setText("");
     }//GEN-LAST:event_deleteStudentBtnActionPerformed
 
     private void editTotalCreditBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editTotalCreditBtnActionPerformed

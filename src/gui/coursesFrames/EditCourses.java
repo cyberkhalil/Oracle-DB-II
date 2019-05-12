@@ -305,15 +305,15 @@ public class EditCourses extends DefaultFrame {
                 "Course Deletion")) {
             try {
                 selectedCourse.delete();
+                updateTable();
+                courseIdTf.setText("");
+                courseTitleTf.setText("");
+                courseDepartmentTf.setText("");
+                courseCreditsTf.setText("");
             } catch (SQLException ex) {
                 JOptionPane.showConfirmDialog(rootPane, ex);
             }
         }
-        updateTable();
-        courseIdTf.setText("");
-        courseTitleTf.setText("");
-        courseDepartmentTf.setText("");
-        courseCreditsTf.setText("");
     }//GEN-LAST:event_deleteCourseBtnActionPerformed
 
     private void editCreditsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCreditsBtnActionPerformed
