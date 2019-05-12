@@ -287,6 +287,7 @@ public class EditCourses extends DefaultFrame {
                         JOptionPane.showMessageDialog(rootPane,
                                 "Department Changed Successfully");
                         updateTable();
+                        editDepartmentBtn.setEnabled(true);
                         return true;
                     } catch (SQLException ex) {
                         JOptionPane.showMessageDialog(rootPane, ex);
@@ -328,6 +329,7 @@ public class EditCourses extends DefaultFrame {
                             try {
                                 selectedCourse.setCredits(newCredits);
                                 updateTable();
+                                editCreditsBtn.setEnabled(true);
                                 return true;
                             } catch (SQLException ex) {
                                 JOptionPane.showMessageDialog(rootPane, ex);

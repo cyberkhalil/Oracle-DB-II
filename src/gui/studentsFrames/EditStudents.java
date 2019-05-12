@@ -288,6 +288,7 @@ public class EditStudents extends DefaultFrame {
                         JOptionPane.showMessageDialog(rootPane,
                                 "Department Changed Successfully");
                         updateTable();
+                        editDepartmentBtn.setEnabled(true);
                         return true;
                     } catch (SQLException ex) {
                         JOptionPane.showMessageDialog(rootPane, ex);
@@ -320,13 +321,15 @@ public class EditStudents extends DefaultFrame {
         if (!validSelection()) {
             return;
         }
-        linkFrameToButton(GUI_Util.promoteSpinner("Student Total Credit", "New student total credit :",
+        linkFrameToButton(GUI_Util.promoteSpinner("Student Total Credit",
+                "New student total credit :",
                 "Set Total Credit",
                 new SpinnerNumberModel(0.0, 0.0, 10_000_000.0, 10.0),
                 (double newTotalCredit) -> {
                     try {
                         selectedStudent.setTotalCerdit(newTotalCredit);
                         updateTable();
+                        editTotalCreditBtn.setEnabled(true);
                         return true;
                     } catch (SQLException ex) {
                         JOptionPane.showMessageDialog(rootPane, ex);
